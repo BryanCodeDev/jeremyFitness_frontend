@@ -1,0 +1,11 @@
+{
+  "short_name": "Jeremy Fitness",
+  "name": "Jeremy Fitness Pro - Plataforma Exclusiva",
+  "description": "Plataforma de fitness exclusiva de Jeremy - Entrenamiento personalizado, contenido premium y comunidad fitness",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary"
+}

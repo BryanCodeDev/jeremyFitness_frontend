@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos base personalizados */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    @apply bg-dark text-white;
+  }
+
+  * {
+    @apply border-dark-200;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+}
+
+/* Componentes personalizados */
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-secondary text-white font-semibold py-3 px-6 rounded-lg shadow-orange hover:shadow-orange-lg transform hover:scale-105 transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply bg-dark-200 text-white font-semibold py-3 px-6 rounded-lg border border-primary/30 hover:border-primary hover:bg-primary/10 transition-all duration-300;
+  }
+
+  .btn-ghost {
+    @apply text-primary hover:bg-primary/10 font-semibold py-2 px-4 rounded-lg transition-all duration-300;
+  }
+
+  .card {
+    @apply bg-dark-100/50 backdrop-blur-sm border border-dark-200/50 rounded-xl shadow-lg;
+  }
+
+  .input-primary {
+    @apply bg-dark-200 border border-dark-300 text-white placeholder-dark-400 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-lg px-4 py-3 transition-all duration-300;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-secondary to-white bg-clip-text text-transparent;
+  }
+
+  .loading-shimmer {
+    background: linear-gradient(90deg,
+      rgba(255, 107, 53, 0.1) 25%,
+      rgba(255, 107, 53, 0.3) 50%,
+      rgba(255, 107, 53, 0.1) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  .video-container {
+    @apply relative w-full overflow-hidden bg-dark-200 rounded-lg;
+  }
+
+  .video-player {
+    @apply w-full h-full object-cover;
+  }
+
+  .content-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+  }
+
+  .section-padding {
+    @apply py-16 px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* Utilidades personalizadas */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+}
+
+/* Animaciones */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.6);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-primary to-secondary rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply from-primary-600 to-secondary-600;
+}
+
+/* Selección de texto */
+::selection {
+  @apply bg-primary text-white;
+}
+
+/* Estados responsivos mejorados */
+@media (max-width: 768px) {
+  .content-grid {
+    @apply grid-cols-1 md:grid-cols-2 gap-4;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-padding {
+    @apply py-8 px-4;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    @apply py-2 px-4 text-sm;
+  }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Modo alto contraste */
+@media (prefers-contrast: high) {
+  .gradient-text {
+    @apply text-white;
+  }
+
+  .glass,
+  .glass-dark {
+    background: none;
+    backdrop-filter: none;
+    border: 2px solid;
+  }
+}
