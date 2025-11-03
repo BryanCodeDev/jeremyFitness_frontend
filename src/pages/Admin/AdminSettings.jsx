@@ -1,0 +1,650 @@
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useAuth, api } from '../../utils/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import AdminSidebar from '../../components/Admin/AdminSidebar';
+import {
+  Settings,
+  Shield,
+  ArrowRight,
+  Save,
+  RefreshCw,
+  Database,
+  Mail,
+  Lock,
+  Globe,
+  CreditCard,
+  Bell,
+  Users,
+  Video,
+  ShoppingBag,
+  Radio,
+  CheckCircle,
+  AlertTriangle,
+  Info
+} from 'lucide-react';
+
+const AdminSettings = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [settings, setSettings] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [activeTab, setActiveTab] = useState('general');
+
+  useEffect(() => {
+    if (!user || user.role !== 'admin') {
+      navigate('/');
+      return;
+    }
+
+    loadSettings();
+  }, [user, navigate]);
+
+  const loadSettings = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      // Por ahora usamos datos mock ya que no tenemos tabla de settings
+      const mockSettings = {
+        general: {
+          siteName: 'Jeremy Fitness Platform',
+          siteDescription: 'Plataforma de fitness y bienestar',
+          contactEmail: 'admin@jeremyfitness.com',
+          timezone: 'America/Bogota',
+          language: 'es'
+        },
+        security: {
+          sessionTimeout: 30, // minutos
+          passwordMinLength: 8,
+          requireSpecialChars: true,
+          enableTwoFactor: false,
+          maxLoginAttempts: 5
+        },
+        content: {
+          maxFileSize: 500, // MB
+          allowedFileTypes: ['mp4', 'jpg', 'png', 'pdf'],
+          autoApproveContent: false,
+          enableComments: true,
+          enableRatings: true
+        },
+        payments: {
+          stripeEnabled: true,
+          paypalEnabled: false,
+          currency: 'USD',
+          taxRate: 0,
+          commissionRate: 10
+        },
+        notifications: {
+          emailEnabled: true,
+          smtpHost: 'smtp.gmail.com',
+          smtpPort: 587,
+          smtpUser: '',
+          smtpPassword: '',
+          emailFrom: 'noreply@jeremyfitness.com'
+        },
+        maintenance: {
+          maintenanceMode: false,
+          maintenanceMessage: 'El sitio está en mantenimiento. Volveremos pronto.',
+          backupFrequency: 'daily',
+          lastBackup: new Date().toISOString()
+        }
+      };
+
+      setSettings(mockSettings);
+    } catch (error) {
+      console.error('Error loading settings:', error);
+      setError('Error al cargar la configuración');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const saveSettings = async () => {
+    try {
+      setSaving(true);
+      setError(null);
+      setSuccess(null);
+
+      // Aquí iría la llamada a la API para guardar settings
+      // await api.put('/admin/settings', settings);
+
+      // Simular delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      setSuccess('Configuración guardada exitosamente');
+    } catch (error) {
+      console.error('Error saving settings:', error);
+      setError('Error al guardar la configuración');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const updateSetting = (category, key, value) => {
+    setSettings(prev => ({
+      ...prev,
+      [category]: {
+        ...prev[category],
+        [key]: value
+      }
+    }));
+  };
+
+  // Verificar permisos de administrador
+  if (!user || user.role !== 'admin') {
+    return (
+      <div className="min-h-screen bg-slate-950 pt-16 flex items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl" />
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-lg mx-auto px-4 relative z-10"
+        >
+          <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-8 sm:p-12">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-red-500/50">
+              <Shield className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-black text-red-500 mb-4">
+              Acceso Denegado
+            </h1>
+            <p className="text-slate-400 text-base sm:text-lg mb-8 leading-relaxed">
+              No tienes permisos de administrador para acceder a esta página.
+            </p>
+            <button
+              onClick={() => navigate('/')}
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-105 group"
+            >
+              <span>Volver al Inicio</span>
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
+
+  const tabs = [
+    { id: 'general', label: 'General', icon: <Globe className="w-4 h-4" /> },
+    { id: 'security', label: 'Seguridad', icon: <Lock className="w-4 h-4" /> },
+    { id: 'content', label: 'Contenido', icon: <Video className="w-4 h-4" /> },
+    { id: 'payments', label: 'Pagos', icon: <CreditCard className="w-4 h-4" /> },
+    { id: 'notifications', label: 'Notificaciones', icon: <Bell className="w-4 h-4" /> },
+    { id: 'maintenance', label: 'Mantenimiento', icon: <Database className="w-4 h-4" /> }
+  ];
+
+  return (
+    <div className="min-h-screen bg-slate-950 pt-16">
+      {/* Admin Sidebar */}
+      <AdminSidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
+
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 right-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-orange-600/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="lg:ml-72 container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          {/* Header */}
+          <div className="mb-8 lg:mb-12">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-2 flex items-center gap-3">
+                  <Settings className="w-8 h-8 sm:w-10 sm:h-10 text-orange-500" />
+                  <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+                    Configuración del Sistema
+                  </span>
+                </h1>
+                <p className="text-slate-400 text-base sm:text-lg">
+                  Gestiona la configuración global de la plataforma
+                </p>
+              </div>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={loadSettings}
+                  disabled={loading}
+                  className="flex items-center gap-2 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl px-4 py-2 hover:border-orange-500/50 transition-colors disabled:opacity-50"
+                >
+                  <RefreshCw className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`} />
+                  <span className="text-sm font-semibold text-slate-300">Recargar</span>
+                </button>
+                <button
+                  onClick={saveSettings}
+                  disabled={saving || loading}
+                  className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl px-6 py-3 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 disabled:opacity-50"
+                >
+                  <Save className="w-5 h-5" />
+                  <span>{saving ? 'Guardando...' : 'Guardar Cambios'}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Success/Error Messages */}
+          {error && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-6 bg-red-500/10 border border-red-500/20 rounded-xl p-4"
+            >
+              <div className="flex items-center gap-3">
+                <AlertTriangle className="w-5 h-5 text-red-400" />
+                <p className="text-red-400 text-sm">{error}</p>
+              </div>
+            </motion.div>
+          )}
+
+          {success && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-6 bg-green-500/10 border border-green-500/20 rounded-xl p-4"
+            >
+              <div className="flex items-center gap-3">
+                <CheckCircle className="w-5 h-5 text-green-400" />
+                <p className="text-green-400 text-sm">{success}</p>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Settings Content */}
+          {loading ? (
+            <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-8">
+              <div className="animate-pulse space-y-6">
+                <div className="h-8 bg-slate-800 rounded w-1/4"></div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {Array.from({ length: 8 }).map((_, index) => (
+                    <div key={index} className="space-y-2">
+                      <div className="h-4 bg-slate-800 rounded w-1/3"></div>
+                      <div className="h-10 bg-slate-800 rounded"></div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : settings ? (
+            <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden">
+              {/* Tabs */}
+              <div className="border-b border-slate-800/50">
+                <nav className="flex overflow-x-auto">
+                  {tabs.map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
+                        activeTab === tab.id
+                          ? 'border-orange-500 text-orange-400'
+                          : 'border-transparent text-slate-400 hover:text-white hover:border-slate-700'
+                      }`}
+                    >
+                      {tab.icon}
+                      {tab.label}
+                    </button>
+                  ))}
+                </nav>
+              </div>
+
+              {/* Tab Content */}
+              <div className="p-6">
+                {activeTab === 'general' && (
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Globe className="w-5 h-5 text-blue-400" />
+                      <h3 className="text-lg font-bold text-white">Configuración General</h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-300 mb-2">Nombre del Sitio</label>
+                        <input
+                          type="text"
+                          value={settings.general.siteName}
+                          onChange={(e) => updateSetting('general', 'siteName', e.target.value)}
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-300 mb-2">Email de Contacto</label>
+                        <input
+                          type="email"
+                          value={settings.general.contactEmail}
+                          onChange={(e) => updateSetting('general', 'contactEmail', e.target.value)}
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        />
+                      </div>
+
+                      <div className="md:col-span-2">
+                        <label className="block text-sm font-semibold text-slate-300 mb-2">Descripción del Sitio</label>
+                        <textarea
+                          value={settings.general.siteDescription}
+                          onChange={(e) => updateSetting('general', 'siteDescription', e.target.value)}
+                          rows={3}
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'security' && (
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Lock className="w-5 h-5 text-red-400" />
+                      <h3 className="text-lg font-bold text-white">Configuración de Seguridad</h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-300 mb-2">Timeout de Sesión (minutos)</label>
+                        <input
+                          type="number"
+                          min="5"
+                          max="480"
+                          value={settings.security.sessionTimeout}
+                          onChange={(e) => updateSetting('security', 'sessionTimeout', parseInt(e.target.value))}
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-300 mb-2">Longitud Mínima de Contraseña</label>
+                        <input
+                          type="number"
+                          min="6"
+                          max="32"
+                          value={settings.security.passwordMinLength}
+                          onChange={(e) => updateSetting('security', 'passwordMinLength', parseInt(e.target.value))}
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-300 mb-2">Máximo Intentos de Login</label>
+                        <input
+                          type="number"
+                          min="3"
+                          max="10"
+                          value={settings.security.maxLoginAttempts}
+                          onChange={(e) => updateSetting('security', 'maxLoginAttempts', parseInt(e.target.value))}
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        />
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={settings.security.requireSpecialChars}
+                            onChange={(e) => updateSetting('security', 'requireSpecialChars', e.target.checked)}
+                            className="rounded border-slate-600 text-orange-500 focus:ring-orange-500"
+                          />
+                          <span className="text-sm font-semibold text-slate-300">Requerir Caracteres Especiales</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'content' && (
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Video className="w-5 h-5 text-purple-400" />
+                      <h3 className="text-lg font-bold text-white">Configuración de Contenido</h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-300 mb-2">Tamaño Máximo de Archivo (MB)</label>
+                        <input
+                          type="number"
+                          min="1"
+                          max="2000"
+                          value={settings.content.maxFileSize}
+                          onChange={(e) => updateSetting('content', 'maxFileSize', parseInt(e.target.value))}
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-300 mb-2">Tipos de Archivo Permitidos</label>
+                        <input
+                          type="text"
+                          value={settings.content.allowedFileTypes.join(', ')}
+                          onChange={(e) => updateSetting('content', 'allowedFileTypes', e.target.value.split(',').map(s => s.trim()))}
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        />
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={settings.content.enableComments}
+                            onChange={(e) => updateSetting('content', 'enableComments', e.target.checked)}
+                            className="rounded border-slate-600 text-orange-500 focus:ring-orange-500"
+                          />
+                          <span className="text-sm font-semibold text-slate-300">Habilitar Comentarios</span>
+                        </label>
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={settings.content.enableRatings}
+                            onChange={(e) => updateSetting('content', 'enableRatings', e.target.checked)}
+                            className="rounded border-slate-600 text-orange-500 focus:ring-orange-500"
+                          />
+                          <span className="text-sm font-semibold text-slate-300">Habilitar Calificaciones</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'payments' && (
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-2 mb-4">
+                      <CreditCard className="w-5 h-5 text-green-400" />
+                      <h3 className="text-lg font-bold text-white">Configuración de Pagos</h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-300 mb-2">Moneda</label>
+                        <select
+                          value={settings.payments.currency}
+                          onChange={(e) => updateSetting('payments', 'currency', e.target.value)}
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        >
+                          <option value="USD">USD - Dólar Estadounidense</option>
+                          <option value="EUR">EUR - Euro</option>
+                          <option value="COP">COP - Peso Colombiano</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-300 mb-2">Tasa de Comisión (%)</label>
+                        <input
+                          type="number"
+                          min="0"
+                          max="50"
+                          step="0.1"
+                          value={settings.payments.commissionRate}
+                          onChange={(e) => updateSetting('payments', 'commissionRate', parseFloat(e.target.value))}
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        />
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={settings.payments.stripeEnabled}
+                            onChange={(e) => updateSetting('payments', 'stripeEnabled', e.target.checked)}
+                            className="rounded border-slate-600 text-orange-500 focus:ring-orange-500"
+                          />
+                          <span className="text-sm font-semibold text-slate-300">Habilitar Stripe</span>
+                        </label>
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={settings.payments.paypalEnabled}
+                            onChange={(e) => updateSetting('payments', 'paypalEnabled', e.target.checked)}
+                            className="rounded border-slate-600 text-orange-500 focus:ring-orange-500"
+                          />
+                          <span className="text-sm font-semibold text-slate-300">Habilitar PayPal</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'notifications' && (
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Bell className="w-5 h-5 text-yellow-400" />
+                      <h3 className="text-lg font-bold text-white">Configuración de Notificaciones</h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-300 mb-2">Servidor SMTP</label>
+                        <input
+                          type="text"
+                          value={settings.notifications.smtpHost}
+                          onChange={(e) => updateSetting('notifications', 'smtpHost', e.target.value)}
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-300 mb-2">Puerto SMTP</label>
+                        <input
+                          type="number"
+                          value={settings.notifications.smtpPort}
+                          onChange={(e) => updateSetting('notifications', 'smtpPort', parseInt(e.target.value))}
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-300 mb-2">Usuario SMTP</label>
+                        <input
+                          type="text"
+                          value={settings.notifications.smtpUser}
+                          onChange={(e) => updateSetting('notifications', 'smtpUser', e.target.value)}
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-300 mb-2">Contraseña SMTP</label>
+                        <input
+                          type="password"
+                          value={settings.notifications.smtpPassword}
+                          onChange={(e) => updateSetting('notifications', 'smtpPassword', e.target.value)}
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        />
+                      </div>
+
+                      <div className="md:col-span-2">
+                        <label className="block text-sm font-semibold text-slate-300 mb-2">Email Remitente</label>
+                        <input
+                          type="email"
+                          value={settings.notifications.emailFrom}
+                          onChange={(e) => updateSetting('notifications', 'emailFrom', e.target.value)}
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'maintenance' && (
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Database className="w-5 h-5 text-cyan-400" />
+                      <h3 className="text-lg font-bold text-white">Configuración de Mantenimiento</h3>
+                    </div>
+
+                    <div className="space-y-6">
+                      <div className="flex items-center gap-3">
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={settings.maintenance.maintenanceMode}
+                            onChange={(e) => updateSetting('maintenance', 'maintenanceMode', e.target.checked)}
+                            className="rounded border-slate-600 text-orange-500 focus:ring-orange-500"
+                          />
+                          <span className="text-sm font-semibold text-slate-300">Modo de Mantenimiento</span>
+                        </label>
+                      </div>
+
+                      {settings.maintenance.maintenanceMode && (
+                        <div>
+                          <label className="block text-sm font-semibold text-slate-300 mb-2">Mensaje de Mantenimiento</label>
+                          <textarea
+                            value={settings.maintenance.maintenanceMessage}
+                            onChange={(e) => updateSetting('maintenance', 'maintenanceMessage', e.target.value)}
+                            rows={3}
+                            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          />
+                        </div>
+                      )}
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <label className="block text-sm font-semibold text-slate-300 mb-2">Frecuencia de Backup</label>
+                          <select
+                            value={settings.maintenance.backupFrequency}
+                            onChange={(e) => updateSetting('maintenance', 'backupFrequency', e.target.value)}
+                            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          >
+                            <option value="hourly">Cada Hora</option>
+                            <option value="daily">Diario</option>
+                            <option value="weekly">Semanal</option>
+                            <option value="monthly">Mensual</option>
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className="block text-sm font-semibold text-slate-300 mb-2">Último Backup</label>
+                          <div className="px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-slate-400">
+                            {new Date(settings.maintenance.lastBackup).toLocaleString('es-ES')}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : null}
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+export default AdminSettings;

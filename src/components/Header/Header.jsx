@@ -62,6 +62,8 @@ const [unreadCount, setUnreadCount] = useState(2);
     { name: 'Perfil', href: '/profile', icon: User },
     { name: 'Suscripciones', href: '/subscriptions', icon: CreditCard },
     ...(user?.role === 'admin'
+       ? [{ name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard }]
+       : user?.role === 'creator'
        ? [{ name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard }]
        : []
      ),

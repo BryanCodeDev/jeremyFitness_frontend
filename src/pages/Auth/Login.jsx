@@ -147,7 +147,15 @@ const Login = () => {
       if (result.success) {
         showSuccess('¡Bienvenido de vuelta!');
         setLoginAttempts(0); // Resetear intentos en login exitoso
-        navigate('/');
+
+        // Redirigir según el tipo de usuario
+        setTimeout(() => {
+          if (userType === 'admin') {
+            navigate('/admin/dashboard');
+          } else {
+            navigate('/');
+          }
+        }, 100);
       } else {
         const newAttempts = loginAttempts + 1;
         setLoginAttempts(newAttempts);

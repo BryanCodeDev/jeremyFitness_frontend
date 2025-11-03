@@ -25,6 +25,11 @@ import Subscriptions from './pages/Subscriptions/Subscriptions';
 import LiveStreams from './pages/LiveStreams/LiveStreams';
 import Products from './pages/Products/Products';
 import CreatorDashboard from './pages/Dashboard/CreatorDashboard';
+import AdminDashboard from './pages/Admin/AdminDashboard';
+import AdminContent from './pages/Admin/AdminContent';
+import AdminProducts from './pages/Admin/AdminProducts';
+import AdminLives from './pages/Admin/AdminLives';
+import AdminUsers from './pages/Admin/AdminUsers';
 import NotFound from './pages/NotFound/NotFound';
 
 // Configurar React Router con future flags para eliminar warnings
@@ -58,14 +63,19 @@ const ProtectedRoute = ({ children, requiredRole, requiredSubscription }) => {
 
 // Componente de rutas públicas (redirige si ya está autenticado)
 const PublicRoute = ({ children }) => {
-  const { user, loading } = useAuth();
+  const { user, loading, userType } = useAuth();
 
   if (loading) {
     return <LoadingSpinner />;
   }
 
   if (user) {
-    return <Navigate to="/" replace />;
+    // Redirigir según el tipo de usuario guardado
+    if (userType === 'admin') {
+      return <Navigate to="/admin/dashboard" replace />;
+    } else {
+      return <Navigate to="/" replace />;
+    }
   }
 
   return children;
@@ -201,6 +211,46 @@ function App() {
                   element={
                     <ProtectedRoute requiredRole="creator">
                       <CreatorDashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/dashboard"
+                  element={
+                    <ProtectedRoute requiredRole="admin">
+                      <AdminDashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/content"
+                  element={
+                    <ProtectedRoute requiredRole="admin">
+                      <AdminContent />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/products"
+                  element={
+                    <ProtectedRoute requiredRole="admin">
+                      <AdminProducts />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/lives"
+                  element={
+                    <ProtectedRoute requiredRole="admin">
+                      <AdminLives />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/users"
+                  element={
+                    <ProtectedRoute requiredRole="admin">
+                      <AdminUsers />
                     </ProtectedRoute>
                   }
                 />

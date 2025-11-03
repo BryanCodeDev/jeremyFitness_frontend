@@ -14,7 +14,7 @@ export const useAuth = () => {
 };
 
 // Configuración de axios
-const api = axios.create({
+export const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api',
   timeout: 10000,
   withCredentials: false, // Importante para evitar problemas con CORS
@@ -43,10 +43,12 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    // Solo manejar 401 en rutas específicas, no en todas las peticiones
+    if (error.response?.status === 401 && !error.config.url.includes('/auth/verify')) {
       // Token expirado o inválido
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      localStorage.removeItem('userType');
 
       // Solo redirigir si no estamos ya en login
       if (window.location.pathname !== '/login') {
@@ -80,6 +82,7 @@ export const AuthProvider = ({ children }) => {
       setUser(userData);
       localStorage.setItem('token', newToken);
       localStorage.setItem('user', JSON.stringify(userData));
+      localStorage.setItem('userType', credentials.userType); // Guardar el tipo de usuario
 
       // Si el usuario marcó "recordarme", extender la duración del token
       if (credentials.rememberMe) {
@@ -120,6 +123,7 @@ export const AuthProvider = ({ children }) => {
     setLastActivity(0);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('userType');
     localStorage.removeItem('rememberMe');
   }, []);
 
@@ -151,20 +155,24 @@ export const AuthProvider = ({ children }) => {
           console.log('✅ Token válido, usuario verificado:', response.data.user.username);
           setToken(storedToken);
           setUser(response.data.user);
+          setLoading(false);
+          return;
         } else {
           console.warn('⚠️ Respuesta de verificación sin usuario');
-          localStorage.removeItem('token');
-          localStorage.removeItem('user');
-          localStorage.removeItem('rememberMe');
+          setLoading(false);
         }
       } catch (error) {
         console.error('❌ Error verificando token:', error.response?.status, error.response?.data?.message);
-        // Token inválido, limpiar almacenamiento
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        localStorage.removeItem('rememberMe');
-        setToken(null);
-        setUser(null);
+        // Solo limpiar si es un error de autenticación real (401), no errores de red
+        if (error.response?.status === 401) {
+          console.log('🔄 Token expirado, limpiando sesión...');
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          localStorage.removeItem('userType');
+          localStorage.removeItem('rememberMe');
+          setToken(null);
+          setUser(null);
+        }
       }
     } else {
       console.log('ℹ️ No hay token almacenado');
@@ -233,6 +241,7 @@ export const AuthProvider = ({ children }) => {
     isAdmin: user?.role === 'admin',
     hasSubscription: user?.subscription_tier !== 'free',
     rememberMe: !!localStorage.getItem('rememberMe'),
+    userType: localStorage.getItem('userType'), // Agregar userType al contexto
   };
 
   return (
