@@ -1,6 +1,6 @@
 # 🚀 Plataforma de Fitness Jeremy - Plataforma Completa
 
-Una plataforma web completa para creadores de contenido fitness con sistema de suscripciones, gestión de contenido multimedia y transmisión en vivo.
+Una plataforma web completa para creadores de contenido fitness con sistema de suscripciones manual vía WhatsApp, gestión de contenido multimedia y transmisión en vivo. **Sistema de ingresos real con seguimiento de transacciones completadas.**
 
 ## 📋 Características Principales
 
@@ -20,7 +20,7 @@ Una plataforma web completa para creadores de contenido fitness con sistema de s
 - **Node.js + Express** API RESTful
 - **MySQL** como base de datos principal
 - **Autenticación JWT** segura con roles y permisos
-- **Sistema de suscripciones** con Mercado Pago
+- **Sistema de suscripciones manual** vía WhatsApp (sin integración automática de pagos)
 - **Gestión de archivos** multimedia (imágenes, videos)
 - **Procesamiento de video** con generación automática de thumbnails
 - **WebSockets** para chat en vivo
@@ -28,15 +28,21 @@ Una plataforma web completa para creadores de contenido fitness con sistema de s
 - **API de contenido** con categorías y filtros
 - **Panel administrativo** con métricas en tiempo real
 - **Gestión completa** de usuarios, contenido y productos
+- **Sistema de transacciones** para seguimiento de ingresos reales
+- **Dashboard administrativo** con ingresos calculados automáticamente
 
 ### 👑 Funcionalidades del Administrador
 - **Dashboard administrativo** con métricas completas:
-  - Usuarios totales y por rol
-  - Suscriptores activos y por tier
-  - Contenido total y por tipo
-  - Productos y live streams
-  - Ingresos y estadísticas financieras
-- **Gestión de usuarios** con administración de suscripciones en tiempo real
+  - Usuarios totales y por rol (10 usuarios de ejemplo incluidos)
+  - Suscriptores activos y por tier (Premium/VIP/Free)
+  - Contenido total y por tipo (10 contenidos multimedia)
+  - Productos y live streams (10 productos, 10 streams)
+  - **Ingresos reales** calculados de transacciones completadas ($1.740.000 COP de ejemplo)
+- **Gestión de usuarios** con administración de suscripciones en tiempo real:
+  - Cambiar planes (Free → Premium → VIP) instantáneamente
+  - Seleccionar duración (1, 3, 6, 12 meses)
+  - Cálculo automático de precios (Premium $60k/mes, VIP $120k/mes)
+  - Registro automático de transacciones completadas
 - **Gestión de contenido** multimedia (videos, imágenes, posts)
 - **Gestión de productos** digitales con precios y categorías
 - **Gestión de live streams** con control de estado y chat
@@ -98,8 +104,8 @@ jeremy-fitness-platform/
 ### Prerrequisitos
 - **Node.js** 16+
 - **MySQL** 8.0+
-- **Mercado Pago** cuenta (para pagos)
 - **FFmpeg** (para procesamiento de video)
+- **Sistema de pagos manual** vía WhatsApp (sin integración automática)
 
 ### 1. Clonar el repositorio
 ```bash
@@ -121,6 +127,9 @@ cp .env.example .env
 
 # Configurar base de datos
 mysql -u root -p < database/schema.sql
+
+# Hashear contraseñas de usuarios de ejemplo
+node fix-passwords.js
 
 # Iniciar servidor de desarrollo
 npm run dev
@@ -154,10 +163,8 @@ DB_NAME=jeremy_fitness
 # JWT
 JWT_SECRET=tu-jwt-secret-super-seguro
 
-# Mercado Pago (obtener de https://www.mercadopago.com.ar/developers)
-MP_ACCESS_TOKEN=your_access_token_here
-MP_PUBLIC_KEY=your_public_key_here
-BACKEND_URL=http://localhost:5000
+# Sistema de pagos manual vía WhatsApp (sin integración automática)
+# Los administradores registran pagos manualmente en el panel admin
 
 # Frontend URL
 FRONTEND_URL=http://localhost:3000
@@ -168,36 +175,55 @@ FRONTEND_URL=http://localhost:3000
 ### Para Usuarios
 
 1. **Registro y Login**
-   - Crear cuenta con email y contraseña
-   - Verificar email (opcional)
-   - Completar perfil básico
+    - Crear cuenta con email y contraseña
+    - Verificar email (opcional)
+    - Completar perfil básico
 
 2. **Explorar Contenido**
-   - Navegar contenido gratuito
-   - Suscribirse para contenido premium
-   - Interactuar con likes y comentarios
+    - Navegar contenido gratuito (10 contenidos de ejemplo)
+    - Suscribirse para contenido premium
+    - Interactuar con likes y comentarios
 
 3. **Suscripciones**
-   - Planes Premium y VIP disponibles
-   - Pago seguro con Mercado Pago
-   - Gestión de suscripción
+    - Planes Premium ($60.000/mes) y VIP ($120.000/mes) disponibles
+    - Pago manual vía WhatsApp (sin integración automática)
+    - Gestión de suscripción por administradores
+    - Duraciones flexibles: 1, 3, 6, 12 meses
+
+### Para Administradores 👑
+
+1. **Primeros Pasos**
+    - **Login como admin**: `jeremy@fitness.com` / `AdminPass123`
+    - **Dashboard principal**: Ver métricas completas con $1.740.000 COP en ingresos
+    - **Gestión de usuarios**: 10 usuarios de ejemplo con diferentes tipos de suscripción
+
+2. **Gestión de Suscripciones**
+    - **Cambiar planes**: Free → Premium → VIP instantáneamente
+    - **Seleccionar duración**: 1, 3, 6, 12 meses
+    - **Cálculo automático**: Premium $60k/mes, VIP $120k/mes
+    - **Registro de transacciones**: Se guardan automáticamente en `subscription_transactions`
+
+3. **Contenido y Productos**
+    - **10 contenidos multimedia**: Videos, posts, imágenes
+    - **10 productos digitales**: Planes de entrenamiento, ebooks, cursos
+    - **10 live streams**: Programados con chat integrado
 
 ### Para Creadores
 
 1. **Dashboard**
-    - Estadísticas de contenido y suscriptores
-    - Ingresos y analíticas
-    - Gestión de contenido
+     - Estadísticas de contenido y suscriptores
+     - Ingresos y analíticas
+     - Gestión de contenido
 
 2. **Gestión de Contenido**
-    - Subir videos e imágenes
-    - Crear contenido premium
-    - Programar publicaciones
+     - Subir videos e imágenes
+     - Crear contenido premium
+     - Programar publicaciones
 
 3. **Monetización**
-    - Configurar productos digitales
-    - Gestionar suscripciones
-    - Seguimiento de ingresos
+     - Configurar productos digitales
+     - Gestionar suscripciones
+     - Seguimiento de ingresos
 
 ### Para Administradores 👑
 
@@ -207,12 +233,15 @@ FRONTEND_URL=http://localhost:3000
     - **Acciones rápidas**: Acceso directo a módulos principales
 
 2. **Gestión de Usuarios**
-    - **Lista completa** de usuarios con filtros avanzados
+    - **Lista completa** de usuarios con filtros avanzados (10 usuarios de ejemplo)
     - **Administración de roles**: Cambiar entre user, creator, admin
     - **Control de estado**: Activar/desactivar cuentas
     - **Gestión de suscripciones en tiempo real**:
-      - Ver suscripción actual de cada usuario
+      - Ver suscripción actual de cada usuario (Free/Premium/VIP)
       - Cambiar planes (Free → Premium → VIP) instantáneamente
+      - Seleccionar duración (1, 3, 6, 12 meses)
+      - **Cálculo automático de precios** (Premium $60k/mes, VIP $120k/mes)
+      - Registro automático de transacciones completadas
       - Historial y fechas de expiración
 
 3. **Gestión de Contenido**
@@ -284,8 +313,12 @@ npm run eject      # Eyectar configuración
 
 - [x] **Panel administrativo completo** con gestión avanzada 👑
 - [x] **Sistema de roles y permisos** avanzado
-- [x] **Gestión de suscripciones en tiempo real**
-- [x] **Dashboard administrativo** con métricas completas
+- [x] **Gestión de suscripciones en tiempo real** con cálculo automático de precios
+- [x] **Dashboard administrativo** con métricas completas e ingresos reales
+- [x] **Sistema de transacciones** para seguimiento de pagos manuales
+- [x] **Base de datos completa** con 10 ejemplos en cada tabla
+- [x] **Suscripciones consistentes** en Profile, AdminUsers y Header
+- [x] **Script de contraseñas** actualizado para todos los usuarios
 - [ ] **Aplicación móvil** React Native
 - [ ] **Realidad aumentada** para ejercicios
 - [ ] **IA para análisis** de forma física
