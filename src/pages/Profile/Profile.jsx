@@ -17,6 +17,12 @@ import {
   Key,
   Send
 } from 'lucide-react';
+import {
+  getSubscriptionLabel,
+  getSubscriptionAvatarGradient,
+  getSubscriptionBadgeGradient,
+  getSubscriptionIcon
+} from '../../utils/subscriptionUtils';
 
 const Profile = () => {
   const { user, updateProfile } = useAuth();
@@ -49,38 +55,7 @@ const Profile = () => {
   });
   const [settingsLoading, setSettingsLoading] = useState(false);
 
-  const getSubscriptionColor = (tier) => {
-    switch(tier) {
-      case 'vip':
-        return 'from-purple-500 to-purple-600';
-      case 'premium':
-        return 'from-orange-500 to-orange-600';
-      default:
-        return 'from-slate-600 to-slate-700';
-    }
-  };
-
-  const getSubscriptionIcon = (tier) => {
-    switch(tier) {
-      case 'vip':
-        return <Crown className="w-4 h-4" />;
-      case 'premium':
-        return <Star className="w-4 h-4" />;
-      default:
-        return <Shield className="w-4 h-4" />;
-    }
-  };
-
-  const getSubscriptionLabel = (tier) => {
-    switch(tier) {
-      case 'vip':
-        return 'VIP';
-      case 'premium':
-        return 'Premium';
-      default:
-        return 'Gratis';
-    }
-  };
+  // Funciones de suscripción ahora importadas desde utils
 
   const stats = [
     { icon: <TrendingUp className="w-5 h-5" />, label: 'Entrenamientos', value: '127' },
@@ -242,7 +217,7 @@ const Profile = () => {
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-8 pb-8 border-b border-slate-800/50">
                   {/* Avatar */}
                   <div className="relative group">
-                    <div className={`w-24 h-24 sm:w-28 sm:h-28 bg-gradient-to-br ${getSubscriptionColor(user?.subscription_tier)} rounded-2xl flex items-center justify-center text-white text-3xl sm:text-4xl font-black shadow-2xl shadow-orange-500/20`}>
+                    <div className={`w-24 h-24 sm:w-28 sm:h-28 bg-gradient-to-br ${getSubscriptionAvatarGradient(user?.subscription_tier)} rounded-2xl flex items-center justify-center text-white text-3xl sm:text-4xl font-black shadow-2xl shadow-orange-500/20`}>
                       {user?.profileImageUrl ? (
                         <img
                           src={`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}${user.profileImageUrl}`}
@@ -271,8 +246,10 @@ const Profile = () => {
                       )}
                     </label>
                     {/* Subscription Badge on Avatar */}
-                    <div className={`absolute -bottom-2 -right-2 flex items-center gap-1 bg-gradient-to-r ${getSubscriptionColor(user?.subscription_tier)} px-2.5 py-1 rounded-lg shadow-lg`}>
-                      {getSubscriptionIcon(user?.subscription_tier)}
+                    <div className={`absolute -bottom-2 -right-2 flex items-center gap-1 bg-gradient-to-r ${getSubscriptionBadgeGradient(user?.subscription_tier)} px-2.5 py-1 rounded-lg shadow-lg`}>
+                      {getSubscriptionIcon(user?.subscription_tier) === 'Crown' && <Crown className="w-3 h-3" />}
+                      {getSubscriptionIcon(user?.subscription_tier) === 'Star' && <Star className="w-3 h-3" />}
+                      {getSubscriptionIcon(user?.subscription_tier) === 'Shield' && <Shield className="w-3 h-3" />}
                       <span className="text-xs font-bold text-white">
                         {getSubscriptionLabel(user?.subscription_tier)}
                       </span>
@@ -480,9 +457,11 @@ const Profile = () => {
                   <Crown className="w-5 h-5 text-orange-500" />
                   Suscripción
                 </h3>
-                <div className={`bg-gradient-to-br ${getSubscriptionColor(user?.subscription_tier)} rounded-xl p-6 mb-4`}>
+                <div className={`bg-gradient-to-br ${getSubscriptionBadgeGradient(user?.subscription_tier)} rounded-xl p-6 mb-4`}>
                   <div className="flex items-center gap-2 text-white mb-2">
-                    {getSubscriptionIcon(user?.subscription_tier)}
+                    {getSubscriptionIcon(user?.subscription_tier) === 'Crown' && <Crown className="w-5 h-5" />}
+                    {getSubscriptionIcon(user?.subscription_tier) === 'Star' && <Star className="w-5 h-5" />}
+                    {getSubscriptionIcon(user?.subscription_tier) === 'Shield' && <Shield className="w-5 h-5" />}
                     <span className="text-2xl font-black">
                       Plan {getSubscriptionLabel(user?.subscription_tier)}
                     </span>

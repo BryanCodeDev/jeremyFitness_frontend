@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import { useAuth } from '../../utils/AuthContext';
-import { 
-  Crown, 
-  Check, 
-  Sparkles, 
-  Zap, 
+import {
+  Crown,
+  Check,
+  Sparkles,
+  Zap,
   Shield,
   Star,
   TrendingUp,
@@ -16,6 +16,9 @@ import {
   Award,
   Infinity
 } from 'lucide-react';
+import {
+  getSubscriptionIcon
+} from '../../utils/subscriptionUtils';
 
 const Subscriptions = () => {
   const { user } = useAuth();
@@ -23,8 +26,12 @@ const Subscriptions = () => {
   const [currentSubscription, setCurrentSubscription] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Tasa de cambio aproximada USD a COP
-  const USD_TO_COP_RATE = 4000;
+  // Precios en pesos colombianos
+  const COP_PRICES = useMemo(() => ({
+    free: 0,
+    premium: 60000,
+    vip: 120000
+  }), []);
 
   useEffect(() => {
     const loadData = async () => {
@@ -33,7 +40,7 @@ const Subscriptions = () => {
         const plansResponse = await axios.get('http://localhost:5000/api/subscriptions/plans');
         const plansWithCOP = plansResponse.data.plans.map(plan => ({
           ...plan,
-          priceCOP: Math.round(plan.price * USD_TO_COP_RATE)
+          priceCOP: COP_PRICES[plan.id] || 0
         }));
         setPlans(plansWithCOP);
 
@@ -51,7 +58,7 @@ const Subscriptions = () => {
     };
 
     loadData();
-  }, [user]);
+  }, [user, COP_PRICES]);
 
   const benefits = [
     { icon: <Video className="w-5 h-5" />, text: 'Contenido exclusivo en HD' },
@@ -61,17 +68,32 @@ const Subscriptions = () => {
   ];
 
   const getPlanIcon = (planId) => {
-    if (planId === 'vip') return <Crown className="w-6 h-6" />;
-    if (planId === 'premium') return <Star className="w-6 h-6" />;
-    return <Zap className="w-6 h-6" />;
+    const iconName = getSubscriptionIcon(planId);
+    if (iconName === 'Crown') return <Crown className="w-6 h-6" />;
+    if (iconName === 'Star') return <Star className="w-6 h-6" />;
+    return <Shield className="w-6 h-6" />;
   };
 
-  const handleSubscribe = (plan) => {
-    const phoneNumber = '+573016674680'; // Número de WhatsApp proporcionado
-    const message = `Hola, estoy interesado en suscribirme al plan: ${plan.name}\n\nPrecio: $${plan.priceCOP.toLocaleString()} COP por mes\n\nCaracterísticas principales:\n${plan.features.slice(0, 3).join('\n')}\n\nPor favor, ayúdame con el proceso de suscripción.`;
+  const handleSubscribe = async (plan) => {
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/api/subscriptions/generate-whatsapp-link',
+        { planId: plan.id },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        }
+      );
 
-    const whatsappUrl = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+      window.open(response.data.whatsappUrl, '_blank');
+    } catch (error) {
+      console.error('Error generando enlace de WhatsApp:', error);
+      // Fallback al método anterior si falla la API
+      const phoneNumber = '+573016674680';
+      const priceText = plan.id === 'free' ? 'Gratuito' : `$${plan.priceCOP.toLocaleString()} COP por mes`;
+      const message = `Hola, estoy interesado en suscribirme al plan: ${plan.name}\n\nPrecio: ${priceText}\n\nCaracterísticas principales:\n${plan.features.slice(0, 3).join('\n')}\n\nPor favor, ayúdame con el proceso de suscripción.`;
+      const whatsappUrl = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    }
   };
 
   return (
@@ -238,10 +260,18 @@ const Subscriptions = () => {
                         {plan.name}
                       </h3>
                       <div className="flex items-end mb-4">
-                        <span className="text-5xl font-black bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
-                          ${plan.priceCOP.toLocaleString()}
-                        </span>
-                        <span className="text-slate-400 text-lg ml-2 mb-2">COP/mes</span>
+                        {plan.id === 'free' ? (
+                          <span className="text-4xl font-black bg-gradient-to-r from-green-500 to-green-600 bg-clip-text text-transparent">
+                            Gratuito
+                          </span>
+                        ) : (
+                          <>
+                            <span className="text-5xl font-black bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+                              ${plan.priceCOP.toLocaleString()}
+                            </span>
+                            <span className="text-slate-400 text-lg ml-2 mb-2">COP/mes</span>
+                          </>
+                        )}
                       </div>
                       {plan.price > 0 && (
                         <p className="text-sm text-slate-400">

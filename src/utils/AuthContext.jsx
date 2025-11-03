@@ -141,6 +141,21 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Función para refrescar datos del usuario
+  const refreshUser = async () => {
+    try {
+      const response = await api.get('/auth/verify');
+      if (response.data && response.data.user) {
+        setUser(response.data.user);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        return { success: true };
+      }
+    } catch (error) {
+      console.error('Error refrescando usuario:', error);
+    }
+    return { success: false };
+  };
+
   // Función para verificar token al cargar la aplicación
   const verifyToken = async () => {
     const storedToken = localStorage.getItem('token');
@@ -236,6 +251,7 @@ export const AuthProvider = ({ children }) => {
     register,
     logout,
     updateProfile,
+    refreshUser,
     isAuthenticated: !!user,
     isCreator: user?.role === 'creator' || user?.role === 'admin',
     isAdmin: user?.role === 'admin',

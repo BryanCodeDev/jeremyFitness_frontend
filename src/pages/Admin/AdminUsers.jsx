@@ -18,6 +18,10 @@ import {
   CheckCircle,
   XCircle
 } from 'lucide-react';
+import {
+  getSubscriptionColor,
+  getSubscriptionIcon
+} from '../../utils/subscriptionUtils';
 
 const AdminUsers = () => {
   const { user } = useAuth();
@@ -136,31 +140,7 @@ const AdminUsers = () => {
     }
   };
 
-  const getSubscriptionColor = (tier) => {
-    switch (tier) {
-      case 'vip':
-        return 'text-yellow-400 bg-yellow-500/10';
-      case 'premium':
-        return 'text-green-400 bg-green-500/10';
-      case 'free':
-        return 'text-slate-400 bg-slate-500/10';
-      default:
-        return 'text-slate-400 bg-slate-500/10';
-    }
-  };
-
-  const getSubscriptionIcon = (tier) => {
-    switch (tier) {
-      case 'vip':
-        return <Crown className="w-4 h-4" />;
-      case 'premium':
-        return <UserCheck className="w-4 h-4" />;
-      case 'free':
-        return <UserX className="w-4 h-4" />;
-      default:
-        return <UserX className="w-4 h-4" />;
-    }
-  };
+  // Funciones de suscripción ahora importadas desde utils
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('es-ES', {
@@ -182,12 +162,23 @@ const AdminUsers = () => {
     }
   };
 
-  const handleSubscriptionUpdate = async (userId, newTier) => {
+  const handleSubscriptionUpdate = async (userId, subscriptionData) => {
     try {
-      await api.put(`/admin/users/${userId}/subscription`, { subscription_tier: newTier });
+      await api.put(`/admin/users/${userId}/subscription`, subscriptionData);
       loadUsers(); // Recargar lista
       setShowSubscriptionModal(false);
       setSelectedUser(null);
+
+      // Si el usuario actualizó su propia suscripción, refrescar el contexto
+      if (userId === user?.id) {
+        // Refrescar datos del usuario en el contexto
+        const response = await api.get('/auth/verify');
+        if (response.data && response.data.user) {
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          // Forzar recarga de página para actualizar el contexto
+          window.location.reload();
+        }
+      }
     } catch (error) {
       console.error('Error updating subscription:', error);
       setError('Error al actualizar la suscripción');
@@ -201,12 +192,12 @@ const AdminUsers = () => {
 
   const openSubscriptionModal = async (user) => {
     try {
-      const response = await api.get(`/admin/users/${user.id}/subscriptions`);
-      setSelectedUser({ ...user, subscriptions: response.data });
+      const response = await api.get(`/admin/users/${user.id}/subscription`);
+      setSelectedUser({ ...user, subscription: response.data });
       setShowSubscriptionModal(true);
     } catch (error) {
-      console.error('Error loading user subscriptions:', error);
-      setError('Error al cargar las suscripciones del usuario');
+      console.error('Error loading user subscription:', error);
+      setError('Error al cargar la suscripción del usuario');
     }
   };
 
@@ -398,7 +389,9 @@ const AdminUsers = () => {
                         </td>
                         <td className="px-6 py-4">
                           <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold ${getSubscriptionColor(userItem.subscription_tier)}`}>
-                            {getSubscriptionIcon(userItem.subscription_tier)}
+                            {getSubscriptionIcon(userItem.subscription_tier) === 'Crown' && <Crown className="w-4 h-4" />}
+                            {getSubscriptionIcon(userItem.subscription_tier) === 'Star' && <UserCheck className="w-4 h-4" />}
+                            {getSubscriptionIcon(userItem.subscription_tier) === 'Shield' && <UserX className="w-4 h-4" />}
                             <span className="capitalize">{userItem.subscription_tier}</span>
                           </div>
                         </td>
@@ -536,7 +529,7 @@ const AdminUsers = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6 w-full max-w-lg"
+            className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto"
           >
             <h3 className="text-xl font-bold text-white mb-4">
               Gestionar Suscripción - {selectedUser.display_name}
@@ -545,53 +538,192 @@ const AdminUsers = () => {
             <div className="mb-4 p-4 bg-slate-800/50 rounded-xl">
               <p className="text-sm text-slate-400 mb-2">Suscripción Actual</p>
               <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold ${getSubscriptionColor(selectedUser.subscription_tier)}`}>
-                {getSubscriptionIcon(selectedUser.subscription_tier)}
+                {getSubscriptionIcon(selectedUser.subscription_tier) === 'Crown' && <Crown className="w-4 h-4" />}
+                {getSubscriptionIcon(selectedUser.subscription_tier) === 'Star' && <UserCheck className="w-4 h-4" />}
+                {getSubscriptionIcon(selectedUser.subscription_tier) === 'Shield' && <UserX className="w-4 h-4" />}
                 <span className="capitalize">{selectedUser.subscription_tier}</span>
+                {selectedUser.subscription_duration_months > 0 && (
+                  <span className="text-xs">({selectedUser.subscription_duration_months} meses)</span>
+                )}
               </div>
             </div>
 
-            <div className="space-y-3">
-              <h4 className="text-lg font-semibold text-white mb-3">Cambiar a:</h4>
-              {[
-                { tier: 'free', name: 'Gratuito', price: 0, features: ['Acceso básico', 'Contenido limitado'] },
-                { tier: 'premium', name: 'Premium', price: 15.99, features: ['Acceso completo', 'Contenido premium', 'Descargas'] },
-                { tier: 'vip', name: 'VIP', price: 29.99, features: ['Todo lo premium', 'Acceso anticipado', 'Sesiones privadas'] }
-              ].map((plan) => (
-                <div
-                  key={plan.tier}
-                  onClick={() => handleSubscriptionUpdate(selectedUser.id, plan.tier)}
-                  className={`p-4 border rounded-xl cursor-pointer transition-all ${
-                    selectedUser.subscription_tier === plan.tier
-                      ? 'border-orange-500 bg-orange-500/10'
-                      : 'border-slate-700/50 bg-slate-800/30 hover:border-slate-600/50'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-3">
-                      {getSubscriptionIcon(plan.tier)}
-                      <span className="font-semibold text-white">{plan.name}</span>
-                    </div>
-                    <span className="text-green-400 font-bold">
-                      {plan.price === 0 ? 'Gratis' : `$${plan.price}/mes`}
-                    </span>
-                  </div>
-                  <ul className="text-sm text-slate-400 space-y-1">
-                    {plan.features.map((feature, index) => (
-                      <li key={index}>• {feature}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              const formData = new FormData(e.target);
+              const subscription_tier = formData.get('subscription_tier');
+              const duration_months = parseInt(formData.get('duration_months'));
+              const payment_method = formData.get('payment_method');
+              const payment_reference = formData.get('payment_reference');
+              const notes = formData.get('notes');
 
-            <div className="flex gap-3 mt-6">
-              <button
-                onClick={() => setShowSubscriptionModal(false)}
-                className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-slate-400 hover:text-white transition-colors"
-              >
-                Cerrar
-              </button>
-            </div>
+              handleSubscriptionUpdate(selectedUser.id, {
+                subscription_tier,
+                duration_months: subscription_tier === 'free' ? 0 : duration_months,
+                payment_method,
+                payment_reference,
+                notes
+              });
+            }} onChange={(e) => {
+              // Calcular precio automáticamente cuando cambian los campos
+              const form = e.target.form || e.target.closest('form');
+              if (form) {
+                const tier = form.querySelector('select[name="subscription_tier"]').value;
+                const duration = parseInt(form.querySelector('select[name="duration_months"]').value);
+                let price = 0;
+                if (tier === 'premium') {
+                  price = 60000 * duration;
+                } else if (tier === 'vip') {
+                  price = 120000 * duration;
+                }
+                const priceElement = form.querySelector('#price-preview');
+                if (priceElement) {
+                  priceElement.textContent = '$' + price.toLocaleString() + ' COP';
+                }
+              }
+            }}>
+              <div className="space-y-4">
+                {/* Plan Selection */}
+                <div>
+                  <label className="block text-sm font-semibold text-slate-300 mb-2">Plan de Suscripción</label>
+                  <select
+                    name="subscription_tier"
+                    defaultValue={selectedUser.subscription_tier}
+                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                    required
+                  >
+                    <option value="free">Gratuito</option>
+                    <option value="premium">Premium</option>
+                    <option value="vip">VIP</option>
+                  </select>
+                </div>
+
+                {/* Duration Selection (only for paid plans) */}
+                <div id="duration-section">
+                  <label className="block text-sm font-semibold text-slate-300 mb-2">Duración</label>
+                  <select
+                    name="duration_months"
+                    defaultValue={selectedUser.subscription_duration_months || 1}
+                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                  >
+                    <option value="1">1 mes</option>
+                    <option value="3">3 meses</option>
+                    <option value="6">6 meses</option>
+                    <option value="12">12 meses</option>
+                  </select>
+                </div>
+
+                {/* Payment Method */}
+                <div>
+                  <label className="block text-sm font-semibold text-slate-300 mb-2">Método de Pago</label>
+                  <select
+                    name="payment_method"
+                    defaultValue="whatsapp"
+                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                  >
+                    <option value="whatsapp">WhatsApp</option>
+                    <option value="transfer">Transferencia</option>
+                    <option value="cash">Efectivo</option>
+                    <option value="other">Otro</option>
+                  </select>
+                </div>
+
+                {/* Payment Reference */}
+                <div>
+                  <label className="block text-sm font-semibold text-slate-300 mb-2">Referencia de Pago</label>
+                  <input
+                    type="text"
+                    name="payment_reference"
+                    placeholder="Número de comprobante, referencia, etc."
+                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                  />
+                </div>
+
+                {/* Notes */}
+                <div>
+                  <label className="block text-sm font-semibold text-slate-300 mb-2">Notas (opcional)</label>
+                  <textarea
+                    name="notes"
+                    rows="3"
+                    placeholder="Notas adicionales sobre la transacción..."
+                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 resize-none"
+                  />
+                </div>
+
+                {/* Price Preview */}
+                <div className="p-4 bg-slate-800/50 rounded-xl">
+                  <div className="flex justify-between items-center">
+                    <span className="text-slate-300">Total a pagar:</span>
+                    <span id="price-preview" className="text-2xl font-bold text-orange-500">$0 COP</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-3 mt-6">
+                <button
+                  type="submit"
+                  className="flex-1 px-4 py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl transition-all duration-300"
+                >
+                  Actualizar Suscripción
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowSubscriptionModal(false)}
+                  className="px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-slate-400 hover:text-white transition-colors"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </form>
+
+            <script dangerouslySetInnerHTML={{
+              __html: `
+                // Update price preview when form changes
+                function updatePricePreview() {
+                  const tier = document.querySelector('select[name="subscription_tier"]').value;
+                  const duration = parseInt(document.querySelector('select[name="duration_months"]').value);
+                  let price = 0;
+                  if (tier === 'premium') {
+                    price = 60000 * duration;
+                  } else if (tier === 'vip') {
+                    price = 120000 * duration;
+                  }
+                  const priceElement = document.getElementById('price-preview');
+                  if (priceElement) {
+                    priceElement.textContent = '$' + price.toLocaleString() + ' COP';
+                  }
+                }
+
+                // Show/hide duration section
+                function updateDurationVisibility() {
+                  const tier = document.querySelector('select[name="subscription_tier"]').value;
+                  const durationSection = document.getElementById('duration-section');
+                  if (tier === 'free') {
+                    durationSection.style.display = 'none';
+                    updatePricePreview();
+                  } else {
+                    durationSection.style.display = 'block';
+                    updatePricePreview();
+                  }
+                }
+
+                // Event listeners
+                setTimeout(() => {
+                  const tierSelect = document.querySelector('select[name="subscription_tier"]');
+                  const durationSelect = document.querySelector('select[name="duration_months"]');
+
+                  if (tierSelect) {
+                    tierSelect.addEventListener('change', updateDurationVisibility);
+                  }
+                  if (durationSelect) {
+                    durationSelect.addEventListener('change', updatePricePreview);
+                  }
+
+                  // Initial update
+                  updateDurationVisibility();
+                }, 100);
+              `
+            }} />
           </motion.div>
         </div>
       )}
