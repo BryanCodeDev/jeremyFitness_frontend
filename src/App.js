@@ -30,6 +30,7 @@ import AdminContent from './pages/Admin/AdminContent';
 import AdminProducts from './pages/Admin/AdminProducts';
 import AdminLives from './pages/Admin/AdminLives';
 import AdminUsers from './pages/Admin/AdminUsers';
+import AdminSettings from './pages/Admin/AdminSettings';
 import NotFound from './pages/NotFound/NotFound';
 
 // Configurar React Router con future flags para eliminar warnings
@@ -135,6 +136,9 @@ const MainLayout = ({ children }) => {
     );
   }
 
+  // Verificar si estamos en una ruta de admin
+  const isAdminRoute = window.location.pathname.startsWith('/admin');
+
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Header />
@@ -143,7 +147,7 @@ const MainLayout = ({ children }) => {
           {children}
         </AnimatePresence>
       </main>
-      <Footer />
+      {!isAdminRoute && <Footer />}
       <NotificationContainer />
     </div>
   );
@@ -251,6 +255,14 @@ function App() {
                   element={
                     <ProtectedRoute requiredRole="admin">
                       <AdminUsers />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/settings"
+                  element={
+                    <ProtectedRoute requiredRole="admin">
+                      <AdminSettings />
                     </ProtectedRoute>
                   }
                 />

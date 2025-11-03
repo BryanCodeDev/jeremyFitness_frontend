@@ -15,13 +15,9 @@ import {
   Globe,
   CreditCard,
   Bell,
-  Users,
   Video,
-  ShoppingBag,
-  Radio,
   CheckCircle,
-  AlertTriangle,
-  Info
+  AlertTriangle
 } from 'lucide-react';
 
 const AdminSettings = () => {
@@ -34,6 +30,7 @@ const AdminSettings = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [activeTab, setActiveTab] = useState('general');
+  const [testingEmail, setTestingEmail] = useState(false);
 
   useEffect(() => {
     if (!user || user.role !== 'admin') {
@@ -49,53 +46,56 @@ const AdminSettings = () => {
       setLoading(true);
       setError(null);
 
-      // Por ahora usamos datos mock ya que no tenemos tabla de settings
-      const mockSettings = {
+      const response = await api.get('/admin/settings');
+
+      // Convertir la estructura de la API a la estructura del componente
+      const apiSettings = response.data.settings;
+      const formattedSettings = {
         general: {
-          siteName: 'Jeremy Fitness Platform',
-          siteDescription: 'Plataforma de fitness y bienestar',
-          contactEmail: 'admin@jeremyfitness.com',
-          timezone: 'America/Bogota',
-          language: 'es'
+          siteName: apiSettings.general?.siteName?.value || 'Jeremy Fitness Platform',
+          siteDescription: apiSettings.general?.siteDescription?.value || 'Plataforma de fitness y bienestar',
+          contactEmail: apiSettings.general?.contactEmail?.value || 'admin@jeremyfitness.com',
+          timezone: apiSettings.general?.timezone?.value || 'America/Bogota',
+          language: apiSettings.general?.language?.value || 'es'
         },
         security: {
-          sessionTimeout: 30, // minutos
-          passwordMinLength: 8,
-          requireSpecialChars: true,
-          enableTwoFactor: false,
-          maxLoginAttempts: 5
+          sessionTimeout: apiSettings.security?.sessionTimeout?.value || 30,
+          passwordMinLength: apiSettings.security?.passwordMinLength?.value || 8,
+          requireSpecialChars: apiSettings.security?.requireSpecialChars?.value || true,
+          enableTwoFactor: apiSettings.security?.enableTwoFactor?.value || false,
+          maxLoginAttempts: apiSettings.security?.maxLoginAttempts?.value || 5
         },
         content: {
-          maxFileSize: 500, // MB
-          allowedFileTypes: ['mp4', 'jpg', 'png', 'pdf'],
-          autoApproveContent: false,
-          enableComments: true,
-          enableRatings: true
+          maxFileSize: apiSettings.content?.maxFileSize?.value || 500,
+          allowedFileTypes: apiSettings.content?.allowedFileTypes?.value || ['mp4', 'jpg', 'png', 'pdf'],
+          autoApproveContent: apiSettings.content?.autoApproveContent?.value || false,
+          enableComments: apiSettings.content?.enableComments?.value || true,
+          enableRatings: apiSettings.content?.enableRatings?.value || true
         },
         payments: {
-          stripeEnabled: true,
-          paypalEnabled: false,
-          currency: 'USD',
-          taxRate: 0,
-          commissionRate: 10
+          stripeEnabled: apiSettings.payments?.stripeEnabled?.value || true,
+          paypalEnabled: apiSettings.payments?.paypalEnabled?.value || false,
+          currency: apiSettings.payments?.currency?.value || 'USD',
+          taxRate: apiSettings.payments?.taxRate?.value || 0,
+          commissionRate: apiSettings.payments?.commissionRate?.value || 10
         },
         notifications: {
-          emailEnabled: true,
-          smtpHost: 'smtp.gmail.com',
-          smtpPort: 587,
-          smtpUser: '',
-          smtpPassword: '',
-          emailFrom: 'noreply@jeremyfitness.com'
+          emailEnabled: apiSettings.notifications?.emailEnabled?.value || true,
+          smtpHost: apiSettings.notifications?.smtpHost?.value || 'smtp.gmail.com',
+          smtpPort: apiSettings.notifications?.smtpPort?.value || 587,
+          smtpUser: apiSettings.notifications?.smtpUser?.value || '',
+          smtpPassword: apiSettings.notifications?.smtpPassword?.value || '',
+          emailFrom: apiSettings.notifications?.emailFrom?.value || 'noreply@jeremyfitness.com'
         },
         maintenance: {
-          maintenanceMode: false,
-          maintenanceMessage: 'El sitio está en mantenimiento. Volveremos pronto.',
-          backupFrequency: 'daily',
-          lastBackup: new Date().toISOString()
+          maintenanceMode: apiSettings.maintenance?.maintenanceMode?.value || false,
+          maintenanceMessage: apiSettings.maintenance?.maintenanceMessage?.value || 'El sitio está en mantenimiento. Volveremos pronto.',
+          backupFrequency: apiSettings.maintenance?.backupFrequency?.value || 'daily',
+          lastBackup: apiSettings.maintenance?.lastBackup?.value || new Date().toISOString()
         }
       };
 
-      setSettings(mockSettings);
+      setSettings(formattedSettings);
     } catch (error) {
       console.error('Error loading settings:', error);
       setError('Error al cargar la configuración');
@@ -110,11 +110,53 @@ const AdminSettings = () => {
       setError(null);
       setSuccess(null);
 
-      // Aquí iría la llamada a la API para guardar settings
-      // await api.put('/admin/settings', settings);
+      // Convertir la estructura del componente a la estructura de la API
+      const apiSettings = {
+        general: {
+          siteName: settings.general.siteName,
+          siteDescription: settings.general.siteDescription,
+          contactEmail: settings.general.contactEmail,
+          timezone: settings.general.timezone,
+          language: settings.general.language
+        },
+        security: {
+          sessionTimeout: settings.security.sessionTimeout,
+          passwordMinLength: settings.security.passwordMinLength,
+          requireSpecialChars: settings.security.requireSpecialChars,
+          enableTwoFactor: settings.security.enableTwoFactor,
+          maxLoginAttempts: settings.security.maxLoginAttempts
+        },
+        content: {
+          maxFileSize: settings.content.maxFileSize,
+          allowedFileTypes: settings.content.allowedFileTypes,
+          autoApproveContent: settings.content.autoApproveContent,
+          enableComments: settings.content.enableComments,
+          enableRatings: settings.content.enableRatings
+        },
+        payments: {
+          stripeEnabled: settings.payments.stripeEnabled,
+          paypalEnabled: settings.payments.paypalEnabled,
+          currency: settings.payments.currency,
+          taxRate: settings.payments.taxRate,
+          commissionRate: settings.payments.commissionRate
+        },
+        notifications: {
+          emailEnabled: settings.notifications.emailEnabled,
+          smtpHost: settings.notifications.smtpHost,
+          smtpPort: settings.notifications.smtpPort,
+          smtpUser: settings.notifications.smtpUser,
+          smtpPassword: settings.notifications.smtpPassword,
+          emailFrom: settings.notifications.emailFrom
+        },
+        maintenance: {
+          maintenanceMode: settings.maintenance.maintenanceMode,
+          maintenanceMessage: settings.maintenance.maintenanceMessage,
+          backupFrequency: settings.maintenance.backupFrequency,
+          lastBackup: settings.maintenance.lastBackup
+        }
+      };
 
-      // Simular delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await api.put('/admin/settings', { settings: apiSettings });
 
       setSuccess('Configuración guardada exitosamente');
     } catch (error) {
@@ -133,6 +175,30 @@ const AdminSettings = () => {
         [key]: value
       }
     }));
+  };
+
+  const testEmailConfiguration = async () => {
+    try {
+      setTestingEmail(true);
+      setError(null);
+
+      // Usar el email del admin actual para la prueba
+      const testEmail = user?.email;
+
+      if (!testEmail) {
+        setError('No se pudo obtener el email del administrador para la prueba');
+        return;
+      }
+
+      await api.post('/admin/settings/test-email', { to: testEmail });
+
+      setSuccess('Email de prueba enviado exitosamente');
+    } catch (error) {
+      console.error('Error testing email:', error);
+      setError('Error al probar la configuración de email');
+    } finally {
+      setTestingEmail(false);
+    }
   };
 
   // Verificar permisos de administrador
@@ -576,6 +642,20 @@ const AdminSettings = () => {
                           onChange={(e) => updateSetting('notifications', 'emailFrom', e.target.value)}
                           className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
                         />
+                      </div>
+
+                      <div className="md:col-span-2">
+                        <button
+                          onClick={testEmailConfiguration}
+                          disabled={testingEmail || !settings.notifications.emailEnabled}
+                          className="flex items-center gap-2 bg-blue-500/20 border border-blue-500/30 hover:bg-blue-500/30 text-blue-400 hover:text-blue-300 font-semibold rounded-xl px-6 py-3 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          <Mail className="w-5 h-5" />
+                          <span>{testingEmail ? 'Probando...' : 'Probar Configuración de Email'}</span>
+                        </button>
+                        <p className="text-xs text-slate-400 mt-2">
+                          Envía un email de prueba a tu dirección para verificar la configuración SMTP.
+                        </p>
                       </div>
                     </div>
                   </div>

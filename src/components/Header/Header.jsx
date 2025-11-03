@@ -13,34 +13,9 @@ const Header = () => {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { user, logout, isAuthenticated } = useAuth();
-const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
-const [notifications, setNotifications] = useState([
-  {
-    id: 1,
-    type: 'new_content',
-    title: 'Nuevo video disponible',
-    message: 'Rutina HIIT para principiantes ya está disponible',
-    time: '2 min ago',
-    read: false
-  },
-  {
-    id: 2,
-    type: 'live_stream',
-    title: 'Stream en vivo pronto',
-    message: 'Sesión de yoga comienza en 30 minutos',
-    time: '28 min ago',
-    read: false
-  },
-  {
-    id: 3,
-    type: 'subscription',
-    title: 'Suscripción renovada',
-    message: 'Tu suscripción premium ha sido renovada exitosamente',
-    time: '1 hour ago',
-    read: true
-  }
-]);
-const [unreadCount, setUnreadCount] = useState(2);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [notifications, setNotifications] = useState([]);
+  const [unreadCount, setUnreadCount] = useState(0);
   const location = useLocation();
 
   useEffect(() => {
@@ -50,6 +25,54 @@ const [unreadCount, setUnreadCount] = useState(2);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Cargar notificaciones cuando el usuario está autenticado
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      loadNotifications();
+    }
+  }, [isAuthenticated, user]);
+
+  const loadNotifications = async () => {
+    try {
+      // Aquí iría la llamada a la API para obtener notificaciones
+      // const response = await api.get('/notifications');
+      // setNotifications(response.data.notifications);
+
+      // Por ahora usamos datos mock hasta que tengamos la API completa
+      const mockNotifications = [
+        {
+          id: 1,
+          type: 'new_content',
+          title: 'Nuevo video disponible',
+          message: 'Rutina HIIT para principiantes ya está disponible',
+          created_at: new Date(Date.now() - 2 * 60 * 1000).toISOString(),
+          is_read: false
+        },
+        {
+          id: 2,
+          type: 'live_stream',
+          title: 'Stream en vivo pronto',
+          message: 'Sesión de yoga comienza en 30 minutos',
+          created_at: new Date(Date.now() - 28 * 60 * 1000).toISOString(),
+          is_read: false
+        },
+        {
+          id: 3,
+          type: 'subscription',
+          title: 'Suscripción renovada',
+          message: 'Tu suscripción premium ha sido renovada exitosamente',
+          created_at: new Date(Date.now() - 60 * 60 * 1000).toISOString(),
+          is_read: true
+        }
+      ];
+
+      setNotifications(mockNotifications);
+      setUnreadCount(mockNotifications.filter(n => !n.is_read).length);
+    } catch (error) {
+      console.error('Error loading notifications:', error);
+    }
+  };
 
   const navigation = [
     { name: 'Inicio', href: '/', icon: Home },
@@ -70,30 +93,38 @@ const [unreadCount, setUnreadCount] = useState(2);
   ];
 
   const isActive = (path) => location.pathname === path;
-const formatNotificationTime = (dateString) => {
-  const date = new Date(dateString);
-  const now = new Date();
-  const diffInMinutes = Math.floor((now - date) / (1000 * 60));
+  const formatNotificationTime = (dateString) => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffInMinutes = Math.floor((now - date) / (1000 * 60));
 
-  if (diffInMinutes < 1) return 'Ahora';
-  if (diffInMinutes < 60) return `${diffInMinutes} min ago`;
+    if (diffInMinutes < 1) return 'Ahora';
+    if (diffInMinutes < 60) return `${diffInMinutes} min ago`;
 
-  const diffInHours = Math.floor(diffInMinutes / 60);
-  if (diffInHours < 24) return `${diffInHours}h ago`;
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    if (diffInHours < 24) return `${diffInHours}h ago`;
 
-  const diffInDays = Math.floor(diffInHours / 24);
-  return `${diffInDays}d ago`;
-};
-  
-  
-  const handleNotificationClick = (notification) => {
-    if (!notification.read) {
-      setNotifications(prev =>
-        prev.map(n =>
-          n.id === notification.id ? { ...n, read: true } : n
-        )
-      );
-      setUnreadCount(prev => Math.max(0, prev - 1));
+    const diffInDays = Math.floor(diffInHours / 24);
+    return `${diffInDays}d ago`;
+  };
+
+
+  const handleNotificationClick = async (notification) => {
+    if (!notification.is_read) {
+      try {
+        // Aquí iría la llamada a la API para marcar como leída
+        // await api.put(`/notifications/${notification.id}/read`);
+
+        // Actualizar estado local
+        setNotifications(prev =>
+          prev.map(n =>
+            n.id === notification.id ? { ...n, is_read: true } : n
+          )
+        );
+        setUnreadCount(prev => Math.max(0, prev - 1));
+      } catch (error) {
+        console.error('Error marking notification as read:', error);
+      }
     }
     setIsNotificationsOpen(false);
   };
@@ -209,11 +240,11 @@ const formatNotificationTime = (dateString) => {
                               key={notification.id}
                               onClick={() => handleNotificationClick(notification)}
                               className={`p-4 border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors cursor-pointer ${
-                                !notification.read ? 'bg-orange-500/5 border-l-4 border-l-orange-500' : ''
+                                !notification.is_read ? 'bg-orange-500/5 border-l-4 border-l-orange-500' : ''
                               }`}
                             >
                               <div className="flex items-start gap-3">
-                                <div className={`w-2 h-2 rounded-full mt-2 ${notification.read ? 'bg-slate-600' : 'bg-orange-500'}`} />
+                                <div className={`w-2 h-2 rounded-full mt-2 ${notification.is_read ? 'bg-slate-600' : 'bg-orange-500'}`} />
                                 <div className="flex-1 min-w-0">
                                   <h4 className="text-sm font-semibold text-white mb-1">
                                     {notification.title}
@@ -222,7 +253,7 @@ const formatNotificationTime = (dateString) => {
                                     {notification.message}
                                   </p>
                                   <p className="text-xs text-slate-500">
-                                    {formatNotificationTime(notification.time)}
+                                    {formatNotificationTime(notification.created_at)}
                                   </p>
                                 </div>
                               </div>

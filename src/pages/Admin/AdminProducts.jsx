@@ -161,10 +161,13 @@ const AdminProducts = () => {
   };
 
   const formatPrice = (price) => {
+    // Tasa de cambio aproximada USD a COP
+    const USD_TO_COP_RATE = 4000;
+    const priceCOP = Math.round(price * USD_TO_COP_RATE);
     return new Intl.NumberFormat('es-ES', {
       style: 'currency',
-      currency: 'USD'
-    }).format(price);
+      currency: 'COP'
+    }).format(priceCOP);
   };
 
   const handleCreateProduct = async (productData) => {
@@ -564,7 +567,7 @@ const ProductForm = ({ product, onSubmit, onCancel }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-semibold text-slate-300 mb-2">Precio (USD)</label>
+          <label className="block text-sm font-semibold text-slate-300 mb-2">Precio (COP)</label>
           <input
             type="number"
             step="0.01"
