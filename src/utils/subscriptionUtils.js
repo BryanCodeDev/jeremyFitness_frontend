@@ -14,19 +14,19 @@ export const SUBSCRIPTION_LABELS = {
 
 export const SUBSCRIPTION_COLORS = {
   [SUBSCRIPTION_TIERS.free]: 'text-slate-400 bg-slate-500/10',
-  [SUBSCRIPTION_TIERS.premium]: 'text-orange-400 bg-orange-500/10',
+  [SUBSCRIPTION_TIERS.premium]: 'text-red-400 bg-red-500/10',
   [SUBSCRIPTION_TIERS.vip]: 'text-purple-400 bg-purple-500/10'
 };
 
 export const SUBSCRIPTION_AVATAR_GRADIENTS = {
   [SUBSCRIPTION_TIERS.free]: 'from-slate-600 to-slate-700',
-  [SUBSCRIPTION_TIERS.premium]: 'from-orange-500 to-orange-600',
+  [SUBSCRIPTION_TIERS.premium]: 'from-red-500 to-red-600',
   [SUBSCRIPTION_TIERS.vip]: 'from-purple-500 to-purple-600'
 };
 
 export const SUBSCRIPTION_BADGE_GRADIENTS = {
   [SUBSCRIPTION_TIERS.free]: 'from-slate-600 to-slate-700',
-  [SUBSCRIPTION_TIERS.premium]: 'from-orange-500 to-orange-600',
+  [SUBSCRIPTION_TIERS.premium]: 'from-red-500 to-red-600',
   [SUBSCRIPTION_TIERS.vip]: 'from-purple-500 to-purple-600'
 };
 

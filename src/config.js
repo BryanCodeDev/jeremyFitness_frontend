@@ -7,17 +7,17 @@ export const config = {
   // API URLs
   API_BASE_URL: isDevelopment
     ? 'http://localhost:5000/api'
-    : (process.env.REACT_APP_API_URL || 'https://jeremyfitnessbackend-production.up.railway.app/api'),
+    : (process.env.REACT_APP_API_URL || 'https://jeremy-fitness-backend.railway.app/api'),
 
   // Socket URL
   SOCKET_URL: isDevelopment
     ? 'http://localhost:5000'
-    : (process.env.REACT_APP_SOCKET_URL || 'https://jeremyfitnessbackend-production.up.railway.app'),
+    : (process.env.REACT_APP_SOCKET_URL || 'https://jeremy-fitness-backend.railway.app'),
 
   // Frontend URL
   FRONTEND_URL: isDevelopment
     ? 'http://localhost:3000'
-    : (process.env.REACT_APP_SITE_URL || 'https://jeremy-fitness.netlify.app'),
+    : (process.env.REACT_APP_SITE_URL || 'https://nackrat.netlify.app'),
 
   // Environment
   ENVIRONMENT: process.env.NODE_ENV || 'development',
