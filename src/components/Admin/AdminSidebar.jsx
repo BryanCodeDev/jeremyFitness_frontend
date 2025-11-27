@@ -64,7 +64,7 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
       icon: <ShoppingBag className="w-5 h-5" />,
       label: 'Productos',
       path: '/admin/products',
-      color: 'text-orange-400'
+      color: 'text-red-400'
     },
     {
       icon: <Radio className="w-5 h-5" />,
@@ -117,7 +117,7 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
         <div className="flex items-center justify-between p-4 border-b border-slate-800/50">
           {(!isCollapsed || isDesktop) && (
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center">
                 <Shield className="w-4 h-4 text-white" />
               </div>
               <span className="text-white font-bold text-sm">Admin Panel</span>
@@ -151,7 +151,7 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
         {(!isCollapsed || isDesktop) && (
           <div className="p-4 border-b border-slate-800/50">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center">
                 <span className="text-white font-bold text-sm">
                   {user?.firstName?.charAt(0)}{user?.lastName?.charAt(0)}
                 </span>
@@ -179,24 +179,24 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
                     onClick={closeMobileSidebar}
                     className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 group ${
                       isActive
-                        ? 'bg-orange-500/20 border border-orange-500/30 text-orange-400'
+                        ? 'bg-red-500/20 border border-red-500/30 text-red-400'
                         : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
                     }`}
                   >
                     <div className={`flex items-center justify-center ${isCollapsed ? 'w-full' : ''}`}>
-                      <div className={isActive ? 'text-orange-400' : item.color}>
+                      <div className={isActive ? 'text-red-400' : item.color}>
                         {item.icon}
                       </div>
                     </div>
 
                     {(!isCollapsed || isDesktop) && (
-                      <span className={`font-medium text-sm ${isActive ? 'text-orange-400' : ''}`}>
+                      <span className={`font-medium text-sm ${isActive ? 'text-red-400' : ''}`}>
                         {item.label}
                       </span>
                     )}
 
                     {isActive && (!isCollapsed || isDesktop) && (
-                      <div className="ml-auto w-2 h-2 bg-orange-500 rounded-full"></div>
+                      <div className="ml-auto w-2 h-2 bg-red-500 rounded-full"></div>
                     )}
                   </Link>
                 </li>

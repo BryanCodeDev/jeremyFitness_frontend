@@ -137,7 +137,7 @@ const Header = () => {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-slate-950/95 backdrop-blur-xl border-b border-orange-500/20 shadow-2xl shadow-orange-500/10'
+          ? 'bg-slate-950/95 backdrop-blur-xl border-b border-red-500/20 shadow-2xl shadow-red-500/10'
           : 'bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950'
       }`}
     >
@@ -148,17 +148,14 @@ const Header = () => {
             <motion.div 
               whileHover={{ rotate: 360, scale: 1.1 }}
               transition={{ duration: 0.6 }}
-              className="relative w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/50"
+              className="relative w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-red-500/50"
             >
               <Dumbbell className="w-6 h-6 text-white" />
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-br from-red-400 to-red-600 rounded-xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300" />
             </motion.div>
             <div className="hidden sm:block">
-              <span className="text-xl lg:text-2xl font-black bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
-                Jeremy
-              </span>
-              <span className="text-xl lg:text-2xl font-black text-white ml-1">
-                Fitness
+              <span className="text-xl lg:text-2xl font-black bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
+                NackRat
               </span>
             </div>
           </Link>
@@ -175,14 +172,14 @@ const Header = () => {
                 >
                   <div className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 ${
                     isActive(item.href)
-                      ? 'text-white bg-gradient-to-r from-orange-500 to-orange-600 shadow-lg shadow-orange-500/30'
+                      ? 'text-white bg-gradient-to-r from-red-500 to-red-600 shadow-lg shadow-red-500/30'
                       : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
                   }`}>
                     <Icon className="w-4 h-4" />
                     <span>{item.name}</span>
                   </div>
                   {!isActive(item.href) && (
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-red-500 to-red-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                   )}
                 </Link>
               );
@@ -197,11 +194,11 @@ const Header = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
-                className="relative p-2.5 rounded-xl bg-slate-800/50 text-slate-300 hover:text-orange-500 hover:bg-slate-800 transition-all duration-300"
+                className="relative p-2.5 rounded-xl bg-slate-800/50 text-slate-300 hover:text-red-500 hover:bg-slate-800 transition-all duration-300"
               >
                 <Bell className="w-5 h-5" />
                 {unreadCount > 0 && (
-                  <span className="absolute top-1 right-1 w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
+                  <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
                 )}
               </motion.button>
               
@@ -221,13 +218,13 @@ const Header = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute right-0 mt-3 w-80 bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl shadow-2xl shadow-orange-500/20 overflow-hidden z-50"
+                      className="absolute right-0 mt-3 w-80 bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl shadow-2xl shadow-red-500/20 overflow-hidden z-50"
                     >
                       {/* Header */}
-                      <div className="p-4 bg-gradient-to-br from-orange-500/15 to-orange-600/15 border-b border-slate-800/50">
+                      <div className="p-4 bg-gradient-to-br from-red-500/15 to-red-600/15 border-b border-slate-800/50">
                         <div className="flex items-center justify-between">
                           <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                            <Bell className="w-5 h-5 text-orange-500" />
+                            <Bell className="w-5 h-5 text-red-500" />
                             Notificaciones
                           </h3>
                           <span className="text-xs text-slate-400">
@@ -244,11 +241,11 @@ const Header = () => {
                               key={notification.id}
                               onClick={() => handleNotificationClick(notification)}
                               className={`p-4 border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors cursor-pointer ${
-                                !notification.is_read ? 'bg-orange-500/5 border-l-4 border-l-orange-500' : ''
+                                !notification.is_read ? 'bg-red-500/5 border-l-4 border-l-red-500' : ''
                               }`}
                             >
                               <div className="flex items-start gap-3">
-                                <div className={`w-2 h-2 rounded-full mt-2 ${notification.is_read ? 'bg-slate-600' : 'bg-orange-500'}`} />
+                                <div className={`w-2 h-2 rounded-full mt-2 ${notification.is_read ? 'bg-slate-600' : 'bg-red-500'}`} />
                                 <div className="flex-1 min-w-0">
                                   <h4 className="text-sm font-semibold text-white mb-1">
                                     {notification.title}
@@ -276,7 +273,7 @@ const Header = () => {
                         <Link
                           to="/profile"
                           onClick={() => setIsNotificationsOpen(false)}
-                          className="block w-full text-center text-sm text-orange-500 hover:text-orange-400 font-medium"
+                          className="block w-full text-center text-sm text-red-500 hover:text-red-400 font-medium"
                         >
                           Ver todas las notificaciones
                         </Link>
@@ -293,10 +290,10 @@ const Header = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-                  className="flex items-center space-x-3 px-3 py-2 rounded-xl bg-slate-800/50 hover:bg-slate-800 transition-all duration-300 border border-slate-700/50 hover:border-orange-500/50"
+                  className="flex items-center space-x-3 px-3 py-2 rounded-xl bg-slate-800/50 hover:bg-slate-800 transition-all duration-300 border border-slate-700/50 hover:border-red-500/50"
                 >
                   <div className="relative">
-                    <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center shadow-lg shadow-orange-500/30">
+                    <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center shadow-lg shadow-red-500/30">
                       <span className="text-white text-sm font-bold">
                         {user?.firstName?.[0]}{user?.lastName?.[0]}
                       </span>
@@ -334,13 +331,13 @@ const Header = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute right-0 mt-2 w-72 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl shadow-orange-500/10 overflow-hidden z-50"
+                        className="absolute right-0 mt-2 w-72 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl shadow-red-500/10 overflow-hidden z-50"
                       >
                         {/* Header del dropdown */}
-                        <div className="p-4 bg-gradient-to-br from-orange-500/10 to-orange-600/10 border-b border-slate-800">
+                        <div className="p-4 bg-gradient-to-br from-red-500/10 to-red-600/10 border-b border-slate-800">
                           <div className="flex items-center space-x-3">
                             <div className="relative">
-                              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
+                              <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center">
                                 <span className="text-white font-bold">
                                   {user?.firstName?.[0]}{user?.lastName?.[0]}
                                 </span>
@@ -373,7 +370,7 @@ const Header = () => {
                                 className="flex items-center space-x-3 px-3 py-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition-all duration-300 group"
                                 onClick={() => setIsProfileMenuOpen(false)}
                               >
-                                <Icon className="w-4 h-4 group-hover:text-orange-500 transition-colors" />
+                                <Icon className="w-4 h-4 group-hover:text-red-500 transition-colors" />
                                 <span className="text-sm font-medium">{item.name}</span>
                               </Link>
                             );
@@ -410,7 +407,7 @@ const Header = () => {
               </Link>
               <Link
                 to="/register"
-                className="px-6 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105"
+                className="px-6 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 hover:scale-105"
               >
                 Registrarse
               </Link>
@@ -422,7 +419,7 @@ const Header = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2.5 rounded-xl bg-slate-800/50 text-slate-300 hover:text-orange-500 hover:bg-slate-800 transition-all duration-300"
+            className="lg:hidden p-2.5 rounded-xl bg-slate-800/50 text-slate-300 hover:text-red-500 hover:bg-slate-800 transition-all duration-300"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </motion.button>
@@ -448,7 +445,7 @@ const Header = () => {
                       to={item.href}
                       className={`flex items-center space-x-3 px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
                         isActive(item.href)
-                          ? 'text-white bg-gradient-to-r from-orange-500 to-orange-600 shadow-lg shadow-orange-500/30'
+                          ? 'text-white bg-gradient-to-r from-red-500 to-red-600 shadow-lg shadow-red-500/30'
                           : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
                       }`}
                       onClick={() => setIsMenuOpen(false)}
@@ -468,7 +465,7 @@ const Header = () => {
                     <div className="px-4 py-3 bg-slate-800/30 rounded-xl">
                       <div className="flex items-center space-x-3 mb-3">
                         <div className="relative">
-                          <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
+                          <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center">
                             <span className="text-white font-bold">
                               {user?.firstName?.[0]}{user?.lastName?.[0]}
                             </span>
@@ -499,7 +496,7 @@ const Header = () => {
                           to={item.href}
                           className={`flex items-center space-x-3 px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
                             isActive(item.href)
-                              ? 'text-white bg-gradient-to-r from-orange-500 to-orange-600'
+                              ? 'text-white bg-gradient-to-r from-red-500 to-red-600'
                               : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
                           }`}
                           onClick={() => setIsMenuOpen(false)}
@@ -535,7 +532,7 @@ const Header = () => {
                       </Link>
                       <Link
                         to="/register"
-                        className="block text-center px-6 py-3 text-sm font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg shadow-orange-500/30"
+                        className="block text-center px-6 py-3 text-sm font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/30"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         Registrarse

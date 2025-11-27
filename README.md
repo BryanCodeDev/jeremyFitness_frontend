@@ -1,4 +1,4 @@
-# 🚀 Plataforma de Fitness Jeremy - Plataforma Completa
+# 🚀 Plataforma de Fitness NackRat - El Verdadero Valhalla
 
 Una plataforma web completa para creadores de contenido fitness con sistema de suscripciones manual vía WhatsApp, gestión de contenido multimedia y transmisión en vivo. **Sistema de ingresos real con seguimiento de transacciones completadas.**
 

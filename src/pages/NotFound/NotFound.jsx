@@ -9,8 +9,8 @@ const NotFound = () => {
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-red-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-red-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -28,13 +28,13 @@ const NotFound = () => {
             className="mb-8 flex justify-center"
           >
             <div className="relative">
-              <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-2xl shadow-orange-500/50">
+              <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-2xl shadow-red-500/50">
                 <AlertCircle className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
               </div>
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="absolute inset-0 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full blur-xl opacity-50"
+                className="absolute inset-0 bg-gradient-to-br from-red-500 to-red-600 rounded-full blur-xl opacity-50"
               />
             </div>
           </motion.div>
@@ -47,7 +47,7 @@ const NotFound = () => {
             className="mb-6"
           >
             <h1 className="text-7xl sm:text-8xl md:text-9xl font-black mb-2">
-              <span className="bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-500 via-red-600 to-red-500 bg-clip-text text-transparent">
                 404
               </span>
             </h1>
@@ -78,7 +78,7 @@ const NotFound = () => {
           >
             <Link
               to="/"
-              className="group w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base sm:text-lg font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-105"
+              className="group w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base sm:text-lg font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105"
             >
               <Home className="w-5 h-5 mr-2" />
               <span>Volver al Inicio</span>
@@ -106,7 +106,7 @@ const NotFound = () => {
             <div className="flex flex-wrap gap-3 justify-center">
               <Link
                 to="/content"
-                className="inline-flex items-center px-4 py-2 text-sm font-semibold text-slate-300 bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-lg hover:border-orange-500/50 hover:text-orange-400 transition-all duration-300"
+                className="inline-flex items-center px-4 py-2 text-sm font-semibold text-slate-300 bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-lg hover:border-red-500/50 hover:text-red-400 transition-all duration-300"
               >
                 <Search className="w-4 h-4 mr-2" />
                 Explorar Contenido

@@ -100,7 +100,7 @@ const AdminContent = () => {
             </p>
             <button
               onClick={() => navigate('/')}
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-105 group"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105 group"
             >
               <span>Volver al Inicio</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -201,8 +201,8 @@ const AdminContent = () => {
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pointer-events-none" />
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 right-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-orange-600/5 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
       </div>
 
       <div className="lg:ml-72 container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 relative z-10">
@@ -216,8 +216,8 @@ const AdminContent = () => {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-2 flex items-center gap-3">
-                  <Video className="w-8 h-8 sm:w-10 sm:h-10 text-orange-500" />
-                  <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+                  <Video className="w-8 h-8 sm:w-10 sm:h-10 text-red-500" />
+                  <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                     Gestión de Contenido
                   </span>
                 </h1>
@@ -227,7 +227,7 @@ const AdminContent = () => {
               </div>
               <button
                 onClick={openCreateModal}
-                className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300"
+                className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300"
               >
                 <Plus className="w-5 h-5" />
                 <span>Subir Contenido</span>
@@ -247,7 +247,7 @@ const AdminContent = () => {
                     placeholder="Buscar contenido..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+                    className="w-full pl-12 pr-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all"
                   />
                 </div>
               </div>
@@ -257,7 +257,7 @@ const AdminContent = () => {
                 <select
                   value={filterType}
                   onChange={(e) => setFilterType(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all"
                 >
                   <option value="all">Todos los tipos</option>
                   <option value="video">Videos</option>
@@ -272,7 +272,7 @@ const AdminContent = () => {
                 <select
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all"
                 >
                   <option value="all">Todos los estados</option>
                   <option value="published">Publicado</option>
@@ -319,7 +319,7 @@ const AdminContent = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300"
+                  className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-300"
                 >
                   {/* Thumbnail */}
                   <div className="aspect-video bg-slate-800 relative overflow-hidden">
@@ -355,8 +355,8 @@ const AdminContent = () => {
                     {/* Play Button for Videos */}
                     {item.content_type === 'video' && (
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <div className="w-16 h-16 bg-orange-500/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-orange-500/30">
-                          <Play className="w-6 h-6 text-orange-500 ml-1" />
+                        <div className="w-16 h-16 bg-red-500/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-red-500/30">
+                          <Play className="w-6 h-6 text-red-500 ml-1" />
                         </div>
                       </div>
                     )}
@@ -364,7 +364,7 @@ const AdminContent = () => {
 
                   {/* Content Info */}
                   <div className="p-6">
-                    <h3 className="text-white font-bold text-lg mb-2 line-clamp-2 group-hover:text-orange-400 transition-colors">
+                    <h3 className="text-white font-bold text-lg mb-2 line-clamp-2 group-hover:text-red-400 transition-colors">
                       {item.title}
                     </h3>
 
@@ -541,7 +541,7 @@ const ContentForm = ({ content, onSubmit, onCancel }) => {
           type="text"
           value={formData.title}
           onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
           required
         />
       </div>
@@ -552,7 +552,7 @@ const ContentForm = ({ content, onSubmit, onCancel }) => {
           value={formData.description}
           onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
           rows={3}
-          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
         />
       </div>
 
@@ -562,7 +562,7 @@ const ContentForm = ({ content, onSubmit, onCancel }) => {
           <select
             value={formData.content_type}
             onChange={(e) => setFormData(prev => ({ ...prev, content_type: e.target.value }))}
-            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
           >
             <option value="video">Video</option>
             <option value="image">Imagen</option>
@@ -576,7 +576,7 @@ const ContentForm = ({ content, onSubmit, onCancel }) => {
           <select
             value={formData.is_published ? 'published' : 'draft'}
             onChange={(e) => setFormData(prev => ({ ...prev, is_published: e.target.value === 'published' }))}
-            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
           >
             <option value="published">Publicado</option>
             <option value="draft">Borrador</option>
@@ -590,7 +590,7 @@ const ContentForm = ({ content, onSubmit, onCancel }) => {
           type="url"
           value={formData.file_url}
           onChange={(e) => setFormData(prev => ({ ...prev, file_url: e.target.value }))}
-          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
           required
         />
       </div>
@@ -601,7 +601,7 @@ const ContentForm = ({ content, onSubmit, onCancel }) => {
           type="url"
           value={formData.thumbnail_url}
           onChange={(e) => setFormData(prev => ({ ...prev, thumbnail_url: e.target.value }))}
-          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
         />
       </div>
 
@@ -611,13 +611,13 @@ const ContentForm = ({ content, onSubmit, onCancel }) => {
           {formData.tags.map((tag, index) => (
             <span
               key={index}
-              className="inline-flex items-center gap-2 px-3 py-1 bg-orange-500/20 text-orange-400 rounded-full text-sm"
+              className="inline-flex items-center gap-2 px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm"
             >
               {tag}
               <button
                 type="button"
                 onClick={() => removeTag(tag)}
-                className="hover:text-orange-300"
+                className="hover:text-red-300"
               >
                 ×
               </button>
@@ -634,7 +634,7 @@ const ContentForm = ({ content, onSubmit, onCancel }) => {
               e.target.value = '';
             }
           }}
-          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
         />
       </div>
 
@@ -644,7 +644,7 @@ const ContentForm = ({ content, onSubmit, onCancel }) => {
             type="checkbox"
             checked={formData.is_premium}
             onChange={(e) => setFormData(prev => ({ ...prev, is_premium: e.target.checked }))}
-            className="rounded border-slate-600 text-orange-500 focus:ring-orange-500"
+            className="rounded border-slate-600 text-red-500 focus:ring-red-500"
           />
           <span className="text-sm font-semibold text-slate-300">Contenido Premium</span>
         </label>
@@ -653,7 +653,7 @@ const ContentForm = ({ content, onSubmit, onCancel }) => {
       <div className="flex gap-3 mt-6">
         <button
           type="submit"
-          className="flex-1 px-4 py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl transition-all duration-300"
+          className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl transition-all duration-300"
         >
           {content ? 'Actualizar' : 'Crear'} Contenido
         </button>

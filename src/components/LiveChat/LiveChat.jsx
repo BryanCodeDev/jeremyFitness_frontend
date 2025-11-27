@@ -160,7 +160,7 @@ const LiveChat = ({ streamId, isVisible, onToggle }) => {
       <div className="fixed bottom-4 right-4 z-40">
         <button
           onClick={onToggle}
-          className="bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-full shadow-lg transition-colors relative"
+          className="bg-red-500 hover:bg-red-600 text-white p-3 rounded-full shadow-lg transition-colors relative"
         >
           <MessageCircle className="w-6 h-6" />
           {messages.length > 0 && (
@@ -184,7 +184,7 @@ const LiveChat = ({ streamId, isVisible, onToggle }) => {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-slate-700">
           <div className="flex items-center space-x-2">
-            <MessageCircle className="w-5 h-5 text-orange-500" />
+            <MessageCircle className="w-5 h-5 text-red-500" />
             <h3 className="text-white font-semibold">Chat en Vivo</h3>
             <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`}></div>
           </div>
@@ -212,7 +212,7 @@ const LiveChat = ({ streamId, isVisible, onToggle }) => {
               ) : (
                 <div className="flex flex-col">
                   <div className="flex items-center space-x-2 mb-1">
-                    <span className="text-orange-400 font-medium text-sm">{msg.username}</span>
+                    <span className="text-red-400 font-medium text-sm">{msg.username}</span>
                     <span className="text-gray-500 text-xs">{formatTime(msg.timestamp)}</span>
                   </div>
                   <div className="bg-slate-800 text-white text-sm px-3 py-2 rounded-lg max-w-xs break-words">
@@ -234,13 +234,13 @@ const LiveChat = ({ streamId, isVisible, onToggle }) => {
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
               placeholder="Escribe un mensaje..."
-              className="flex-1 bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-orange-500"
+              className="flex-1 bg-slate-800 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-red-500"
               maxLength={200}
             />
             <button
               type="submit"
               disabled={!newMessage.trim()}
-              className="bg-orange-500 hover:bg-orange-600 disabled:bg-gray-600 disabled:cursor-not-allowed text-white p-2 rounded-lg transition-colors"
+              className="bg-red-500 hover:bg-red-600 disabled:bg-gray-600 disabled:cursor-not-allowed text-white p-2 rounded-lg transition-colors"
             >
               <Send className="w-4 h-4" />
             </button>

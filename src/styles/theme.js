@@ -3,8 +3,8 @@
 
 export const theme = {
   colors: {
-    primary: '#ff6b35',
-    secondary: '#f7931e',
+    primary: '#dc2626',
+    secondary: '#b91c1c',
     dark: {
       0: '#000000',
       100: '#1a1a1a',
@@ -55,8 +55,8 @@ export const theme = {
     full: '9999px',
   },
   shadows: {
-    orange: '0 4px 20px rgba(255, 107, 53, 0.3)',
-    'orange-lg': '0 8px 40px rgba(255, 107, 53, 0.4)',
+    red: '0 4px 20px rgba(220, 38, 38, 0.3)',
+    'red-lg': '0 8px 40px rgba(220, 38, 38, 0.4)',
   },
   transitions: {
     default: 'all 0.3s ease',

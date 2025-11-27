@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import axios from 'axios';
 import { Play, Clock, Crown, Users, Video, Target, Zap, Award, ArrowRight, CheckCircle, Star } from 'lucide-react';
 import { useAuth } from '../../utils/AuthContext';
+import { api } from '../../utils/AuthContext';
 import ContentModal from '../../components/Content/ContentModal';
 
 const Home = () => {
@@ -15,11 +15,8 @@ const Home = () => {
   useEffect(() => {
     const loadFeaturedContent = async () => {
       try {
-        const token = localStorage.getItem('token');
-        const headers = token ? { Authorization: `Bearer ${token}` } : {};
-        const response = await axios.get('http://localhost:5000/api/content/public', {
-          params: { limit: 6, sortBy: 'view_count', sortOrder: 'DESC' },
-          headers
+        const response = await api.get('/content/public', {
+          params: { limit: 6, sortBy: 'view_count', sortOrder: 'DESC' }
         });
         const mappedContent = response.data.content.map(item => ({
           ...item,
@@ -45,7 +42,7 @@ const Home = () => {
     {
       icon: <Zap className="w-7 h-7" />,
       title: 'En Vivo Interactivo',
-      description: 'Sesiones en tiempo real con Jeremy y la comunidad'
+      description: 'Sesiones en tiempo real con NackRat y la comunidad'
     },
     {
       icon: <Target className="w-7 h-7" />,
@@ -83,9 +80,9 @@ const Home = () => {
         {/* Animated Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 -left-20 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-orange-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/4 -left-20 w-96 h-96 bg-red-500/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-red-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-500/10 rounded-full blur-3xl" />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -100,22 +97,22 @@ const Home = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2 }}
-                className="inline-flex items-center space-x-2 bg-orange-500/10 border border-orange-500/20 rounded-full px-4 py-2 mb-8"
+                className="inline-flex items-center space-x-2 bg-red-500/10 border border-red-500/20 rounded-full px-4 py-2 mb-8"
               >
-                <Crown className="w-4 h-4 text-orange-500" />
-                <span className="text-sm font-semibold text-orange-400">Plataforma #1 en Fitness Online</span>
+                <Crown className="w-4 h-4 text-red-500" />
+                <span className="text-sm font-semibold text-red-400">Plataforma #1 en Fitness Online</span>
               </motion.div>
 
               <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 leading-tight">
-                <span className="bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 bg-clip-text text-transparent">
-                  Jeremy
+                <span className="bg-gradient-to-r from-red-500 via-red-600 to-red-500 bg-clip-text text-transparent">
+                  NackRat
                 </span>
                 <br />
-                <span className="text-white">Fitness Pro</span>
+                <span className="text-white">El Verdadero Valhalla</span>
               </h1>
 
               <p className="text-xl sm:text-2xl lg:text-3xl text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Transforma tu cuerpo y mente con entrenamientos exclusivos,
+                El Verdadero Valhalla: Transforma tu cuerpo y mente con entrenamientos exclusivos,
                 nutrición personalizada y el apoyo de una comunidad dedicada
               </p>
 
@@ -123,7 +120,7 @@ const Home = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <Link
                     to="/register"
-                    className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-105"
+                    className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105"
                   >
                     <span>Comenzar Ahora</span>
                     <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -140,7 +137,7 @@ const Home = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <Link
                     to="/content"
-                    className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-105"
+                    className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105"
                   >
                     <span>Explorar Contenido</span>
                     <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -166,7 +163,7 @@ const Home = () => {
               >
                 {stats.map((stat, index) => (
                   <div key={index} className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6">
-                    <div className="flex items-center justify-center space-x-2 text-orange-500 mb-2">
+                    <div className="flex items-center justify-center space-x-2 text-red-500 mb-2">
                       {stat.icon}
                       <span className="text-3xl font-black">{stat.value}</span>
                     </div>
@@ -188,7 +185,7 @@ const Home = () => {
             <motion.div
               animate={{ y: [0, 16, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-1.5 h-1.5 bg-orange-500 rounded-full"
+              className="w-1.5 h-1.5 bg-red-500 rounded-full"
             />
           </div>
         </motion.div>
@@ -208,8 +205,8 @@ const Home = () => {
           >
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6">
               ¿Por qué elegir{' '}
-              <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
-                Jeremy Fitness
+              <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
+                NackRat
               </span>
               ?
             </h2>
@@ -226,14 +223,14 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-8 hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-500"
+                className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-8 hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg shadow-orange-500/30">
+                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg shadow-red-500/30">
                   <div className="text-white">
                     {feature.icon}
                   </div>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-white group-hover:text-orange-400 transition-colors">
+                <h3 className="text-xl font-bold mb-3 text-white group-hover:text-red-400 transition-colors">
                   {feature.title}
                 </h3>
                 <p className="text-slate-400 leading-relaxed">
@@ -257,7 +254,7 @@ const Home = () => {
           >
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6">
               Contenido{' '}
-              <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                 Destacado
               </span>
             </h2>
@@ -274,19 +271,19 @@ const Home = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-500 cursor-pointer"
+                className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500 cursor-pointer"
                 onClick={() => handleContentClick(item)}
               >
                 <div className="relative aspect-video bg-slate-800 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-orange-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-red-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 bg-orange-500/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-125 transition-transform duration-500">
-                      <Play className="w-8 h-8 text-orange-500" fill="currentColor" />
+                    <div className="w-16 h-16 bg-red-500/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-125 transition-transform duration-500">
+                      <Play className="w-8 h-8 text-red-500" fill="currentColor" />
                     </div>
                   </div>
 
                   {item.isPremium && (
-                    <div className="absolute top-3 right-3 flex items-center space-x-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg">
+                    <div className="absolute top-3 right-3 flex items-center space-x-1 bg-gradient-to-r from-red-500 to-red-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg">
                       <Crown className="w-3 h-3" />
                       <span>Premium</span>
                     </div>
@@ -301,7 +298,7 @@ const Home = () => {
                 </div>
 
                 <div className="p-6">
-                  <h3 className="font-bold text-lg mb-2 text-white group-hover:text-orange-400 transition-colors line-clamp-1">
+                  <h3 className="font-bold text-lg mb-2 text-white group-hover:text-red-400 transition-colors line-clamp-1">
                     {item.title}
                   </h3>
                   <p className="text-slate-400 text-sm line-clamp-2">
@@ -321,7 +318,7 @@ const Home = () => {
           >
             <Link
               to="/content"
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-105 group"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105 group"
             >
               <span>Ver Todo el Contenido</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -332,10 +329,10 @@ const Home = () => {
 
       {/* CTA Section */}
       <section className="py-20 lg:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-slate-900 to-orange-600/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-slate-900 to-red-600/10" />
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-600/20 rounded-full blur-3xl" />
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-500/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-red-600/20 rounded-full blur-3xl" />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -347,7 +344,7 @@ const Home = () => {
           >
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6">
               ¿Listo para transformar tu{' '}
-              <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                 vida
               </span>
               ?
@@ -359,7 +356,7 @@ const Home = () => {
             {!isAuthenticated ? (
               <Link
                 to="/register"
-                className="inline-flex items-center justify-center px-12 py-5 text-xl font-black text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-2xl shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-105 group"
+                className="inline-flex items-center justify-center px-12 py-5 text-xl font-black text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-2xl shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105 group"
               >
                 <CheckCircle className="w-6 h-6 mr-3" />
                 <span>Comenzar Mi Transformación</span>
@@ -368,7 +365,7 @@ const Home = () => {
             ) : user?.subscription_tier === 'free' ? (
               <Link
                 to="/subscriptions"
-                className="inline-flex items-center justify-center px-12 py-5 text-xl font-black text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-2xl shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-105 group"
+                className="inline-flex items-center justify-center px-12 py-5 text-xl font-black text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-2xl shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105 group"
               >
                 <Crown className="w-6 h-6 mr-3" />
                 <span>Mejorar a Premium</span>
@@ -377,7 +374,7 @@ const Home = () => {
             ) : (
               <Link
                 to="/premium"
-                className="inline-flex items-center justify-center px-12 py-5 text-xl font-black text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-2xl shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-105 group"
+                className="inline-flex items-center justify-center px-12 py-5 text-xl font-black text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-2xl shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105 group"
               >
                 <Video className="w-6 h-6 mr-3" />
                 <span>Ver Contenido Premium</span>

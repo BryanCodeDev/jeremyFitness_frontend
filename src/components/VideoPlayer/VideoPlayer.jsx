@@ -135,7 +135,7 @@ const VideoPlayer = ({
     >
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-black z-10">
-          <div className="w-12 h-12 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-12 h-12 border-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
 
@@ -166,7 +166,7 @@ const VideoPlayer = ({
         <div className="absolute inset-0 flex items-center justify-center bg-black/20">
           <button
             onClick={handlePlayPause}
-            className="w-16 h-16 bg-orange-500/90 hover:bg-orange-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300"
+            className="w-16 h-16 bg-red-500/90 hover:bg-red-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300"
           >
             <Play className="w-6 h-6 ml-1" />
           </button>
@@ -195,7 +195,7 @@ const VideoPlayer = ({
               {/* Play/Pause */}
               <button
                 onClick={handlePlayPause}
-                className="text-white hover:text-orange-400 transition-colors"
+                className="text-white hover:text-red-400 transition-colors"
               >
                 {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
               </button>
@@ -203,13 +203,13 @@ const VideoPlayer = ({
               {/* Skip buttons */}
               <button
                 onClick={() => handleSkip(-10)}
-                className="text-white hover:text-orange-400 transition-colors"
+                className="text-white hover:text-red-400 transition-colors"
               >
                 <SkipBack className="w-5 h-5" />
               </button>
               <button
                 onClick={() => handleSkip(10)}
-                className="text-white hover:text-orange-400 transition-colors"
+                className="text-white hover:text-red-400 transition-colors"
               >
                 <SkipForward className="w-5 h-5" />
               </button>
@@ -225,7 +225,7 @@ const VideoPlayer = ({
               <div className="flex items-center space-x-2">
                 <button
                   onClick={handleMuteToggle}
-                  className="text-white hover:text-orange-400 transition-colors"
+                  className="text-white hover:text-red-400 transition-colors"
                 >
                   {isMuted || volume === 0 ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
                 </button>
@@ -244,7 +244,7 @@ const VideoPlayer = ({
               <div className="relative">
                 <button
                   onClick={() => setShowSettings(!showSettings)}
-                  className="text-white hover:text-orange-400 transition-colors"
+                  className="text-white hover:text-red-400 transition-colors"
                 >
                   <Settings className="w-5 h-5" />
                 </button>
@@ -256,7 +256,7 @@ const VideoPlayer = ({
                         key={rate}
                         onClick={() => setPlaybackRate(rate)}
                         className={`block w-full text-left px-2 py-1 text-sm rounded ${
-                          playbackRate === rate ? 'bg-orange-500 text-white' : 'text-gray-300 hover:bg-gray-700'
+                          playbackRate === rate ? 'bg-red-500 text-white' : 'text-gray-300 hover:bg-gray-700'
                         }`}
                       >
                         {rate}x
@@ -269,7 +269,7 @@ const VideoPlayer = ({
               {/* Pantalla completa */}
               <button
                 onClick={handleFullscreen}
-                className="text-white hover:text-orange-400 transition-colors"
+                className="text-white hover:text-red-400 transition-colors"
               >
                 <Maximize className="w-5 h-5" />
               </button>

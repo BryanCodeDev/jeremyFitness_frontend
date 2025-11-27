@@ -52,7 +52,7 @@ const AdminSettings = () => {
       const apiSettings = response.data.settings;
       const formattedSettings = {
         general: {
-          siteName: apiSettings.general?.siteName?.value || 'Jeremy Fitness Platform',
+          siteName: apiSettings.general?.siteName?.value || 'NackRat Platform',
           siteDescription: apiSettings.general?.siteDescription?.value || 'Plataforma de fitness y bienestar',
           contactEmail: apiSettings.general?.contactEmail?.value || 'admin@jeremyfitness.com',
           timezone: apiSettings.general?.timezone?.value || 'America/Bogota',
@@ -229,7 +229,7 @@ const AdminSettings = () => {
             </p>
             <button
               onClick={() => navigate('/')}
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-105 group"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105 group"
             >
               <span>Volver al Inicio</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -257,8 +257,8 @@ const AdminSettings = () => {
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pointer-events-none" />
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 right-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-orange-600/5 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
       </div>
 
       <div className="lg:ml-72 container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 relative z-10">
@@ -272,8 +272,8 @@ const AdminSettings = () => {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-2 flex items-center gap-3">
-                  <Settings className="w-8 h-8 sm:w-10 sm:h-10 text-orange-500" />
-                  <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+                  <Settings className="w-8 h-8 sm:w-10 sm:h-10 text-red-500" />
+                  <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                     Configuración del Sistema
                   </span>
                 </h1>
@@ -285,7 +285,7 @@ const AdminSettings = () => {
                 <button
                   onClick={loadSettings}
                   disabled={loading}
-                  className="flex items-center gap-2 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl px-4 py-2 hover:border-orange-500/50 transition-colors disabled:opacity-50"
+                  className="flex items-center gap-2 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl px-4 py-2 hover:border-red-500/50 transition-colors disabled:opacity-50"
                 >
                   <RefreshCw className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`} />
                   <span className="text-sm font-semibold text-slate-300">Recargar</span>
@@ -293,7 +293,7 @@ const AdminSettings = () => {
                 <button
                   onClick={saveSettings}
                   disabled={saving || loading}
-                  className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl px-6 py-3 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 disabled:opacity-50"
+                  className="flex items-center gap-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl px-6 py-3 shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 disabled:opacity-50"
                 >
                   <Save className="w-5 h-5" />
                   <span>{saving ? 'Guardando...' : 'Guardar Cambios'}</span>
@@ -355,7 +355,7 @@ const AdminSettings = () => {
                       onClick={() => setActiveTab(tab.id)}
                       className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                         activeTab === tab.id
-                          ? 'border-orange-500 text-orange-400'
+                          ? 'border-red-500 text-red-400'
                           : 'border-transparent text-slate-400 hover:text-white hover:border-slate-700'
                       }`}
                     >
@@ -382,7 +382,7 @@ const AdminSettings = () => {
                           type="text"
                           value={settings.general.siteName}
                           onChange={(e) => updateSetting('general', 'siteName', e.target.value)}
-                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                         />
                       </div>
 
@@ -392,7 +392,7 @@ const AdminSettings = () => {
                           type="email"
                           value={settings.general.contactEmail}
                           onChange={(e) => updateSetting('general', 'contactEmail', e.target.value)}
-                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                         />
                       </div>
 
@@ -402,7 +402,7 @@ const AdminSettings = () => {
                           value={settings.general.siteDescription}
                           onChange={(e) => updateSetting('general', 'siteDescription', e.target.value)}
                           rows={3}
-                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                         />
                       </div>
                     </div>
@@ -425,7 +425,7 @@ const AdminSettings = () => {
                           max="480"
                           value={settings.security.sessionTimeout}
                           onChange={(e) => updateSetting('security', 'sessionTimeout', parseInt(e.target.value))}
-                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                         />
                       </div>
 
@@ -437,7 +437,7 @@ const AdminSettings = () => {
                           max="32"
                           value={settings.security.passwordMinLength}
                           onChange={(e) => updateSetting('security', 'passwordMinLength', parseInt(e.target.value))}
-                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                         />
                       </div>
 
@@ -449,7 +449,7 @@ const AdminSettings = () => {
                           max="10"
                           value={settings.security.maxLoginAttempts}
                           onChange={(e) => updateSetting('security', 'maxLoginAttempts', parseInt(e.target.value))}
-                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                         />
                       </div>
 
@@ -459,7 +459,7 @@ const AdminSettings = () => {
                             type="checkbox"
                             checked={settings.security.requireSpecialChars}
                             onChange={(e) => updateSetting('security', 'requireSpecialChars', e.target.checked)}
-                            className="rounded border-slate-600 text-orange-500 focus:ring-orange-500"
+                            className="rounded border-slate-600 text-red-500 focus:ring-red-500"
                           />
                           <span className="text-sm font-semibold text-slate-300">Requerir Caracteres Especiales</span>
                         </label>
@@ -484,7 +484,7 @@ const AdminSettings = () => {
                           max="2000"
                           value={settings.content.maxFileSize}
                           onChange={(e) => updateSetting('content', 'maxFileSize', parseInt(e.target.value))}
-                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                         />
                       </div>
 
@@ -494,7 +494,7 @@ const AdminSettings = () => {
                           type="text"
                           value={settings.content.allowedFileTypes.join(', ')}
                           onChange={(e) => updateSetting('content', 'allowedFileTypes', e.target.value.split(',').map(s => s.trim()))}
-                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                         />
                       </div>
 
@@ -504,7 +504,7 @@ const AdminSettings = () => {
                             type="checkbox"
                             checked={settings.content.enableComments}
                             onChange={(e) => updateSetting('content', 'enableComments', e.target.checked)}
-                            className="rounded border-slate-600 text-orange-500 focus:ring-orange-500"
+                            className="rounded border-slate-600 text-red-500 focus:ring-red-500"
                           />
                           <span className="text-sm font-semibold text-slate-300">Habilitar Comentarios</span>
                         </label>
@@ -516,7 +516,7 @@ const AdminSettings = () => {
                             type="checkbox"
                             checked={settings.content.enableRatings}
                             onChange={(e) => updateSetting('content', 'enableRatings', e.target.checked)}
-                            className="rounded border-slate-600 text-orange-500 focus:ring-orange-500"
+                            className="rounded border-slate-600 text-red-500 focus:ring-red-500"
                           />
                           <span className="text-sm font-semibold text-slate-300">Habilitar Calificaciones</span>
                         </label>
@@ -538,7 +538,7 @@ const AdminSettings = () => {
                         <select
                           value={settings.payments.currency}
                           onChange={(e) => updateSetting('payments', 'currency', e.target.value)}
-                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                         >
                           <option value="USD">USD - Dólar Estadounidense</option>
                           <option value="EUR">EUR - Euro</option>
@@ -555,7 +555,7 @@ const AdminSettings = () => {
                           step="0.1"
                           value={settings.payments.commissionRate}
                           onChange={(e) => updateSetting('payments', 'commissionRate', parseFloat(e.target.value))}
-                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                         />
                       </div>
 
@@ -565,7 +565,7 @@ const AdminSettings = () => {
                             type="checkbox"
                             checked={settings.payments.stripeEnabled}
                             onChange={(e) => updateSetting('payments', 'stripeEnabled', e.target.checked)}
-                            className="rounded border-slate-600 text-orange-500 focus:ring-orange-500"
+                            className="rounded border-slate-600 text-red-500 focus:ring-red-500"
                           />
                           <span className="text-sm font-semibold text-slate-300">Habilitar Stripe</span>
                         </label>
@@ -577,7 +577,7 @@ const AdminSettings = () => {
                             type="checkbox"
                             checked={settings.payments.paypalEnabled}
                             onChange={(e) => updateSetting('payments', 'paypalEnabled', e.target.checked)}
-                            className="rounded border-slate-600 text-orange-500 focus:ring-orange-500"
+                            className="rounded border-slate-600 text-red-500 focus:ring-red-500"
                           />
                           <span className="text-sm font-semibold text-slate-300">Habilitar PayPal</span>
                         </label>
@@ -600,7 +600,7 @@ const AdminSettings = () => {
                           type="text"
                           value={settings.notifications.smtpHost}
                           onChange={(e) => updateSetting('notifications', 'smtpHost', e.target.value)}
-                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                         />
                       </div>
 
@@ -610,7 +610,7 @@ const AdminSettings = () => {
                           type="number"
                           value={settings.notifications.smtpPort}
                           onChange={(e) => updateSetting('notifications', 'smtpPort', parseInt(e.target.value))}
-                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                         />
                       </div>
 
@@ -620,7 +620,7 @@ const AdminSettings = () => {
                           type="text"
                           value={settings.notifications.smtpUser}
                           onChange={(e) => updateSetting('notifications', 'smtpUser', e.target.value)}
-                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                         />
                       </div>
 
@@ -630,7 +630,7 @@ const AdminSettings = () => {
                           type="password"
                           value={settings.notifications.smtpPassword}
                           onChange={(e) => updateSetting('notifications', 'smtpPassword', e.target.value)}
-                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                         />
                       </div>
 
@@ -640,7 +640,7 @@ const AdminSettings = () => {
                           type="email"
                           value={settings.notifications.emailFrom}
                           onChange={(e) => updateSetting('notifications', 'emailFrom', e.target.value)}
-                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                         />
                       </div>
 
@@ -675,7 +675,7 @@ const AdminSettings = () => {
                             type="checkbox"
                             checked={settings.maintenance.maintenanceMode}
                             onChange={(e) => updateSetting('maintenance', 'maintenanceMode', e.target.checked)}
-                            className="rounded border-slate-600 text-orange-500 focus:ring-orange-500"
+                            className="rounded border-slate-600 text-red-500 focus:ring-red-500"
                           />
                           <span className="text-sm font-semibold text-slate-300">Modo de Mantenimiento</span>
                         </label>
@@ -688,7 +688,7 @@ const AdminSettings = () => {
                             value={settings.maintenance.maintenanceMessage}
                             onChange={(e) => updateSetting('maintenance', 'maintenanceMessage', e.target.value)}
                             rows={3}
-                            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                           />
                         </div>
                       )}
@@ -699,7 +699,7 @@ const AdminSettings = () => {
                           <select
                             value={settings.maintenance.backupFrequency}
                             onChange={(e) => updateSetting('maintenance', 'backupFrequency', e.target.value)}
-                            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                           >
                             <option value="hourly">Cada Hora</option>
                             <option value="daily">Diario</option>

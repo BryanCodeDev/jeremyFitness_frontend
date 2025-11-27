@@ -103,7 +103,7 @@ const AdminUsers = () => {
             </p>
             <button
               onClick={() => navigate('/')}
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-105 group"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105 group"
             >
               <span>Volver al Inicio</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -209,8 +209,8 @@ const AdminUsers = () => {
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pointer-events-none" />
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 right-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-orange-600/5 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
       </div>
 
       <div className="lg:ml-72 container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 relative z-10">
@@ -224,8 +224,8 @@ const AdminUsers = () => {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-2 flex items-center gap-3">
-                  <Users className="w-8 h-8 sm:w-10 sm:h-10 text-orange-500" />
-                  <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+                  <Users className="w-8 h-8 sm:w-10 sm:h-10 text-red-500" />
+                  <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                     Gestión de Usuarios
                   </span>
                 </h1>
@@ -236,7 +236,7 @@ const AdminUsers = () => {
               <button
                 onClick={loadUsers}
                 disabled={loading}
-                className="inline-flex items-center gap-3 px-6 py-3 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl text-white hover:border-orange-500/50 transition-all duration-300 disabled:opacity-50"
+                className="inline-flex items-center gap-3 px-6 py-3 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl text-white hover:border-red-500/50 transition-all duration-300 disabled:opacity-50"
               >
                 <RefreshCw className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`} />
                 <span>Actualizar</span>
@@ -256,7 +256,7 @@ const AdminUsers = () => {
                     placeholder="Buscar usuarios..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+                    className="w-full pl-12 pr-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all"
                   />
                 </div>
               </div>
@@ -266,7 +266,7 @@ const AdminUsers = () => {
                 <select
                   value={filterRole}
                   onChange={(e) => setFilterRole(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all"
                 >
                   <option value="all">Todos los roles</option>
                   <option value="admin">Administradores</option>
@@ -280,7 +280,7 @@ const AdminUsers = () => {
                 <select
                   value={filterSubscription}
                   onChange={(e) => setFilterSubscription(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all"
                 >
                   <option value="all">Todas las suscripciones</option>
                   <option value="vip">VIP</option>
@@ -365,7 +365,7 @@ const AdminUsers = () => {
                       >
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center">
+                            <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center">
                               <span className="text-white font-bold text-sm">
                                 {userItem.first_name?.charAt(0)}{userItem.last_name?.charAt(0)}
                               </span>
@@ -483,7 +483,7 @@ const AdminUsers = () => {
                 <select
                   value={selectedUser.role}
                   onChange={(e) => setSelectedUser({...selectedUser, role: e.target.value})}
-                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                 >
                   <option value="user">Usuario</option>
                   <option value="creator">Creador</option>
@@ -495,7 +495,7 @@ const AdminUsers = () => {
                 <select
                   value={selectedUser.is_active ? 'active' : 'inactive'}
                   onChange={(e) => setSelectedUser({...selectedUser, is_active: e.target.value === 'active'})}
-                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                 >
                   <option value="active">Activo</option>
                   <option value="inactive">Inactivo</option>
@@ -508,7 +508,7 @@ const AdminUsers = () => {
                   role: selectedUser.role,
                   is_active: selectedUser.is_active
                 })}
-                className="flex-1 px-4 py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl transition-all duration-300"
+                className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl transition-all duration-300"
               >
                 Guardar
               </button>
@@ -589,7 +589,7 @@ const AdminUsers = () => {
                   <select
                     name="subscription_tier"
                     defaultValue={selectedUser.subscription_tier}
-                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                     required
                   >
                     <option value="free">Gratuito</option>
@@ -604,7 +604,7 @@ const AdminUsers = () => {
                   <select
                     name="duration_months"
                     defaultValue={selectedUser.subscription_duration_months || 1}
-                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                   >
                     <option value="1">1 mes</option>
                     <option value="3">3 meses</option>
@@ -619,7 +619,7 @@ const AdminUsers = () => {
                   <select
                     name="payment_method"
                     defaultValue="whatsapp"
-                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                   >
                     <option value="whatsapp">WhatsApp</option>
                     <option value="transfer">Transferencia</option>
@@ -635,7 +635,7 @@ const AdminUsers = () => {
                     type="text"
                     name="payment_reference"
                     placeholder="Número de comprobante, referencia, etc."
-                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
                   />
                 </div>
 
@@ -646,7 +646,7 @@ const AdminUsers = () => {
                     name="notes"
                     rows="3"
                     placeholder="Notas adicionales sobre la transacción..."
-                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 resize-none"
+                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-red-500/20 focus:border-red-500 resize-none"
                   />
                 </div>
 
@@ -654,7 +654,7 @@ const AdminUsers = () => {
                 <div className="p-4 bg-slate-800/50 rounded-xl">
                   <div className="flex justify-between items-center">
                     <span className="text-slate-300">Total a pagar:</span>
-                    <span id="price-preview" className="text-2xl font-bold text-orange-500">$0 COP</span>
+                    <span id="price-preview" className="text-2xl font-bold text-red-500">$0 COP</span>
                   </div>
                 </div>
               </div>
@@ -662,7 +662,7 @@ const AdminUsers = () => {
               <div className="flex gap-3 mt-6">
                 <button
                   type="submit"
-                  className="flex-1 px-4 py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl transition-all duration-300"
+                  className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl transition-all duration-300"
                 >
                   Actualizar Suscripción
                 </button>

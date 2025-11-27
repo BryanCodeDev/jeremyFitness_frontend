@@ -182,8 +182,8 @@ const Profile = () => {
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pointer-events-none" />
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 right-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-orange-600/5 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 relative z-10">
@@ -195,7 +195,7 @@ const Profile = () => {
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-2">
-              <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                 Mi Perfil
               </span>
             </h1>
@@ -217,7 +217,7 @@ const Profile = () => {
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-8 pb-8 border-b border-slate-800/50">
                   {/* Avatar */}
                   <div className="relative group">
-                    <div className={`w-24 h-24 sm:w-28 sm:h-28 bg-gradient-to-br ${getSubscriptionAvatarGradient(user?.subscription_tier)} rounded-2xl flex items-center justify-center text-white text-3xl sm:text-4xl font-black shadow-2xl shadow-orange-500/20`}>
+                    <div className={`w-24 h-24 sm:w-28 sm:h-28 bg-gradient-to-br ${getSubscriptionAvatarGradient(user?.subscription_tier)} rounded-2xl flex items-center justify-center text-white text-3xl sm:text-4xl font-black shadow-2xl shadow-red-500/20`}>
                       {user?.profileImageUrl ? (
                         <img
                           src={`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}${user.profileImageUrl}`}
@@ -274,7 +274,7 @@ const Profile = () => {
                   {/* Edit Button */}
                   <button
                     onClick={() => setIsEditing(!isEditing)}
-                    className="self-start sm:self-auto inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-xl shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105"
+                    className="self-start sm:self-auto inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 hover:scale-105"
                   >
                     <Edit3 className="w-4 h-4" />
                     <span className="hidden sm:inline">Editar Perfil</span>
@@ -297,7 +297,7 @@ const Profile = () => {
                             name="firstName"
                             value={formData.firstName}
                             onChange={handleInputChange}
-                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                             placeholder="Tu nombre"
                           />
                         </div>
@@ -312,7 +312,7 @@ const Profile = () => {
                             name="lastName"
                             value={formData.lastName}
                             onChange={handleInputChange}
-                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                             placeholder="Tu apellido"
                           />
                         </div>
@@ -328,7 +328,7 @@ const Profile = () => {
                           name="displayName"
                           value={formData.displayName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                          className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                           placeholder="Nombre para mostrar"
                         />
                       </div>
@@ -343,7 +343,7 @@ const Profile = () => {
                           value={formData.bio}
                           onChange={handleInputChange}
                           rows={4}
-                          className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent resize-none"
+                          className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent resize-none"
                           placeholder="Cuéntanos algo sobre ti..."
                         />
                       </div>
@@ -352,7 +352,7 @@ const Profile = () => {
                         <button
                           onClick={handleSave}
                           disabled={loading}
-                          className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-xl shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           <Save className="w-4 h-4" />
                           {loading ? 'Guardando...' : 'Guardar'}
@@ -425,7 +425,7 @@ const Profile = () => {
                 className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6"
               >
                 <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-orange-500" />
+                  <TrendingUp className="w-5 h-5 text-red-500" />
                   Estadísticas
                 </h3>
                 <div className="space-y-4">
@@ -435,7 +435,7 @@ const Profile = () => {
                       className="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800/70 transition-colors"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white">
+                        <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center text-white">
                           {stat.icon}
                         </div>
                         <span className="text-slate-300 font-medium">{stat.label}</span>
@@ -454,7 +454,7 @@ const Profile = () => {
                 className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6"
               >
                 <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  <Crown className="w-5 h-5 text-orange-500" />
+                  <Crown className="w-5 h-5 text-red-500" />
                   Suscripción
                 </h3>
                 <div className={`bg-gradient-to-br ${getSubscriptionBadgeGradient(user?.subscription_tier)} rounded-xl p-6 mb-4`}>
@@ -525,7 +525,7 @@ const Profile = () => {
           >
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                <Key className="w-5 h-5 text-orange-500" />
+                <Key className="w-5 h-5 text-red-500" />
                 Cambiar Contraseña
               </h3>
               <button
@@ -555,7 +555,7 @@ const Profile = () => {
                     setResetEmailSent(false);
                     setPasswordForm({ email: user?.email || '', newPassword: '', confirmPassword: '' });
                   }}
-                  className="w-full py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-xl"
+                  className="w-full py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl"
                 >
                   Entendido
                 </button>
@@ -571,7 +571,7 @@ const Profile = () => {
                     name="email"
                     value={passwordForm.email}
                     onChange={handlePasswordChange}
-                    className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                     placeholder="Tu email"
                   />
                 </div>
@@ -583,7 +583,7 @@ const Profile = () => {
                 <button
                   onClick={handleRequestPasswordReset}
                   disabled={passwordLoading || !passwordForm.email}
-                  className="w-full py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {passwordLoading ? 'Enviando...' : 'Enviar Enlace de Restablecimiento'}
                 </button>
@@ -603,7 +603,7 @@ const Profile = () => {
           >
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                <Shield className="w-5 h-5 text-orange-500" />
+                <Shield className="w-5 h-5 text-red-500" />
                 Configuración de Privacidad
               </h3>
               <button
@@ -625,7 +625,7 @@ const Profile = () => {
                   name="privacyPublicProfile"
                   checked={settingsForm.privacyPublicProfile}
                   onChange={handleSettingsChange}
-                  className="w-5 h-5 text-orange-500 bg-slate-800 border-slate-600 rounded focus:ring-orange-500"
+                  className="w-5 h-5 text-red-500 bg-slate-800 border-slate-600 rounded focus:ring-red-500"
                 />
               </div>
 
@@ -639,7 +639,7 @@ const Profile = () => {
                   name="privacyShowEmail"
                   checked={settingsForm.privacyShowEmail}
                   onChange={handleSettingsChange}
-                  className="w-5 h-5 text-orange-500 bg-slate-800 border-slate-600 rounded focus:ring-orange-500"
+                  className="w-5 h-5 text-red-500 bg-slate-800 border-slate-600 rounded focus:ring-red-500"
                 />
               </div>
 
@@ -647,7 +647,7 @@ const Profile = () => {
                 <button
                   onClick={handleSaveSettings}
                   disabled={settingsLoading}
-                  className="flex-1 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {settingsLoading ? 'Guardando...' : 'Guardar'}
                 </button>
@@ -673,7 +673,7 @@ const Profile = () => {
           >
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                <Mail className="w-5 h-5 text-orange-500" />
+                <Mail className="w-5 h-5 text-red-500" />
                 Configuración de Notificaciones
               </h3>
               <button
@@ -695,7 +695,7 @@ const Profile = () => {
                   name="notificationsEmailNewContent"
                   checked={settingsForm.notificationsEmailNewContent}
                   onChange={handleSettingsChange}
-                  className="w-5 h-5 text-orange-500 bg-slate-800 border-slate-600 rounded focus:ring-orange-500"
+                  className="w-5 h-5 text-red-500 bg-slate-800 border-slate-600 rounded focus:ring-red-500"
                 />
               </div>
 
@@ -709,7 +709,7 @@ const Profile = () => {
                   name="notificationsEmailLiveStreams"
                   checked={settingsForm.notificationsEmailLiveStreams}
                   onChange={handleSettingsChange}
-                  className="w-5 h-5 text-orange-500 bg-slate-800 border-slate-600 rounded focus:ring-orange-500"
+                  className="w-5 h-5 text-red-500 bg-slate-800 border-slate-600 rounded focus:ring-red-500"
                 />
               </div>
 
@@ -723,7 +723,7 @@ const Profile = () => {
                   name="notificationsEmailProducts"
                   checked={settingsForm.notificationsEmailProducts}
                   onChange={handleSettingsChange}
-                  className="w-5 h-5 text-orange-500 bg-slate-800 border-slate-600 rounded focus:ring-orange-500"
+                  className="w-5 h-5 text-red-500 bg-slate-800 border-slate-600 rounded focus:ring-red-500"
                 />
               </div>
 
@@ -737,7 +737,7 @@ const Profile = () => {
                   name="notificationsEmailSubscriptions"
                   checked={settingsForm.notificationsEmailSubscriptions}
                   onChange={handleSettingsChange}
-                  className="w-5 h-5 text-orange-500 bg-slate-800 border-slate-600 rounded focus:ring-orange-500"
+                  className="w-5 h-5 text-red-500 bg-slate-800 border-slate-600 rounded focus:ring-red-500"
                 />
               </div>
 
@@ -745,7 +745,7 @@ const Profile = () => {
                 <button
                   onClick={handleSaveSettings}
                   disabled={settingsLoading}
-                  className="flex-1 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {settingsLoading ? 'Guardando...' : 'Guardar'}
                 </button>

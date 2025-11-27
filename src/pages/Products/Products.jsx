@@ -87,8 +87,8 @@ const Products = () => {
       <section className="relative py-16 lg:py-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-0 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl" />
+          <div className="absolute top-20 left-0 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-600/10 rounded-full blur-3xl" />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -98,14 +98,14 @@ const Products = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <div className="inline-flex items-center space-x-2 bg-orange-500/10 border border-orange-500/20 rounded-full px-4 py-2 mb-6">
-              <Download className="w-4 h-4 text-orange-500" />
-              <span className="text-sm font-semibold text-orange-400">Productos Digitales</span>
+            <div className="inline-flex items-center space-x-2 bg-red-500/10 border border-red-500/20 rounded-full px-4 py-2 mb-6">
+              <Download className="w-4 h-4 text-red-500" />
+              <span className="text-sm font-semibold text-red-400">Productos Digitales</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6">
               Productos{' '}
-              <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                 Exclusivos
               </span>
             </h1>
@@ -127,7 +127,7 @@ const Products = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.05 }}
-                className="px-6 py-2 bg-slate-900/50 border border-slate-800/50 rounded-xl text-slate-300 hover:border-orange-500/50 hover:text-orange-400 transition-all duration-300 font-semibold"
+                className="px-6 py-2 bg-slate-900/50 border border-slate-800/50 rounded-xl text-slate-300 hover:border-red-500/50 hover:text-red-400 transition-all duration-300 font-semibold"
               >
                 {category.name} <span className="text-slate-500">({category.count})</span>
               </motion.button>
@@ -160,18 +160,18 @@ const Products = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-500"
+                className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500"
               >
                 {/* Product Header */}
                 <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 p-8 flex items-center justify-center h-48">
-                  <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-orange-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
-                  <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg shadow-orange-500/30 relative z-10">
+                  <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg shadow-red-500/30 relative z-10">
                     {product.icon}
                   </div>
 
                   {product.isPremium && (
-                    <div className="absolute top-3 right-3 flex items-center space-x-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg">
+                    <div className="absolute top-3 right-3 flex items-center space-x-1 bg-gradient-to-r from-red-500 to-red-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg">
                       <Crown className="w-3 h-3" />
                       <span>Premium</span>
                     </div>
@@ -184,7 +184,7 @@ const Products = () => {
 
                 {/* Product Content */}
                 <div className="p-6">
-                  <h3 className="font-bold text-xl mb-2 text-white group-hover:text-orange-400 transition-colors line-clamp-1">
+                  <h3 className="font-bold text-xl mb-2 text-white group-hover:text-red-400 transition-colors line-clamp-1">
                     {product.title}
                   </h3>
                   
@@ -195,7 +195,7 @@ const Products = () => {
                   {/* Rating & Duration */}
                   <div className="flex items-center justify-between mb-4 pb-4 border-b border-slate-800/50">
                     <div className="flex items-center space-x-1">
-                      <Star className="w-4 h-4 text-orange-500 fill-orange-500" />
+                      <Star className="w-4 h-4 text-red-500 fill-red-500" />
                       <span className="font-bold text-white">{product.rating}</span>
                       <span className="text-slate-500 text-sm">({product.reviews})</span>
                     </div>
@@ -209,7 +209,7 @@ const Products = () => {
                   <ul className="space-y-2 mb-6">
                     {product.features.map((feature, i) => (
                       <li key={i} className="flex items-center text-slate-300 text-sm">
-                        <CheckCircle className="w-4 h-4 text-orange-500 mr-2 flex-shrink-0" />
+                        <CheckCircle className="w-4 h-4 text-red-500 mr-2 flex-shrink-0" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -225,7 +225,7 @@ const Products = () => {
                     </div>
                     <button
                       onClick={() => handlePurchase(product)}
-                      className="px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105 flex items-center space-x-2"
+                      className="px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 hover:scale-105 flex items-center space-x-2"
                     >
                       <Download className="w-4 h-4" />
                       <span>Comprar</span>
@@ -257,7 +257,7 @@ const Products = () => {
                 transition={{ delay: index * 0.1 }}
                 className="text-center bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl p-6"
               >
-                <div className="flex items-center justify-center space-x-2 text-orange-500 mb-2">
+                <div className="flex items-center justify-center space-x-2 text-red-500 mb-2">
                   {stat.icon}
                   <span className="text-3xl font-black">{stat.value}</span>
                 </div>
@@ -270,7 +270,7 @@ const Products = () => {
 
       {/* CTA Section */}
       <section className="py-16 lg:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-slate-900 to-orange-600/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-slate-900 to-red-600/10" />
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
@@ -281,7 +281,7 @@ const Products = () => {
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-6">
               ¿No encuentras lo que{' '}
-              <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                 buscas
               </span>
               ?
@@ -289,7 +289,7 @@ const Products = () => {
             <p className="text-xl text-slate-300 mb-8">
               Contáctanos y te ayudaremos a encontrar el producto perfecto para tus objetivos
             </p>
-            <button className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-105">
+            <button className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105">
               Contactar Soporte
             </button>
           </motion.div>

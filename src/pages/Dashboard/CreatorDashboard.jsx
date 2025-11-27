@@ -89,7 +89,7 @@ const CreatorDashboard = () => {
             </p>
             <button
               onClick={() => navigate('/')}
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-105 group"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105 group"
             >
               <span>Volver al Inicio</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -132,8 +132,8 @@ const CreatorDashboard = () => {
       icon: <DollarSign className="w-6 h-6" />,
       label: 'Ingresos',
       value: `$${stats.earnings.toLocaleString()}`,
-      color: 'from-orange-500 to-orange-600',
-      bgColor: 'bg-orange-500/10',
+      color: 'from-red-500 to-red-600',
+      bgColor: 'bg-red-500/10',
       trend: '+18%',
       trendUp: true
     }
@@ -144,7 +144,7 @@ const CreatorDashboard = () => {
       icon: <Upload className="w-6 h-6" />,
       title: 'Subir Contenido',
       description: 'Agregar nuevo video o imagen',
-      color: 'from-orange-500 to-orange-600',
+      color: 'from-red-500 to-red-600',
       action: () => console.log('Upload content')
     },
     {
@@ -199,8 +199,8 @@ const CreatorDashboard = () => {
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pointer-events-none" />
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 right-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-orange-600/5 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 relative z-10">
@@ -214,8 +214,8 @@ const CreatorDashboard = () => {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-2 flex items-center gap-3">
-                  <LayoutDashboard className="w-8 h-8 sm:w-10 sm:h-10 text-orange-500" />
-                  <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+                  <LayoutDashboard className="w-8 h-8 sm:w-10 sm:h-10 text-red-500" />
+                  <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                     Dashboard
                   </span>
                 </h1>
@@ -248,7 +248,7 @@ const CreatorDashboard = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6 hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300"
+                  className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6 hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-300"
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className={`w-12 h-12 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
@@ -280,7 +280,7 @@ const CreatorDashboard = () => {
               className="lg:col-span-2 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6 sm:p-8"
             >
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                <Activity className="w-6 h-6 text-orange-500" />
+                <Activity className="w-6 h-6 text-red-500" />
                 Acciones Rápidas
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -291,12 +291,12 @@ const CreatorDashboard = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.5 + index * 0.1 }}
                     onClick={action.action}
-                    className="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:border-orange-500/50 hover:bg-slate-800/70 transition-all duration-300 text-left"
+                    className="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:border-red-500/50 hover:bg-slate-800/70 transition-all duration-300 text-left"
                   >
                     <div className={`w-14 h-14 bg-gradient-to-br ${action.color} rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
                       {action.icon}
                     </div>
-                    <h4 className="text-lg font-bold text-white mb-2 group-hover:text-orange-400 transition-colors">
+                    <h4 className="text-lg font-bold text-white mb-2 group-hover:text-red-400 transition-colors">
                       {action.title}
                     </h4>
                     <p className="text-sm text-slate-400">
@@ -315,7 +315,7 @@ const CreatorDashboard = () => {
               className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6 sm:p-8"
             >
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                <Clock className="w-6 h-6 text-orange-500" />
+                <Clock className="w-6 h-6 text-red-500" />
                 Actividad Reciente
               </h3>
               <div className="space-y-4">
@@ -328,8 +328,8 @@ const CreatorDashboard = () => {
                       transition={{ delay: 0.6 + index * 0.1 }}
                       className="flex items-start gap-4 p-4 bg-slate-800/30 rounded-xl hover:bg-slate-800/50 transition-colors"
                     >
-                      <div className={`w-10 h-10 ${activity.status === 'success' ? 'bg-green-500/20' : 'bg-orange-500/20'} rounded-lg flex items-center justify-center flex-shrink-0`}>
-                        <div className={activity.status === 'success' ? 'text-green-500' : 'text-orange-500'}>
+                      <div className={`w-10 h-10 ${activity.status === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                        <div className={activity.status === 'success' ? 'text-green-500' : 'text-red-500'}>
                           {activity.icon}
                         </div>
                       </div>

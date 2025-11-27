@@ -88,8 +88,8 @@ const PremiumContent = () => {
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-orange-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-red-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -99,14 +99,14 @@ const PremiumContent = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500/20 to-orange-600/20 border border-orange-500/30 rounded-full px-5 py-2.5 mb-8">
-              <Crown className="w-5 h-5 text-orange-400" />
-              <span className="text-sm font-bold text-orange-300">Contenido Exclusivo Premium</span>
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-red-500/20 to-red-600/20 border border-red-500/30 rounded-full px-5 py-2.5 mb-8">
+              <Crown className="w-5 h-5 text-red-400" />
+              <span className="text-sm font-bold text-red-300">Contenido Exclusivo Premium</span>
             </div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-6 leading-tight">
               <span className="text-white">Contenido </span>
-              <span className="bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-500 via-red-600 to-red-500 bg-clip-text text-transparent">
                 Premium
               </span>
             </h1>
@@ -128,9 +128,9 @@ const PremiumContent = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4 + index * 0.1 }}
-                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl p-6 hover:border-orange-500/50 transition-all duration-300"
+                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl p-6 hover:border-red-500/50 transition-all duration-300"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-4 text-white">
+                <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mb-4 text-white">
                   {benefit.icon}
                 </div>
                 <h3 className="font-bold text-white mb-2">{benefit.title}</h3>
@@ -157,7 +157,7 @@ const PremiumContent = () => {
                 placeholder="Buscar contenido premium..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-orange-500/50 transition-all"
+                className="w-full pl-12 pr-4 py-4 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-red-500/50 transition-all"
               />
             </div>
 
@@ -172,7 +172,7 @@ const PremiumContent = () => {
                       onClick={() => setSelectedCategory(category.id)}
                       className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-semibold transition-all whitespace-nowrap ${
                         selectedCategory === category.id
-                          ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-500/30'
+                          ? 'bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg shadow-red-500/30'
                           : 'bg-slate-800/50 text-slate-300 hover:bg-slate-800 hover:text-white'
                       }`}
                     >
@@ -188,7 +188,7 @@ const PremiumContent = () => {
                   onClick={() => setViewMode('grid')}
                   className={`p-2 rounded-lg transition-all ${
                     viewMode === 'grid'
-                      ? 'bg-orange-500 text-white'
+                      ? 'bg-red-500 text-white'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
@@ -198,7 +198,7 @@ const PremiumContent = () => {
                   onClick={() => setViewMode('list')}
                   className={`p-2 rounded-lg transition-all ${
                     viewMode === 'list'
-                      ? 'bg-orange-500 text-white'
+                      ? 'bg-red-500 text-white'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
@@ -233,14 +233,14 @@ const PremiumContent = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 className="text-center py-20"
               >
-                <div className="w-24 h-24 bg-gradient-to-br from-orange-500/20 to-orange-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Lock className="w-12 h-12 text-orange-500" />
+                <div className="w-24 h-24 bg-gradient-to-br from-red-500/20 to-red-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Lock className="w-12 h-12 text-red-500" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">No hay contenido premium disponible</h3>
                 <p className="text-slate-400 mb-8">Mejora tu suscripción para acceder a contenido exclusivo</p>
                 <Link
                   to="/subscriptions"
-                  className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-105"
+                  className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105"
                 >
                   <Crown className="w-5 h-5 mr-2" />
                   <span>Ver Planes Premium</span>
@@ -264,17 +264,17 @@ const PremiumContent = () => {
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: index * 0.05 }}
-                      className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-500 cursor-pointer"
+                      className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500 cursor-pointer"
                     >
                       <div className="relative aspect-video bg-slate-800/50 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/30 to-orange-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-red-500/30 to-red-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center group-hover:scale-125 transition-transform duration-500 shadow-2xl shadow-orange-500/50">
+                          <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center group-hover:scale-125 transition-transform duration-500 shadow-2xl shadow-red-500/50">
                             <Play className="w-10 h-10 text-white" fill="white" />
                           </div>
                         </div>
 
-                        <div className="absolute top-3 left-3 flex items-center space-x-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg">
+                        <div className="absolute top-3 left-3 flex items-center space-x-1 bg-gradient-to-r from-red-500 to-red-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg">
                           <Crown className="w-3 h-3" />
                           <span>Premium</span>
                         </div>
@@ -289,20 +289,20 @@ const PremiumContent = () => {
 
                       <div className="p-6">
                         <div className="flex items-center space-x-2 mb-3">
-                          <div className="flex items-center space-x-1 bg-slate-800/50 px-2 py-1 rounded-lg text-xs font-semibold text-orange-400">
+                          <div className="flex items-center space-x-1 bg-slate-800/50 px-2 py-1 rounded-lg text-xs font-semibold text-red-400">
                             {getTypeIcon(item.content_type)}
                             <span className="capitalize">{item.content_type}</span>
                           </div>
                           <div className="flex items-center space-x-1">
-                            <Star className="w-3 h-3 text-orange-500 fill-orange-500" />
-                            <Star className="w-3 h-3 text-orange-500 fill-orange-500" />
-                            <Star className="w-3 h-3 text-orange-500 fill-orange-500" />
-                            <Star className="w-3 h-3 text-orange-500 fill-orange-500" />
-                            <Star className="w-3 h-3 text-orange-500 fill-orange-500" />
+                            <Star className="w-3 h-3 text-red-500 fill-red-500" />
+                            <Star className="w-3 h-3 text-red-500 fill-red-500" />
+                            <Star className="w-3 h-3 text-red-500 fill-red-500" />
+                            <Star className="w-3 h-3 text-red-500 fill-red-500" />
+                            <Star className="w-3 h-3 text-red-500 fill-red-500" />
                           </div>
                         </div>
 
-                        <h3 className="font-bold text-lg mb-2 text-white group-hover:text-orange-400 transition-colors line-clamp-2">
+                        <h3 className="font-bold text-lg mb-2 text-white group-hover:text-red-400 transition-colors line-clamp-2">
                           {item.title}
                         </h3>
                         <p className="text-slate-400 text-sm line-clamp-2 mb-4">
@@ -314,7 +314,7 @@ const PremiumContent = () => {
                             <Calendar className="w-3 h-3" />
                             <span>Actualizado</span>
                           </div>
-                          <button className="text-orange-500 hover:text-orange-400 font-semibold text-sm transition-colors flex items-center space-x-1">
+                          <button className="text-red-500 hover:text-red-400 font-semibold text-sm transition-colors flex items-center space-x-1">
                             <span>Acceder</span>
                             <ArrowRight className="w-4 h-4" />
                           </button>
@@ -327,18 +327,18 @@ const PremiumContent = () => {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
-                      className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-500 cursor-pointer"
+                      className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500 cursor-pointer"
                     >
                       <div className="flex flex-col sm:flex-row">
                         <div className="relative w-full sm:w-72 aspect-video sm:aspect-auto bg-slate-800/50 overflow-hidden flex-shrink-0">
-                          <div className="absolute inset-0 bg-gradient-to-br from-orange-500/30 to-orange-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                          <div className="absolute inset-0 bg-gradient-to-br from-red-500/30 to-red-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center group-hover:scale-125 transition-transform duration-500 shadow-2xl shadow-orange-500/50">
+                            <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center group-hover:scale-125 transition-transform duration-500 shadow-2xl shadow-red-500/50">
                               <Play className="w-10 h-10 text-white" fill="white" />
                             </div>
                           </div>
 
-                          <div className="absolute top-3 left-3 flex items-center space-x-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg">
+                          <div className="absolute top-3 left-3 flex items-center space-x-1 bg-gradient-to-r from-red-500 to-red-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg">
                             <Crown className="w-3 h-3" />
                             <span>Premium</span>
                           </div>
@@ -346,20 +346,20 @@ const PremiumContent = () => {
 
                         <div className="flex-1 p-6">
                           <div className="flex items-center space-x-2 mb-3">
-                            <div className="flex items-center space-x-1 bg-slate-800/50 px-2 py-1 rounded-lg text-xs font-semibold text-orange-400">
+                            <div className="flex items-center space-x-1 bg-slate-800/50 px-2 py-1 rounded-lg text-xs font-semibold text-red-400">
                               {getTypeIcon(item.content_type)}
                               <span className="capitalize">{item.content_type}</span>
                             </div>
                             <div className="flex items-center space-x-1">
-                              <Star className="w-3 h-3 text-orange-500 fill-orange-500" />
-                              <Star className="w-3 h-3 text-orange-500 fill-orange-500" />
-                              <Star className="w-3 h-3 text-orange-500 fill-orange-500" />
-                              <Star className="w-3 h-3 text-orange-500 fill-orange-500" />
-                              <Star className="w-3 h-3 text-orange-500 fill-orange-500" />
+                              <Star className="w-3 h-3 text-red-500 fill-red-500" />
+                              <Star className="w-3 h-3 text-red-500 fill-red-500" />
+                              <Star className="w-3 h-3 text-red-500 fill-red-500" />
+                              <Star className="w-3 h-3 text-red-500 fill-red-500" />
+                              <Star className="w-3 h-3 text-red-500 fill-red-500" />
                             </div>
                           </div>
 
-                          <h3 className="font-bold text-xl text-white group-hover:text-orange-400 transition-colors mb-2">
+                          <h3 className="font-bold text-xl text-white group-hover:text-red-400 transition-colors mb-2">
                             {item.title}
                           </h3>
                           <p className="text-slate-400 text-sm line-clamp-2 mb-4">
@@ -377,7 +377,7 @@ const PremiumContent = () => {
                                 <span>0 vistas</span>
                               </div>
                             </div>
-                            <button className="px-6 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-orange-500/50 transition-all">
+                            <button className="px-6 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-red-500/50 transition-all">
                               Acceder
                             </button>
                           </div>

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import config from '../config';
 
 // Crear contexto de autenticación
 const AuthContext = createContext();
@@ -13,10 +14,10 @@ export const useAuth = () => {
   return context;
 };
 
-// Configuración de axios
+// Configuración de axios usando configuración centralizada
 export const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api',
-  timeout: 10000,
+  baseURL: config.API_BASE_URL,
+  timeout: config.API_TIMEOUT,
   withCredentials: false, // Importante para evitar problemas con CORS
   headers: {
     'Content-Type': 'application/json',

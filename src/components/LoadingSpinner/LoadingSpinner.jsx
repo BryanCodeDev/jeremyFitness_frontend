@@ -34,7 +34,7 @@ const LoadingSpinner = ({
   if (fullScreen) {
     return (
       <div className="fixed inset-0 bg-dark/80 backdrop-blur-sm flex items-center justify-center z-50">
-        <div className="bg-dark-100 p-8 rounded-lg shadow-orange-lg">
+        <div className="bg-dark-100 p-8 rounded-lg shadow-red-lg">
           {spinner}
         </div>
       </div>

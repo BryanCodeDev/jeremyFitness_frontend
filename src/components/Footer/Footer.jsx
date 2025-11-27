@@ -62,8 +62,8 @@ const Footer = () => {
     <footer className="relative bg-slate-950 border-t border-slate-800/50 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 to-slate-950" />
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-600/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Stats Section */}
@@ -77,10 +77,10 @@ const Footer = () => {
                   className="group text-center"
                 >
                   <div className="flex items-center justify-center space-x-2 mb-2">
-                    <div className="p-2 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                    <div className="p-2 bg-gradient-to-br from-red-500 to-red-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
                       <Icon className="w-4 h-4 text-white" />
                     </div>
-                    <span className="text-3xl md:text-4xl font-black bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+                    <span className="text-3xl md:text-4xl font-black bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                       {stat.value}
                     </span>
                   </div>
@@ -97,40 +97,37 @@ const Footer = () => {
             {/* Brand Section */}
             <div className="lg:col-span-5">
               <div className="flex items-center space-x-3 mb-6">
-                <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/50">
+                <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-red-500/50">
                   <Dumbbell className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <span className="text-2xl font-black bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
-                    Jeremy
-                  </span>
-                  <span className="text-2xl font-black text-white ml-1">
-                    Fitness Pro
+                  <span className="text-2xl font-black bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
+                    NackRat
                   </span>
                 </div>
               </div>
               
               <p className="text-slate-400 leading-relaxed mb-6 max-w-md">
-                Plataforma exclusiva de fitness con contenido premium, entrenamientos personalizados
+                El Verdadero Valhalla: Plataforma exclusiva de fitness con contenido premium, entrenamientos personalizados
                 y comunidad dedicada al bienestar físico y mental. Transforma tu vida con nosotros.
               </p>
 
               {/* Contact Info */}
               <div className="space-y-3 mb-6">
                 <a 
-                  href="mailto:info@jeremyfitness.com" 
-                  className="flex items-center space-x-3 text-slate-400 hover:text-orange-500 transition-colors group"
+                  href="mailto:info@nackrat.com"
+                  className="flex items-center space-x-3 text-slate-400 hover:text-red-500 transition-colors group"
                 >
-                  <div className="p-2 bg-slate-800/50 rounded-lg group-hover:bg-orange-500/10 transition-colors">
+                  <div className="p-2 bg-slate-800/50 rounded-lg group-hover:bg-red-500/10 transition-colors">
                     <Mail className="w-4 h-4" />
                   </div>
-                  <span className="text-sm">info@jeremyfitness.com</span>
+                  <span className="text-sm">info@nackrat.com</span>
                 </a>
                 <a 
                   href="tel:+1234567890" 
-                  className="flex items-center space-x-3 text-slate-400 hover:text-orange-500 transition-colors group"
+                  className="flex items-center space-x-3 text-slate-400 hover:text-red-500 transition-colors group"
                 >
-                  <div className="p-2 bg-slate-800/50 rounded-lg group-hover:bg-orange-500/10 transition-colors">
+                  <div className="p-2 bg-slate-800/50 rounded-lg group-hover:bg-red-500/10 transition-colors">
                     <Phone className="w-4 h-4" />
                   </div>
                   <span className="text-sm">+1 (234) 567-890</span>
@@ -164,7 +161,7 @@ const Footer = () => {
             {/* Platform Links */}
             <div className="lg:col-span-3">
               <h3 className="text-white font-bold text-lg mb-6 flex items-center">
-                <Zap className="w-5 h-5 text-orange-500 mr-2" />
+                <Zap className="w-5 h-5 text-red-500 mr-2" />
                 Plataforma
               </h3>
               <ul className="space-y-3">
@@ -174,9 +171,9 @@ const Footer = () => {
                     <li key={link.name}>
                       <a 
                         href={link.href} 
-                        className="flex items-center space-x-3 text-slate-400 hover:text-orange-500 transition-all duration-300 group"
+                        className="flex items-center space-x-3 text-slate-400 hover:text-red-500 transition-all duration-300 group"
                       >
-                        <Icon className="w-4 h-4 opacity-50 group-hover:opacity-100 group-hover:text-orange-500 transition-all" />
+                        <Icon className="w-4 h-4 opacity-50 group-hover:opacity-100 group-hover:text-red-500 transition-all" />
                         <span className="text-sm font-medium">{link.name}</span>
                         <ArrowRight className="w-3 h-3 opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                       </a>
@@ -189,7 +186,7 @@ const Footer = () => {
             {/* Support Links */}
             <div className="lg:col-span-4">
               <h3 className="text-white font-bold text-lg mb-6 flex items-center">
-                <HelpCircle className="w-5 h-5 text-orange-500 mr-2" />
+                <HelpCircle className="w-5 h-5 text-red-500 mr-2" />
                 Soporte
               </h3>
               <ul className="space-y-3">
@@ -199,9 +196,9 @@ const Footer = () => {
                     <li key={link.name}>
                       <a 
                         href={link.href} 
-                        className="flex items-center space-x-3 text-slate-400 hover:text-orange-500 transition-all duration-300 group"
+                        className="flex items-center space-x-3 text-slate-400 hover:text-red-500 transition-all duration-300 group"
                       >
-                        <Icon className="w-4 h-4 opacity-50 group-hover:opacity-100 group-hover:text-orange-500 transition-all" />
+                        <Icon className="w-4 h-4 opacity-50 group-hover:opacity-100 group-hover:text-red-500 transition-all" />
                         <span className="text-sm font-medium">{link.name}</span>
                         <ArrowRight className="w-3 h-3 opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                       </a>
@@ -218,7 +215,7 @@ const Footer = () => {
           <div className="max-w-2xl mx-auto text-center">
             <h3 className="text-2xl md:text-3xl font-black mb-3">
               <span className="text-white">Únete a nuestra </span>
-              <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                 comunidad
               </span>
             </h3>
@@ -231,10 +228,10 @@ const Footer = () => {
                 <input
                   type="email"
                   placeholder="tu@email.com"
-                  className="w-full pl-12 pr-4 py-3.5 bg-slate-800/50 border border-slate-700/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-orange-500/50 focus:bg-slate-800 transition-all"
+                  className="w-full pl-12 pr-4 py-3.5 bg-slate-800/50 border border-slate-700/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-red-500/50 focus:bg-slate-800 transition-all"
                 />
               </div>
-              <button className="px-6 py-3.5 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105 whitespace-nowrap">
+              <button className="px-6 py-3.5 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 hover:scale-105 whitespace-nowrap">
                 Suscribirme
               </button>
             </div>
@@ -245,11 +242,11 @@ const Footer = () => {
         <div className="py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-slate-400 text-sm text-center md:text-left">
-              © {currentYear} Jeremy Fitness Pro. Todos los derechos reservados.
+              © {currentYear} NackRat. Todos los derechos reservados.
             </p>
             <div className="flex items-center space-x-2 text-slate-400 text-sm">
               <span>Desarrollado con</span>
-              <Heart className="w-4 h-4 text-orange-500 fill-orange-500 animate-pulse" />
+              <Heart className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" />
               <span>para la comunidad fitness</span>
             </div>
           </div>

@@ -102,8 +102,8 @@ const Subscriptions = () => {
       <section className="relative py-16 lg:py-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl" />
+          <div className="absolute top-20 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl" />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -113,14 +113,14 @@ const Subscriptions = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto mb-12"
           >
-            <div className="inline-flex items-center space-x-2 bg-orange-500/10 border border-orange-500/20 rounded-full px-4 py-2 mb-6">
-              <Sparkles className="w-4 h-4 text-orange-500" />
-              <span className="text-sm font-semibold text-orange-400">Planes de Suscripción</span>
+            <div className="inline-flex items-center space-x-2 bg-red-500/10 border border-red-500/20 rounded-full px-4 py-2 mb-6">
+              <Sparkles className="w-4 h-4 text-red-500" />
+              <span className="text-sm font-semibold text-red-400">Planes de Suscripción</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6">
               Elige tu{' '}
-              <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                 Plan Perfecto
               </span>
             </h1>
@@ -144,10 +144,10 @@ const Subscriptions = () => {
               animate={{ opacity: 1, scale: 1 }}
               className="max-w-2xl mx-auto mb-12"
             >
-              <div className="bg-gradient-to-r from-orange-500/10 to-orange-600/10 backdrop-blur-xl border border-orange-500/20 rounded-2xl p-6 sm:p-8">
+              <div className="bg-gradient-to-r from-red-500/10 to-red-600/10 backdrop-blur-xl border border-red-500/20 rounded-2xl p-6 sm:p-8">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div className="flex items-center space-x-4">
-                    <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-orange-500/30">
+                    <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-red-500/30">
                       <Crown className="w-7 h-7" />
                     </div>
                     <div>
@@ -189,7 +189,7 @@ const Subscriptions = () => {
                 transition={{ delay: index * 0.1 }}
                 className="bg-slate-900/30 backdrop-blur-xl border border-slate-800/50 rounded-xl p-4 flex items-center space-x-3"
               >
-                <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white flex-shrink-0">
+                <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center text-white flex-shrink-0">
                   {benefit.icon}
                 </div>
                 <p className="text-sm text-slate-300 font-medium">{benefit.text}</p>
@@ -231,14 +231,14 @@ const Subscriptions = () => {
                     transition={{ delay: index * 0.1 }}
                     className={`relative group bg-slate-900/50 backdrop-blur-xl border rounded-2xl p-8 transition-all duration-500 ${
                       isPopular
-                        ? 'border-orange-500/50 shadow-2xl shadow-orange-500/20 lg:scale-105'
-                        : 'border-slate-800/50 hover:border-orange-500/30 hover:shadow-xl hover:shadow-orange-500/10'
+                        ? 'border-red-500/50 shadow-2xl shadow-red-500/20 lg:scale-105'
+                        : 'border-slate-800/50 hover:border-red-500/30 hover:shadow-xl hover:shadow-red-500/10'
                     }`}
                   >
                     {/* Popular Badge */}
                     {isPopular && (
                       <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                        <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg flex items-center space-x-2">
+                        <div className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg flex items-center space-x-2">
                           <Sparkles className="w-4 h-4" />
                           <span>Más Popular</span>
                         </div>
@@ -248,9 +248,9 @@ const Subscriptions = () => {
                     {/* Plan Icon */}
                     <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 ${
                       isPopular 
-                        ? 'bg-gradient-to-br from-orange-500 to-orange-600 shadow-lg shadow-orange-500/30' 
+                        ? 'bg-gradient-to-br from-red-500 to-red-600 shadow-lg shadow-red-500/30' 
                         : 'bg-slate-800/50 border border-slate-700/50'
-                    } text-white transition-all duration-500 ${isPopular ? '' : 'group-hover:border-orange-500/50'}`}>
+                    } text-white transition-all duration-500 ${isPopular ? '' : 'group-hover:border-red-500/50'}`}>
                       {getPlanIcon(plan.id)}
                     </div>
 
@@ -266,7 +266,7 @@ const Subscriptions = () => {
                           </span>
                         ) : (
                           <>
-                            <span className="text-5xl font-black bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+                            <span className="text-5xl font-black bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                               ${plan.priceCOP.toLocaleString()}
                             </span>
                             <span className="text-slate-400 text-lg ml-2 mb-2">COP/mes</span>
@@ -285,7 +285,7 @@ const Subscriptions = () => {
                       {plan.features.map((feature, i) => (
                         <li key={i} className="flex items-start space-x-3">
                           <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
-                            isPopular ? 'bg-orange-500' : 'bg-slate-700'
+                            isPopular ? 'bg-red-500' : 'bg-slate-700'
                           }`}>
                             <Check className="w-3 h-3 text-white" />
                           </div>
@@ -303,8 +303,8 @@ const Subscriptions = () => {
                         isCurrent
                           ? 'bg-slate-800 text-slate-400 cursor-not-allowed border border-slate-700'
                           : isPopular
-                          ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-500/50 hover:shadow-orange-500/70 hover:scale-105'
-                          : 'bg-slate-800/50 text-white border border-slate-700/50 hover:bg-slate-800 hover:border-orange-500/50'
+                          ? 'bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg shadow-red-500/50 hover:shadow-red-500/70 hover:scale-105'
+                          : 'bg-slate-800/50 text-white border border-slate-700/50 hover:bg-slate-800 hover:border-red-500/50'
                       }`}
                       disabled={isCurrent}
                     >
@@ -339,7 +339,7 @@ const Subscriptions = () => {
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-4">
               Todas las{' '}
-              <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                 Membresías
               </span>
               {' '}Incluyen
@@ -361,9 +361,9 @@ const Subscriptions = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl p-6 hover:border-orange-500/50 transition-all duration-300"
+                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl p-6 hover:border-red-500/50 transition-all duration-300"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center text-white mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center text-white mb-4">
                   {React.cloneElement(item.icon, { className: 'w-6 h-6' })}
                 </div>
                 <h3 className="font-bold text-white mb-2">{item.title}</h3>
@@ -376,7 +376,7 @@ const Subscriptions = () => {
 
       {/* FAQ / CTA Section */}
       <section className="py-16 lg:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-slate-900 to-orange-600/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-slate-900 to-red-600/10" />
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
@@ -387,7 +387,7 @@ const Subscriptions = () => {
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-6">
               ¿Tienes{' '}
-              <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                 preguntas
               </span>
               ?
@@ -396,7 +396,7 @@ const Subscriptions = () => {
               Nuestro equipo está listo para ayudarte a elegir el plan perfecto para tus objetivos
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-105">
+              <button className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105">
                 <MessageCircle className="w-5 h-5 mr-2" />
                 Contactar Soporte
               </button>

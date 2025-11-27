@@ -26,7 +26,7 @@
 /* Componentes personalizados */
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-primary to-secondary text-white font-semibold py-3 px-6 rounded-lg shadow-orange hover:shadow-orange-lg transform hover:scale-105 transition-all duration-300;
+    @apply bg-gradient-to-r from-primary to-secondary text-white font-semibold py-3 px-6 rounded-lg shadow-red hover:shadow-red-lg transform hover:scale-105 transition-all duration-300;
   }
 
   .btn-secondary {
@@ -54,7 +54,7 @@
   .glass-dark {
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 107, 53, 0.2);
+    border: 1px solid rgba(220, 38, 38, 0.2);
   }
 
   .gradient-text {
@@ -63,9 +63,9 @@
 
   .loading-shimmer {
     background: linear-gradient(90deg,
-      rgba(255, 107, 53, 0.1) 25%,
-      rgba(255, 107, 53, 0.3) 50%,
-      rgba(255, 107, 53, 0.1) 75%);
+      rgba(220, 38, 38, 0.1) 25%,
+      rgba(220, 38, 38, 0.3) 50%,
+      rgba(220, 38, 38, 0.1) 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
   }
@@ -132,10 +132,10 @@
 
 @keyframes glow {
   from {
-    box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
   }
   to {
-    box-shadow: 0 0 30px rgba(255, 107, 53, 0.6);
+    box-shadow: 0 0 30px rgba(220, 38, 38, 0.6);
   }
 }
 

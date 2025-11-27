@@ -100,7 +100,7 @@ const AdminProducts = () => {
             </p>
             <button
               onClick={() => navigate('/')}
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl shadow-lg shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-105 group"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105 group"
             >
               <span>Volver al Inicio</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -135,7 +135,7 @@ const AdminProducts = () => {
       case 'course':
         return 'text-purple-400 bg-purple-500/10';
       case 'ebook':
-        return 'text-orange-400 bg-orange-500/10';
+        return 'text-red-400 bg-red-500/10';
       default:
         return 'text-slate-400 bg-slate-500/10';
     }
@@ -222,8 +222,8 @@ const AdminProducts = () => {
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pointer-events-none" />
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 right-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-orange-600/5 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
       </div>
 
       <div className="lg:ml-72 container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 relative z-10">
@@ -237,8 +237,8 @@ const AdminProducts = () => {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-2 flex items-center gap-3">
-                  <ShoppingBag className="w-8 h-8 sm:w-10 sm:h-10 text-orange-500" />
-                  <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+                  <ShoppingBag className="w-8 h-8 sm:w-10 sm:h-10 text-red-500" />
+                  <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                     Gestión de Productos
                   </span>
                 </h1>
@@ -248,7 +248,7 @@ const AdminProducts = () => {
               </div>
               <button
                 onClick={openCreateModal}
-                className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300"
+                className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300"
               >
                 <Plus className="w-5 h-5" />
                 <span>Crear Producto</span>
@@ -268,7 +268,7 @@ const AdminProducts = () => {
                     placeholder="Buscar productos..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+                    className="w-full pl-12 pr-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all"
                   />
                 </div>
               </div>
@@ -278,7 +278,7 @@ const AdminProducts = () => {
                 <select
                   value={filterType}
                   onChange={(e) => setFilterType(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all"
                 >
                   <option value="all">Todos los tipos</option>
                   <option value="workout_plan">Planes de Entrenamiento</option>
@@ -294,7 +294,7 @@ const AdminProducts = () => {
                 <select
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
+                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all"
                 >
                   <option value="all">Todos los estados</option>
                   <option value="active">Activos</option>
@@ -340,7 +340,7 @@ const AdminProducts = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300"
+                  className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-300"
                 >
                   {/* Product Image/Preview */}
                   <div className="aspect-video bg-slate-800 relative overflow-hidden">
@@ -378,7 +378,7 @@ const AdminProducts = () => {
 
                   {/* Product Info */}
                   <div className="p-6">
-                    <h3 className="text-white font-bold text-lg mb-2 line-clamp-2 group-hover:text-orange-400 transition-colors">
+                    <h3 className="text-white font-bold text-lg mb-2 line-clamp-2 group-hover:text-red-400 transition-colors">
                       {product.name}
                     </h3>
 
@@ -550,7 +550,7 @@ const ProductForm = ({ product, onSubmit, onCancel }) => {
           type="text"
           value={formData.name}
           onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
           required
         />
       </div>
@@ -561,7 +561,7 @@ const ProductForm = ({ product, onSubmit, onCancel }) => {
           value={formData.description}
           onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
           rows={3}
-          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
         />
       </div>
 
@@ -574,7 +574,7 @@ const ProductForm = ({ product, onSubmit, onCancel }) => {
             min="0"
             value={formData.price}
             onChange={(e) => setFormData(prev => ({ ...prev, price: e.target.value }))}
-            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
             required
           />
         </div>
@@ -584,7 +584,7 @@ const ProductForm = ({ product, onSubmit, onCancel }) => {
           <select
             value={formData.product_type}
             onChange={(e) => setFormData(prev => ({ ...prev, product_type: e.target.value }))}
-            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
           >
             <option value="workout_plan">Plan de Entrenamiento</option>
             <option value="nutrition_guide">Guía Nutricional</option>
@@ -602,7 +602,7 @@ const ProductForm = ({ product, onSubmit, onCancel }) => {
             type="url"
             value={formData.download_url}
             onChange={(e) => setFormData(prev => ({ ...prev, download_url: e.target.value }))}
-            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
           />
         </div>
 
@@ -612,7 +612,7 @@ const ProductForm = ({ product, onSubmit, onCancel }) => {
             type="url"
             value={formData.preview_url}
             onChange={(e) => setFormData(prev => ({ ...prev, preview_url: e.target.value }))}
-            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
           />
         </div>
       </div>
@@ -623,13 +623,13 @@ const ProductForm = ({ product, onSubmit, onCancel }) => {
           {formData.tags.map((tag, index) => (
             <span
               key={index}
-              className="inline-flex items-center gap-2 px-3 py-1 bg-orange-500/20 text-orange-400 rounded-full text-sm"
+              className="inline-flex items-center gap-2 px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm"
             >
               {tag}
               <button
                 type="button"
                 onClick={() => removeTag(tag)}
-                className="hover:text-orange-300"
+                className="hover:text-red-300"
               >
                 ×
               </button>
@@ -646,7 +646,7 @@ const ProductForm = ({ product, onSubmit, onCancel }) => {
               e.target.value = '';
             }
           }}
-          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
+          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
         />
       </div>
 
@@ -656,7 +656,7 @@ const ProductForm = ({ product, onSubmit, onCancel }) => {
             type="checkbox"
             checked={formData.is_active}
             onChange={(e) => setFormData(prev => ({ ...prev, is_active: e.target.checked }))}
-            className="rounded border-slate-600 text-orange-500 focus:ring-orange-500"
+            className="rounded border-slate-600 text-red-500 focus:ring-red-500"
           />
           <span className="text-sm font-semibold text-slate-300">Producto Activo</span>
         </label>
@@ -665,7 +665,7 @@ const ProductForm = ({ product, onSubmit, onCancel }) => {
       <div className="flex gap-3 mt-6">
         <button
           type="submit"
-          className="flex-1 px-4 py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl transition-all duration-300"
+          className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl transition-all duration-300"
         >
           {product ? 'Actualizar' : 'Crear'} Producto
         </button>

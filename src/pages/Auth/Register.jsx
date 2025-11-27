@@ -195,8 +195,8 @@ const Register = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-4 md:p-6 lg:p-8 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-20 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/4 -left-20 w-72 h-72 bg-red-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-red-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
       <motion.div
@@ -216,7 +216,7 @@ const Register = () => {
             <div>
               <h1 className="text-5xl xl:text-6xl font-black text-white mb-4 leading-tight">
                 Comienza tu
-                <span className="block bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                   Transformación
                 </span>
               </h1>
@@ -238,7 +238,7 @@ const Register = () => {
                   transition={{ delay: 0.4 + index * 0.1 }}
                   className="flex items-center space-x-4 text-slate-300"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500/20 to-orange-600/20 flex items-center justify-center text-orange-500">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/20 to-red-600/20 flex items-center justify-center text-red-500">
                     {item.icon}
                   </div>
                   <span className="text-lg">{item.text}</span>
@@ -248,10 +248,10 @@ const Register = () => {
 
             <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6">
               <p className="text-slate-300 text-sm leading-relaxed">
-                "Jeremy Fitness cambió completamente mi vida. En 6 meses logré lo que no pude en años."
+                "NackRat cambió completamente mi vida. En 6 meses logré lo que no pude en años."
               </p>
               <div className="flex items-center space-x-3 mt-4">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-orange-600"></div>
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-red-600"></div>
                 <div>
                   <p className="text-white font-semibold text-sm">Carlos Mendoza</p>
                   <p className="text-slate-500 text-xs">Miembro Premium</p>
@@ -270,11 +270,11 @@ const Register = () => {
             {/* Mobile Header */}
             <div className="text-center mb-8 lg:hidden">
               <Link to="/" className="inline-flex items-center justify-center space-x-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg shadow-orange-500/30">
+                <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-500/30">
                   <span className="text-white font-black text-2xl">J</span>
                 </div>
-                <span className="text-2xl font-black bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
-                  Jeremy Fitness
+                <span className="text-2xl font-black bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
+                  NackRat
                 </span>
               </Link>
             </div>
@@ -283,11 +283,11 @@ const Register = () => {
               {/* Desktop Header */}
               <div className="hidden lg:block mb-8">
                 <Link to="/" className="inline-flex items-center justify-center space-x-3 mb-6">
-                  <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg shadow-orange-500/30">
+                  <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-500/30">
                     <span className="text-white font-black text-2xl">J</span>
                   </div>
-                  <span className="text-2xl font-black bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
-                    Jeremy Fitness
+                  <span className="text-2xl font-black bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
+                    NackRat
                   </span>
                 </Link>
               </div>
@@ -324,7 +324,7 @@ const Register = () => {
                             ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
                             : touched.firstName && !errors.firstName
                             ? 'border-green-500 focus:border-green-500 focus:ring-green-500/20'
-                            : 'border-slate-800/50 focus:border-orange-500 focus:ring-orange-500/20'
+                            : 'border-slate-800/50 focus:border-red-500 focus:ring-red-500/20'
                         }`}
                         placeholder="Tu nombre"
                       />
@@ -364,7 +364,7 @@ const Register = () => {
                             ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
                             : touched.lastName && !errors.lastName
                             ? 'border-green-500 focus:border-green-500 focus:ring-green-500/20'
-                            : 'border-slate-800/50 focus:border-orange-500 focus:ring-orange-500/20'
+                            : 'border-slate-800/50 focus:border-red-500 focus:ring-red-500/20'
                         }`}
                         placeholder="Tu apellido"
                       />
@@ -407,7 +407,7 @@ const Register = () => {
                           ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
                           : touched.username && !errors.username
                           ? 'border-green-500 focus:border-green-500 focus:ring-green-500/20'
-                          : 'border-slate-800/50 focus:border-orange-500 focus:ring-orange-500/20'
+                          : 'border-slate-800/50 focus:border-red-500 focus:ring-red-500/20'
                       }`}
                       placeholder="Solo letras, números y guiones bajos"
                     />
@@ -450,7 +450,7 @@ const Register = () => {
                           ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
                           : touched.email && !errors.email
                           ? 'border-green-500 focus:border-green-500 focus:ring-green-500/20'
-                          : 'border-slate-800/50 focus:border-orange-500 focus:ring-orange-500/20'
+                          : 'border-slate-800/50 focus:border-red-500 focus:ring-red-500/20'
                       }`}
                       placeholder="tu@email.com"
                     />
@@ -492,7 +492,7 @@ const Register = () => {
                           ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
                           : touched.password && !errors.password
                           ? 'border-green-500 focus:border-green-500 focus:ring-green-500/20'
-                          : 'border-slate-800/50 focus:border-orange-500 focus:ring-orange-500/20'
+                          : 'border-slate-800/50 focus:border-red-500 focus:ring-red-500/20'
                       }`}
                       placeholder="••••••••"
                     />
@@ -582,7 +582,7 @@ const Register = () => {
                           ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
                           : touched.confirmPassword && !errors.confirmPassword
                           ? 'border-green-500 focus:border-green-500 focus:ring-green-500/20'
-                          : 'border-slate-800/50 focus:border-orange-500 focus:ring-orange-500/20'
+                          : 'border-slate-800/50 focus:border-red-500 focus:ring-red-500/20'
                       }`}
                       placeholder="••••••••"
                     />
@@ -629,15 +629,15 @@ const Register = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     required
-                    className="w-5 h-5 rounded border-slate-700 bg-slate-950/50 text-orange-500 focus:ring-orange-500 focus:ring-offset-0 focus:ring-2 transition-all mt-0.5"
+                    className="w-5 h-5 rounded border-slate-700 bg-slate-950/50 text-red-500 focus:ring-red-500 focus:ring-offset-0 focus:ring-2 transition-all mt-0.5"
                   />
                   <label htmlFor="acceptTerms" className="text-sm text-slate-300 leading-relaxed">
                     Acepto los{' '}
-                    <a href="/terms" className="text-orange-500 hover:text-orange-400 font-semibold transition-colors underline">
+                    <a href="/terms" className="text-red-500 hover:text-red-400 font-semibold transition-colors underline">
                       Términos y Condiciones
                     </a>
                     {' '}y la{' '}
-                    <a href="/privacy" className="text-orange-500 hover:text-orange-400 font-semibold transition-colors underline">
+                    <a href="/privacy" className="text-red-500 hover:text-red-400 font-semibold transition-colors underline">
                       Política de Privacidad
                     </a>
                   </label>
@@ -661,7 +661,7 @@ const Register = () => {
                 <button
                   type="submit"
                   disabled={isLoading || Object.keys(errors).length > 0}
-                  className="w-full py-4 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-orange-500/30 flex items-center justify-center space-x-2"
+                  className="w-full py-4 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-red-500/30 flex items-center justify-center space-x-2"
                 >
                   {isLoading ? (
                     <>
@@ -693,7 +693,7 @@ const Register = () => {
                   ¿Ya tienes una cuenta?{' '}
                   <Link
                     to="/login"
-                    className="text-orange-500 hover:text-orange-400 font-bold transition-colors"
+                    className="text-red-500 hover:text-red-400 font-bold transition-colors"
                   >
                     Inicia sesión aquí
                   </Link>
@@ -705,7 +705,7 @@ const Register = () => {
             <div className="text-center mt-6">
               <Link
                 to="/"
-                className="inline-flex items-center space-x-2 text-slate-400 hover:text-orange-500 transition-colors group"
+                className="inline-flex items-center space-x-2 text-slate-400 hover:text-red-500 transition-colors group"
               >
                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                 <span>Volver al inicio</span>

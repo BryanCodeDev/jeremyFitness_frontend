@@ -124,7 +124,7 @@ const LiveStreamPlayer = ({ stream, onClose }) => {
         <div className="flex items-center space-x-4">
           <button
             onClick={onClose}
-            className="text-white hover:text-orange-400 transition-colors"
+            className="text-white hover:text-red-400 transition-colors"
           >
             ✕
           </button>
@@ -138,10 +138,10 @@ const LiveStreamPlayer = ({ stream, onClose }) => {
             <Users className="w-4 h-4" />
             <span>{viewerCount}</span>
           </div>
-          <button className="hover:text-orange-400 transition-colors">
+          <button className="hover:text-red-400 transition-colors">
             <Heart className="w-5 h-5" />
           </button>
-          <button className="hover:text-orange-400 transition-colors">
+          <button className="hover:text-red-400 transition-colors">
             <Share2 className="w-5 h-5" />
           </button>
         </div>
@@ -163,7 +163,7 @@ const LiveStreamPlayer = ({ stream, onClose }) => {
           <h1 className="text-white text-xl font-bold mb-2">{stream.title}</h1>
           <p className="text-gray-300 text-sm mb-2">{stream.description}</p>
           <div className="flex items-center space-x-2">
-            <span className="text-orange-400 font-semibold">{stream.instructor}</span>
+            <span className="text-red-400 font-semibold">{stream.instructor}</span>
             <span className="text-gray-400">•</span>
             <span className="text-gray-400">{stream.category}</span>
           </div>
@@ -179,7 +179,7 @@ const LiveStreamPlayer = ({ stream, onClose }) => {
             <div className="flex items-center space-x-4">
               <button
                 onClick={togglePlay}
-                className="text-white hover:text-orange-400 transition-colors"
+                className="text-white hover:text-red-400 transition-colors"
               >
                 {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
               </button>
@@ -187,7 +187,7 @@ const LiveStreamPlayer = ({ stream, onClose }) => {
               <div className="flex items-center space-x-2">
                 <button
                   onClick={toggleMute}
-                  className="text-white hover:text-orange-400 transition-colors"
+                  className="text-white hover:text-red-400 transition-colors"
                 >
                   {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
                 </button>
@@ -206,13 +206,13 @@ const LiveStreamPlayer = ({ stream, onClose }) => {
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => setShowChat(!showChat)}
-                className={`transition-colors ${showChat ? 'text-orange-400' : 'text-white hover:text-orange-400'}`}
+                className={`transition-colors ${showChat ? 'text-red-400' : 'text-white hover:text-red-400'}`}
               >
                 <MessageCircle className="w-5 h-5" />
               </button>
               <button
                 onClick={toggleFullscreen}
-                className="text-white hover:text-orange-400 transition-colors"
+                className="text-white hover:text-red-400 transition-colors"
               >
                 <Maximize className="w-5 h-5" />
               </button>
