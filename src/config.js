@@ -7,12 +7,12 @@ export const config = {
   // API URLs
   API_BASE_URL: isDevelopment
     ? 'http://localhost:5000/api'
-    : (process.env.REACT_APP_API_URL || 'https://jeremy-fitness-backend.railway.app/api'),
+    : (process.env.REACT_APP_API_URL || 'https://jeremyfitnessbackend-production.up.railway.app/api'),
 
   // Socket URL
   SOCKET_URL: isDevelopment
     ? 'http://localhost:5000'
-    : (process.env.REACT_APP_SOCKET_URL || 'https://jeremy-fitness-backend.railway.app'),
+    : (process.env.REACT_APP_SOCKET_URL || 'https://jeremyfitnessbackend-production.up.railway.app'),
 
   // Frontend URL
   FRONTEND_URL: isDevelopment
