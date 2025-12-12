@@ -102,9 +102,22 @@ export const AuthProvider = ({ children }) => {
   // Función para registrar usuario
   const register = async (userData) => {
     try {
-      await api.post('/auth/register', userData);
+      const response = await api.post('/auth/register', userData);
 
-      // Solo devolver éxito, no hacer login automático
+      // El backend devuelve token y usuario, usarlos para login automático
+      if (response.data && response.data.token && response.data.user) {
+        const { token: newToken, user: userData } = response.data;
+
+        setToken(newToken);
+        setUser(userData);
+        localStorage.setItem('token', newToken);
+        localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('userType', 'user'); // Usuarios registrados son tipo 'user'
+
+        return { success: true, autoLogin: true };
+      }
+
+      // Si no hay token/usuario en respuesta, solo devolver éxito
       return { success: true };
     } catch (error) {
       const message = error.response?.data?.message || 'Error al registrar usuario';
