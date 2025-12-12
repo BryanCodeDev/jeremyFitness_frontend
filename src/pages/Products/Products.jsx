@@ -25,7 +25,7 @@ const Products = () => {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/products');
+        const response = await axios.get('https://jeremyfitnessbackend-production.up.railway.app/api/products');
         const mappedProducts = response.data.products.map(product => ({
           ...product,
           title: product.name,

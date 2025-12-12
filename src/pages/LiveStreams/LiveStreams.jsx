@@ -22,7 +22,7 @@ const LiveStreams = () => {
 
       if (stream) {
         // Recordatorio para un stream específico
-        await axios.post('http://localhost:5000/api/notifications', {
+        await axios.post('https://jeremyfitnessbackend-production.up.railway.app/api/notifications', {
           notificationType: 'live_stream',
           title: `Recordatorio: ${stream.title}`,
           message: `La transmisión "${stream.title}" comenzará pronto.`,
@@ -40,7 +40,7 @@ const LiveStreams = () => {
         alert('¡Recordatorio configurado! Te notificaremos antes de que comience la transmisión.');
       } else {
         // Activar notificaciones generales para streams en vivo
-        await axios.post('http://localhost:5000/api/notifications', {
+        await axios.post('https://jeremyfitnessbackend-production.up.railway.app/api/notifications', {
           notificationType: 'live_stream',
           title: 'Notificaciones de Streams en Vivo',
           message: 'Recibirás notificaciones cuando haya nuevas transmisiones en vivo disponibles.',
@@ -66,7 +66,7 @@ const LiveStreams = () => {
     const loadStreams = async () => {
       try {
         // Cargar streams programados
-        const scheduledResponse = await axios.get('http://localhost:5000/api/live/scheduled');
+        const scheduledResponse = await axios.get('https://jeremyfitnessbackend-production.up.railway.app/api/live/scheduled');
         const mappedScheduledStreams = scheduledResponse.data.streams.map(stream => ({
           ...stream,
           date: stream.scheduled_start,
@@ -79,7 +79,7 @@ const LiveStreams = () => {
         setUpcomingStreams(mappedScheduledStreams);
 
         // Cargar streams activos
-        const activeResponse = await axios.get('http://localhost:5000/api/live/active');
+        const activeResponse = await axios.get('https://jeremyfitnessbackend-production.up.railway.app/api/live/active');
         const mappedActiveStreams = activeResponse.data.streams.map(stream => ({
           ...stream,
           date: stream.actual_start,
