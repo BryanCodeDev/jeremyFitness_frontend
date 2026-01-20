@@ -1,8 +1,8 @@
 import React from 'react';
 import { 
-  Dumbbell, Mail, MapPin, Phone, Heart, 
+  Dumbbell, Mail, MapPin, Phone, Heart,
   Twitter, Facebook, Instagram, Youtube,
-  Video, ShoppingBag, Radio, CreditCard,
+  Video, ShoppingBag, CreditCard,
   HelpCircle, Shield, FileText, MessageCircle,
   Zap, Target, Users, Award, ArrowRight
 } from 'lucide-react';
@@ -11,11 +11,10 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const platformLinks = [
-    { name: 'Contenido', href: '/content', icon: Video },
-    { name: 'Productos', href: '/products', icon: ShoppingBag },
-    { name: 'En Vivo', href: '/live', icon: Radio },
-    { name: 'Suscripciones', href: '/subscriptions', icon: CreditCard },
-  ];
+      { name: 'Contenido', href: '/content', icon: Video },
+      { name: 'Productos', href: '/products', icon: ShoppingBag },
+      { name: 'Suscripciones', href: '/subscriptions', icon: CreditCard },
+    ];
 
   const supportLinks = [
     { name: 'Centro de Ayuda', href: '/help', icon: HelpCircle },

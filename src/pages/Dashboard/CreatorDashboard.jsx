@@ -12,7 +12,6 @@ import {
   TrendingUp,
   
   Upload,
-  Radio,
   ShoppingBag,
   BarChart3,
   Clock,
@@ -148,13 +147,6 @@ const CreatorDashboard = () => {
       action: () => console.log('Upload content')
     },
     {
-      icon: <Radio className="w-6 h-6" />,
-      title: 'Programar Live',
-      description: 'Crear sesión en vivo',
-      color: 'from-red-500 to-red-600',
-      action: () => console.log('Schedule live')
-    },
-    {
       icon: <ShoppingBag className="w-6 h-6" />,
       title: 'Crear Producto',
       description: 'Añadir nuevo producto',
@@ -185,13 +177,6 @@ const CreatorDashboard = () => {
       time: 'Hace 5 horas',
       status: 'success'
     },
-    {
-      icon: <Radio className="w-5 h-5" />,
-      title: 'Live programado',
-      description: 'Sesión Q&A - Mañana 6:00 PM',
-      time: 'Hace 1 día',
-      status: 'pending'
-    }
   ];
 
   return (

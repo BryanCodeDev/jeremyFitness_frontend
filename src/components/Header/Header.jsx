@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Home, Video, ShoppingBag, Radio, User, CreditCard,
+  Home, Video, ShoppingBag, User, CreditCard,
   LayoutDashboard, LogOut, Menu, X, ChevronDown,
   Dumbbell, Crown, Bell
 } from 'lucide-react';
@@ -54,14 +54,6 @@ const Header = () => {
           is_read: false
         },
         {
-          id: 2,
-          type: 'live_stream',
-          title: 'Stream en vivo pronto',
-          message: 'Sesión de yoga comienza en 30 minutos',
-          created_at: new Date(Date.now() - 28 * 60 * 1000).toISOString(),
-          is_read: false
-        },
-        {
           id: 3,
           type: 'subscription',
           title: 'Suscripción renovada',
@@ -79,11 +71,10 @@ const Header = () => {
   };
 
   const navigation = [
-    { name: 'Inicio', href: '/', icon: Home },
-    { name: 'Contenido', href: '/content', icon: Video },
-    { name: 'Productos', href: '/products', icon: ShoppingBag },
-    { name: 'En Vivo', href: '/live', icon: Radio },
-  ];
+      { name: 'Inicio', href: '/', icon: Home },
+      { name: 'Contenido', href: '/content', icon: Video },
+      { name: 'Productos', href: '/products', icon: ShoppingBag },
+    ];
 
   const authenticatedNavigation = [
     { name: 'Perfil', href: '/profile', icon: User },

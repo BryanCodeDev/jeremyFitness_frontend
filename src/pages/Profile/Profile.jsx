@@ -49,7 +49,6 @@ const Profile = () => {
     privacyPublicProfile: user?.privacyPublicProfile || true,
     privacyShowEmail: user?.privacyShowEmail || false,
     notificationsEmailNewContent: user?.notificationsEmailNewContent || true,
-    notificationsEmailLiveStreams: user?.notificationsEmailLiveStreams || true,
     notificationsEmailProducts: user?.notificationsEmailProducts || true,
     notificationsEmailSubscriptions: user?.notificationsEmailSubscriptions || true
   });
@@ -694,20 +693,6 @@ const Profile = () => {
                   type="checkbox"
                   name="notificationsEmailNewContent"
                   checked={settingsForm.notificationsEmailNewContent}
-                  onChange={handleSettingsChange}
-                  className="w-5 h-5 text-red-500 bg-slate-800 border-slate-600 rounded focus:ring-red-500"
-                />
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div>
-                  <label className="text-white font-medium">Streams en Vivo</label>
-                  <p className="text-sm text-slate-400">Notificaciones de streams en vivo</p>
-                </div>
-                <input
-                  type="checkbox"
-                  name="notificationsEmailLiveStreams"
-                  checked={settingsForm.notificationsEmailLiveStreams}
                   onChange={handleSettingsChange}
                   className="w-5 h-5 text-red-500 bg-slate-800 border-slate-600 rounded focus:ring-red-500"
                 />

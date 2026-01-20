@@ -6,7 +6,6 @@ import {
   Users,
   Video,
   ShoppingBag,
-  Radio,
   Settings,
   ChevronLeft,
   ChevronRight,
@@ -64,12 +63,6 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
       icon: <ShoppingBag className="w-5 h-5" />,
       label: 'Productos',
       path: '/admin/products',
-      color: 'text-red-400'
-    },
-    {
-      icon: <Radio className="w-5 h-5" />,
-      label: 'Live Streams',
-      path: '/admin/lives',
       color: 'text-red-400'
     },
     {

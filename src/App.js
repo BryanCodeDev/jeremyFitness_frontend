@@ -22,13 +22,11 @@ import Profile from './pages/Profile/Profile';
 import Content from './pages/Content/Content';
 import PremiumContent from './pages/Content/PremiumContent';
 import Subscriptions from './pages/Subscriptions/Subscriptions';
-import LiveStreams from './pages/LiveStreams/LiveStreams';
 import Products from './pages/Products/Products';
 import CreatorDashboard from './pages/Dashboard/CreatorDashboard';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import AdminContent from './pages/Admin/AdminContent';
 import AdminProducts from './pages/Admin/AdminProducts';
-import AdminLives from './pages/Admin/AdminLives';
 import AdminUsers from './pages/Admin/AdminUsers';
 import AdminSettings from './pages/Admin/AdminSettings';
 import NotFound from './pages/NotFound/NotFound';
@@ -165,7 +163,6 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/content" element={<Content />} />
                 <Route path="/products" element={<Products />} />
-                <Route path="/live" element={<LiveStreams />} />
 
                 {/* Rutas de autenticación */}
                 <Route
@@ -239,14 +236,6 @@ function App() {
                   element={
                     <ProtectedRoute requiredRole="admin">
                       <AdminProducts />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/lives"
-                  element={
-                    <ProtectedRoute requiredRole="admin">
-                      <AdminLives />
                     </ProtectedRoute>
                   }
                 />

@@ -7,7 +7,6 @@ import {
   Users,
   Video,
   ShoppingBag,
-  Radio,
   DollarSign,
   TrendingUp,
   TrendingDown,
@@ -139,15 +138,6 @@ const AdminDashboard = () => {
       changeLabel: ''
     },
     {
-      icon: <Radio className="w-6 h-6" />,
-      label: 'Lives Activos',
-      value: metrics?.activeStreams || 0,
-      color: 'from-red-500 to-red-600',
-      bgColor: 'bg-red-500/10',
-      change: null,
-      changeLabel: ''
-    },
-    {
       icon: <DollarSign className="w-6 h-6" />,
       label: 'Ingresos Totales',
       value: `$${typeof metrics?.totalRevenue === 'number' ? metrics.totalRevenue.toFixed(2) : '0.00'}`,
@@ -179,13 +169,6 @@ const AdminDashboard = () => {
       description: 'Crear y editar productos',
       color: 'from-red-500 to-red-600',
       action: () => navigate('/admin/products')
-    },
-    {
-      icon: <Radio className="w-6 h-6" />,
-      title: 'Gestionar Lives',
-      description: 'Programar y gestionar streams',
-      color: 'from-red-500 to-red-600',
-      action: () => navigate('/admin/lives')
     },
     {
       icon: <Settings className="w-6 h-6" />,
