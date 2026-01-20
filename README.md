@@ -1,6 +1,6 @@
 # 🚀 Plataforma de Fitness NackRat - El Verdadero Valhalla
 
-Una plataforma web completa para creadores de contenido fitness con sistema de suscripciones manual vía WhatsApp, gestión de contenido multimedia y transmisión en vivo. **Sistema de ingresos real con seguimiento de transacciones completadas.**
+Una plataforma web completa para creadores de contenido fitness con sistema de suscripciones manual vía WhatsApp y gestión de contenido multimedia. **Sistema de ingresos real con seguimiento de transacciones completadas.**
 
 ## 📋 Características Principales
 
@@ -12,7 +12,6 @@ Una plataforma web completa para creadores de contenido fitness con sistema de s
 - **Sistema de notificaciones** en tiempo real
 - **Reproductor de video** integrado
 - **Galería de imágenes** optimizada
-- **Transmisiones en vivo** con chat
 - **Dashboard para creadores** con estadísticas
 - **Panel administrativo completo** con métricas y gestión avanzada
 
@@ -23,7 +22,6 @@ Una plataforma web completa para creadores de contenido fitness con sistema de s
 - **Sistema de suscripciones manual** vía WhatsApp (sin integración automática de pagos)
 - **Gestión de archivos** multimedia (imágenes, videos)
 - **Procesamiento de video** con generación automática de thumbnails
-- **WebSockets** para chat en vivo
 - **Sistema de roles** (admin, creator, user)
 - **API de contenido** con categorías y filtros
 - **Panel administrativo** con métricas en tiempo real
@@ -36,7 +34,7 @@ Una plataforma web completa para creadores de contenido fitness con sistema de s
   - Usuarios totales y por rol (10 usuarios de ejemplo incluidos)
   - Suscriptores activos y por tier (Premium/VIP/Free)
   - Contenido total y por tipo (10 contenidos multimedia)
-  - Productos y live streams (10 productos, 10 streams)
+  - Productos (10 productos)
   - **Ingresos reales** calculados de transacciones completadas ($1.740.000 COP de ejemplo)
 - **Gestión de usuarios** con administración de suscripciones en tiempo real:
   - Cambiar planes (Free → Premium → VIP) instantáneamente
@@ -45,7 +43,6 @@ Una plataforma web completa para creadores de contenido fitness con sistema de s
   - Registro automático de transacciones completadas
 - **Gestión de contenido** multimedia (videos, imágenes, posts)
 - **Gestión de productos** digitales con precios y categorías
-- **Gestión de live streams** con control de estado y chat
 - **Sidebar de navegación** responsiva y colapsable
 - **Filtros y búsqueda** avanzada en todos los módulos
 - **Interfaz moderna** con animaciones y efectos visuales
@@ -70,7 +67,6 @@ jeremy-fitness-platform/
 │   │   ├── admin.js        # 🔑 Rutas administrativas
 │   │   ├── auth.js         # Autenticación
 │   │   ├── content.js      # Gestión de contenido
-│   │   ├── liveStreams.js  # Live streams
 │   │   ├── products.js     # Productos digitales
 │   │   ├── subscriptions.js# Suscripciones
 │   │   └── users.js        # Gestión de usuarios
@@ -88,8 +84,7 @@ jeremy-fitness-platform/
 │   │   │   │   ├── AdminDashboard.jsx
 │   │   │   │   ├── AdminUsers.jsx
 │   │   │   │   ├── AdminContent.jsx
-│   │   │   │   ├── AdminProducts.jsx
-│   │   │   │   └── AdminLives.jsx
+│   │   │   │   └── AdminProducts.jsx
 │   │   │   ├── Auth/       # Autenticación
 │   │   │   ├── Dashboard/  # Dashboard creador
 │   │   │   └── ...
@@ -206,7 +201,6 @@ FRONTEND_URL=http://localhost:3000
 3. **Contenido y Productos**
     - **10 contenidos multimedia**: Videos, posts, imágenes
     - **10 productos digitales**: Planes de entrenamiento, ebooks, cursos
-    - **10 live streams**: Programados con chat integrado
 
 ### Para Creadores
 
@@ -257,11 +251,6 @@ FRONTEND_URL=http://localhost:3000
     - **Precios y características** detalladas
     - **Control de disponibilidad**: Activar/desactivar productos
 
-5. **Gestión de Live Streams**
-    - **Estados en tiempo real**: Programados, en vivo, finalizados
-    - **Información detallada**: Fecha, duración, espectadores
-    - **Controles administrativos**: Iniciar, finalizar, moderar
-    - **Chat integrado** con opciones de moderación
 
 6. **Navegación Avanzada**
     - **Sidebar responsiva** con navegación intuitiva

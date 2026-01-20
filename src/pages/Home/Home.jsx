@@ -40,11 +40,6 @@ const Home = () => {
       description: 'Contenido en HD con rutinas detalladas y técnicas profesionales'
     },
     {
-      icon: <Zap className="w-7 h-7" />,
-      title: 'En Vivo Interactivo',
-      description: 'Sesiones en tiempo real con NackRat y la comunidad'
-    },
-    {
       icon: <Target className="w-7 h-7" />,
       title: 'Planes Personalizados',
       description: 'Programas de entrenamiento adaptados a tus objetivos'
