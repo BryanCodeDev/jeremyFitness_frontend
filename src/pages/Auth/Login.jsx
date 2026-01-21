@@ -198,22 +198,22 @@ const Login = () => {
             className="hidden lg:flex flex-col justify-center space-y-8 px-8"
           >
             <div>
-              <h1 className="text-5xl xl:text-6xl font-black text-white mb-4 leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4 leading-tight">
                 Transforma tu
                 <span className="block bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                   Estilo de Vida
                 </span>
               </h1>
-              <p className="text-xl text-slate-400 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-slate-400 leading-relaxed">
                 Únete a miles de personas que ya están alcanzando sus objetivos fitness con entrenamiento profesional y contenido exclusivo.
               </p>
             </div>
 
             <div className="space-y-4">
               {[
-                { icon: <Shield className="w-6 h-6" />, text: "Contenido premium exclusivo" },
-                { icon: <User className="w-6 h-6" />, text: "Planes personalizados" },
-                { icon: <LogIn className="w-6 h-6" />, text: "Acceso desde cualquier dispositivo" }
+                { icon: <Shield className="w-5 h-5 sm:w-6 sm:h-6" />, text: "Contenido premium exclusivo" },
+                { icon: <User className="w-5 h-5 sm:w-6 sm:h-6" />, text: "Planes personalizados" },
+                { icon: <LogIn className="w-5 h-5 sm:w-6 sm:h-6" />, text: "Acceso desde cualquier dispositivo" }
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -222,10 +222,10 @@ const Login = () => {
                   transition={{ delay: 0.4 + index * 0.1 }}
                   className="flex items-center space-x-4 text-slate-300"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/20 to-red-600/20 flex items-center justify-center text-red-500">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-red-500/20 to-red-600/20 flex items-center justify-center text-red-500">
                     {item.icon}
                   </div>
-                  <span className="text-lg">{item.text}</span>
+                  <span className="text-base sm:text-lg">{item.text}</span>
                 </motion.div>
               ))}
             </div>
