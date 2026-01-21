@@ -506,16 +506,14 @@ const AdminProducts = () => {
 
 // Product Form Component
 const ProductForm = ({ product, onSubmit, onCancel }) => {
-  const [formData, setFormData] = useState({
-    name: product?.name || '',
-    description: product?.description || '',
-    price: product?.price || '',
-    product_type: product?.product_type || 'workout_plan',
-    is_active: product?.is_active !== undefined ? product.is_active : true,
-    download_url: product?.download_url || '',
-    preview_url: product?.preview_url || '',
-    tags: product?.tags ? (Array.isArray(product.tags) ? product.tags : JSON.parse(product.tags || '[]')) : []
-  });
+const [formData, setFormData] = useState({
+  name: product?.name || '',
+  description: product?.description || '',
+  price: product?.price || '',
+  product_type: product?.product_type || 'workout_plan',
+  is_active: product?.is_active !== undefined ? product.is_active : true,
+  tags: product?.tags ? (Array.isArray(product.tags) ? product.tags : JSON.parse(product.tags || '[]')) : []
+});
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -595,27 +593,6 @@ const ProductForm = ({ product, onSubmit, onCancel }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-semibold text-slate-300 mb-2">URL de Descarga</label>
-          <input
-            type="url"
-            value={formData.download_url}
-            onChange={(e) => setFormData(prev => ({ ...prev, download_url: e.target.value }))}
-            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-semibold text-slate-300 mb-2">URL de Preview</label>
-          <input
-            type="url"
-            value={formData.preview_url}
-            onChange={(e) => setFormData(prev => ({ ...prev, preview_url: e.target.value }))}
-            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-          />
-        </div>
-      </div>
 
       <div>
         <label className="block text-sm font-semibold text-slate-300 mb-2">Tags</label>
