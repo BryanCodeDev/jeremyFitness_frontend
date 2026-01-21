@@ -254,20 +254,20 @@ const Login = () => {
               {/* Desktop Header */}
               <div className="hidden md:block mb-6">
                 <Link to="/" className="inline-flex items-center justify-center space-x-3 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-500/30">
-                    <span className="text-white font-black text-xl">J</span>
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-500/30">
+                    <span className="text-white font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl">J</span>
                   </div>
-                  <span className="text-xl font-black bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
+                  <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                     NackRat
                   </span>
                 </Link>
               </div>
 
               <div className="mb-6">
-                <h2 className="text-xl md:text-2xl font-bold text-white mb-2">
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2">
                   Bienvenido de vuelta
                 </h2>
-                <p className="text-sm text-slate-400">
+                <p className="text-sm md:text-base text-slate-400">
                   Ingresa tus credenciales para continuar
                 </p>
               </div>
@@ -278,29 +278,29 @@ const Login = () => {
                   <button
                     type="button"
                     onClick={() => setUserType('user')}
-                    className={`flex items-center justify-center space-x-2 py-2 px-3 rounded-xl font-semibold transition-all duration-300 text-sm ${
+                    className={`flex items-center justify-center space-x-2 py-2 px-3 rounded-xl font-semibold transition-all duration-300 text-sm md:text-base lg:text-lg ${
                       userType === 'user'
                         ? 'bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg shadow-red-500/30'
                         : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
                     }`}
                   >
-                    <UserCircle className="w-4 h-4" />
+                    <UserCircle className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
                     <span>Usuario</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => setUserType('admin')}
-                    className={`flex items-center justify-center space-x-2 py-2 px-3 rounded-xl font-semibold transition-all duration-300 text-sm ${
+                    className={`flex items-center justify-center space-x-2 py-2 px-3 rounded-xl font-semibold transition-all duration-300 text-sm md:text-base lg:text-lg ${
                       userType === 'admin'
                         ? 'bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg shadow-red-500/30'
                         : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
                     }`}
                   >
-                    <Shield className="w-4 h-4" />
+                    <Shield className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
                     <span>Admin</span>
                   </button>
                 </div>
-                <p className="text-xs text-slate-500 mt-3 text-center">
+                <p className="text-xs md:text-sm lg:text-base text-slate-500 mt-3 text-center">
                   {userType === 'user'
                     ? 'Acceso estándar con contenido básico y premium'
                     : 'Panel administrativo con herramientas de gestión completas'
@@ -315,7 +315,7 @@ const Login = () => {
                     Usuario o Email
                   </label>
                   <div className="relative">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-slate-500" />
                     <input
                       type="text"
                       id="username"
@@ -324,7 +324,7 @@ const Login = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       required
-                      className={`w-full pl-11 pr-4 py-3 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none text-sm ${
+                      className={`w-full pl-11 pr-4 py-3 md:py-4 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none text-sm md:text-base ${
                         errors.username
                           ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
                           : touched.username && !errors.username
@@ -336,16 +336,16 @@ const Login = () => {
                     {touched.username && (
                       <div className="absolute right-4 top-1/2 -translate-y-1/2">
                         {errors.username ? (
-                          <XCircle className="w-4 h-4 text-red-500" />
+                          <XCircle className="w-4 h-4 md:w-5 md:h-5 text-red-500" />
                         ) : (
-                          <CheckCircle className="w-4 h-4 text-green-500" />
+                          <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-green-500" />
                         )}
                       </div>
                     )}
                   </div>
                   {errors.username && (
-                    <p className="text-xs text-red-500 mt-1.5 flex items-center space-x-1">
-                      <XCircle className="w-3 h-3" />
+                    <p className="text-xs md:text-sm text-red-500 mt-1.5 flex items-center space-x-1">
+                      <XCircle className="w-3 h-3 md:w-4 md:h-4" />
                       <span>{errors.username}</span>
                     </p>
                   )}
@@ -356,7 +356,7 @@ const Login = () => {
                     Contraseña
                   </label>
                   <div className="relative">
-                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-slate-500" />
                     <input
                       type={showPassword ? "text" : "password"}
                       id="password"
@@ -365,7 +365,7 @@ const Login = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       required
-                      className={`w-full pl-11 pr-11 py-3 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none text-sm ${
+                      className={`w-full pl-11 pr-11 py-3 md:py-4 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none text-sm md:text-base ${
                         errors.password
                           ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
                           : touched.password && !errors.password
@@ -379,27 +379,27 @@ const Login = () => {
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute right-9 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
                     >
-                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      {showPassword ? <EyeOff className="w-4 h-4 md:w-5 md:h-5" /> : <Eye className="w-4 h-4 md:w-5 md:h-5" />}
                     </button>
                     {touched.password && (
                       <div className="absolute right-4 top-1/2 -translate-y-1/2">
                         {errors.password ? (
-                          <XCircle className="w-4 h-4 text-red-500" />
+                          <XCircle className="w-4 h-4 md:w-5 md:h-5 text-red-500" />
                         ) : (
-                          <CheckCircle className="w-4 h-4 text-green-500" />
+                          <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-green-500" />
                         )}
                       </div>
                     )}
                   </div>
                   {errors.password && (
-                    <p className="text-xs text-red-500 mt-1.5 flex items-center space-x-1">
-                      <XCircle className="w-3 h-3" />
+                    <p className="text-xs md:text-sm text-red-500 mt-1.5 flex items-center space-x-1">
+                      <XCircle className="w-3 h-3 md:w-4 md:h-4" />
                       <span>{errors.password}</span>
                     </p>
                   )}
                 </div>
 
-                <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center justify-between text-sm md:text-base">
                   <label className="flex items-center cursor-pointer group">
                     <input
                       type="checkbox"
@@ -407,16 +407,16 @@ const Login = () => {
                       checked={formData.rememberMe}
                       onChange={(e) => setFormData({...formData, rememberMe: e.target.checked})}
                       disabled={isBlocked}
-                      className="w-4 h-4 rounded border-slate-700 bg-slate-950/50 text-red-500 focus:ring-red-500 focus:ring-offset-0 focus:ring-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-4 h-4 md:w-5 md:h-5 rounded border-slate-700 bg-slate-950/50 text-red-500 focus:ring-red-500 focus:ring-offset-0 focus:ring-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     />
-                    <span className={`ml-2 transition-colors text-xs ${isBlocked ? 'text-slate-600' : 'text-slate-400 group-hover:text-slate-300'}`}>
+                    <span className={`ml-2 transition-colors text-xs md:text-sm ${isBlocked ? 'text-slate-600' : 'text-slate-400 group-hover:text-slate-300'}`}>
                       Recordarme por 30 días
                     </span>
                   </label>
 
                   <Link
                     to="/forgot-password"
-                    className={`font-semibold transition-colors text-xs ${isBlocked ? 'text-slate-600 cursor-not-allowed' : 'text-red-500 hover:text-red-400'}`}
+                    className={`font-semibold transition-colors text-xs md:text-sm ${isBlocked ? 'text-slate-600 cursor-not-allowed' : 'text-red-500 hover:text-red-400'}`}
                     onClick={(e) => isBlocked && e.preventDefault()}
                   >
                     ¿Olvidaste tu contraseña?
@@ -426,7 +426,7 @@ const Login = () => {
                 <button
                   type="submit"
                   disabled={isLoading || Object.keys(errors).length > 0 || isBlocked}
-                  className="w-full py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-red-500/30 flex items-center justify-center space-x-2 text-sm"
+                  className="w-full py-3 md:py-4 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-red-500/30 flex items-center justify-center space-x-2 text-sm md:text-base"
                 >
                   {isLoading ? (
                     <>
@@ -435,12 +435,12 @@ const Login = () => {
                     </>
                   ) : isBlocked ? (
                     <>
-                      <Shield className="w-4 h-4" />
+                      <Shield className="w-4 h-4 md:w-5 md:h-5" />
                       <span>Bloqueado ({Math.floor(blockTimeLeft / 60)}:{(blockTimeLeft % 60).toString().padStart(2, '0')})</span>
                     </>
                   ) : (
                     <>
-                      <LogIn className="w-4 h-4" />
+                      <LogIn className="w-4 h-4 md:w-5 md:h-5" />
                       <span>Iniciar Sesión</span>
                     </>
                   )}
@@ -453,17 +453,17 @@ const Login = () => {
                   <div className="w-full border-t border-slate-800/50" />
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-4 bg-slate-900/50 text-slate-500 text-xs">o continúa con</span>
+                  <span className="px-4 bg-slate-900/50 text-slate-500 text-xs md:text-sm">o continúa con</span>
                 </div>
               </div>
 
               {/* Register link */}
               <div className="text-center">
-                <p className="text-sm text-slate-400">
+                <p className="text-sm md:text-base text-slate-400">
                   ¿No tienes una cuenta?{' '}
                   <Link
                     to="/register"
-                    className="text-red-500 hover:text-red-400 font-bold transition-colors text-sm"
+                    className="text-red-500 hover:text-red-400 font-bold transition-colors text-sm md:text-base"
                   >
                     Regístrate gratis
                   </Link>

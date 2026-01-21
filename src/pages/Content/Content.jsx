@@ -80,13 +80,13 @@ const Content = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 pt-20">
+    <div className="min-h-screen bg-slate-950 pt-16">
       {/* Hero Section */}
-      <section className="relative py-16 overflow-hidden">
+      <section className="relative py-12 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-1/4 w-80 h-80 bg-red-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-red-600/10 rounded-full blur-3xl" />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -94,20 +94,20 @@ const Content = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto mb-12"
+            className="text-center max-w-4xl mx-auto mb-10"
           >
             <div className="inline-flex items-center space-x-2 bg-red-500/10 border border-red-500/20 rounded-full px-4 py-2 mb-6">
               <TrendingUp className="w-4 h-4 text-red-500" />
               <span className="text-sm font-semibold text-red-400">Contenido Actualizado</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-6">
               <span className="text-white">Contenido </span>
               <span className="bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                 Fitness
               </span>
             </h1>
-            <p className="text-xl text-slate-400">
+            <p className="text-base sm:text-lg text-slate-400">
               Descubre rutinas, consejos y guías para alcanzar tus objetivos
             </p>
           </motion.div>
@@ -120,27 +120,27 @@ const Content = () => {
             className="max-w-5xl mx-auto"
           >
             {/* Search Bar */}
-            <div className="relative mb-6">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+            <div className="relative mb-4">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <input
                 type="text"
                 placeholder="Buscar contenido..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-red-500/50 transition-all"
+                className="w-full pl-11 pr-4 py-3 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-red-500/50 transition-all text-sm"
               />
             </div>
 
             {/* Filter Buttons & View Mode */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-slate-900/30 backdrop-blur-xl border border-slate-800/50 rounded-xl p-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-slate-900/30 backdrop-blur-xl border border-slate-800/50 rounded-xl p-3">
               <div className="flex items-center space-x-2 overflow-x-auto w-full sm:w-auto">
-                <Filter className="w-5 h-5 text-slate-400 flex-shrink-0" />
+                <Filter className="w-4 h-4 text-slate-400 flex-shrink-0" />
                 <div className="flex space-x-2">
                   {filters.map((filterType) => (
                     <button
                       key={filterType.id}
                       onClick={() => setFilter(filterType.id)}
-                      className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-semibold transition-all whitespace-nowrap ${
+                      className={`flex items-center space-x-2 px-3 py-2 rounded-lg font-semibold transition-all whitespace-nowrap text-sm ${
                         filter === filterType.id
                           ? 'bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg shadow-red-500/30'
                           : 'bg-slate-800/50 text-slate-300 hover:bg-slate-800 hover:text-white'

@@ -436,7 +436,7 @@ const Register = () => {
                     Email
                   </label>
                   <div className="relative">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                     <input
                       type="email"
                       id="email"
@@ -445,7 +445,7 @@ const Register = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       required
-                      className={`w-full pl-12 pr-4 py-3.5 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none ${
+                      className={`w-full pl-11 pr-4 py-3 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none text-sm ${
                         errors.email
                           ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
                           : touched.email && !errors.email
@@ -457,9 +457,9 @@ const Register = () => {
                     {touched.email && (
                       <div className="absolute right-4 top-1/2 -translate-y-1/2">
                         {errors.email ? (
-                          <XCircle className="w-5 h-5 text-red-500" />
+                          <XCircle className="w-4 h-4 text-red-500" />
                         ) : (
-                          <CheckCircle className="w-5 h-5 text-green-500" />
+                          <CheckCircle className="w-4 h-4 text-green-500" />
                         )}
                       </div>
                     )}
@@ -478,7 +478,7 @@ const Register = () => {
                     Contraseña
                   </label>
                   <div className="relative">
-                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                     <input
                       type={showPassword ? "text" : "password"}
                       id="password"
@@ -487,7 +487,7 @@ const Register = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       required
-                      className={`w-full pl-12 pr-12 py-3.5 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none ${
+                      className={`w-full pl-11 pr-11 py-3 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none text-sm ${
                         errors.password
                           ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
                           : touched.password && !errors.password
@@ -499,16 +499,16 @@ const Register = () => {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-10 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
+                      className="absolute right-9 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
                     >
-                      {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
                     {touched.password && (
                       <div className="absolute right-4 top-1/2 -translate-y-1/2">
                         {errors.password ? (
-                          <XCircle className="w-5 h-5 text-red-500" />
+                          <XCircle className="w-4 h-4 text-red-500" />
                         ) : (
-                          <CheckCircle className="w-5 h-5 text-green-500" />
+                          <CheckCircle className="w-4 h-4 text-green-500" />
                         )}
                       </div>
                     )}
@@ -516,7 +516,7 @@ const Register = () => {
 
                   {/* Password Strength Indicator */}
                   {formData.password && (
-                    <div className="mt-3 space-y-2">
+                    <div className="mt-2 space-y-2">
                       <div className="flex items-center space-x-2">
                         <div className="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
                           <div
@@ -542,9 +542,9 @@ const Register = () => {
                         {passwordRequirements.map((req, index) => (
                           <div key={index} className="flex items-center space-x-2 text-xs">
                             {req.met ? (
-                              <Check className="w-4 h-4 text-green-500" />
+                              <Check className="w-3 h-3 text-green-500" />
                             ) : (
-                              <X className="w-4 h-4 text-slate-600" />
+                              <X className="w-3 h-3 text-slate-600" />
                             )}
                             <span className={req.met ? 'text-green-500' : 'text-slate-500'}>
                               {req.text}
@@ -568,7 +568,7 @@ const Register = () => {
                     Confirmar Contraseña
                   </label>
                   <div className="relative">
-                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                     <input
                       type={showConfirmPassword ? "text" : "password"}
                       id="confirmPassword"
@@ -577,7 +577,7 @@ const Register = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       required
-                      className={`w-full pl-12 pr-12 py-3.5 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none ${
+                      className={`w-full pl-11 pr-11 py-3 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none text-sm ${
                         errors.confirmPassword
                           ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
                           : touched.confirmPassword && !errors.confirmPassword
@@ -589,16 +589,16 @@ const Register = () => {
                     <button
                       type="button"
                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      className="absolute right-10 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
+                      className="absolute right-9 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
                     >
-                      {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                      {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
                     {touched.confirmPassword && (
                       <div className="absolute right-4 top-1/2 -translate-y-1/2">
                         {errors.confirmPassword ? (
-                          <XCircle className="w-5 h-5 text-red-500" />
+                          <XCircle className="w-4 h-4 text-red-500" />
                         ) : (
-                          <CheckCircle className="w-5 h-5 text-green-500" />
+                          <CheckCircle className="w-4 h-4 text-green-500" />
                         )}
                       </div>
                     )}
@@ -618,7 +618,7 @@ const Register = () => {
                 </div>
 
                 {/* Términos y condiciones */}
-                <div className={`flex items-start space-x-3 p-4 bg-slate-950/50 rounded-xl border transition-all duration-300 ${
+                <div className={`flex items-start space-x-3 p-3 bg-slate-950/50 rounded-xl border transition-all duration-300 ${
                   errors.acceptTerms ? 'border-red-500' : touched.acceptTerms && !errors.acceptTerms ? 'border-green-500' : 'border-slate-800/50'
                 }`}>
                   <input
@@ -629,9 +629,9 @@ const Register = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     required
-                    className="w-5 h-5 rounded border-slate-700 bg-slate-950/50 text-red-500 focus:ring-red-500 focus:ring-offset-0 focus:ring-2 transition-all mt-0.5"
+                    className="w-4 h-4 rounded border-slate-700 bg-slate-950/50 text-red-500 focus:ring-red-500 focus:ring-offset-0 focus:ring-2 transition-all mt-0.5"
                   />
-                  <label htmlFor="acceptTerms" className="text-sm text-slate-300 leading-relaxed">
+                  <label htmlFor="acceptTerms" className="text-xs text-slate-300 leading-relaxed">
                     Acepto los{' '}
                     <a href="/terms" className="text-red-500 hover:text-red-400 font-semibold transition-colors underline">
                       Términos y Condiciones
@@ -644,9 +644,9 @@ const Register = () => {
                   {touched.acceptTerms && (
                     <div className="ml-auto">
                       {errors.acceptTerms ? (
-                        <XCircle className="w-5 h-5 text-red-500" />
+                        <XCircle className="w-4 h-4 text-red-500" />
                       ) : (
-                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <CheckCircle className="w-4 h-4 text-green-500" />
                       )}
                     </div>
                   )}
@@ -661,7 +661,7 @@ const Register = () => {
                 <button
                   type="submit"
                   disabled={isLoading || Object.keys(errors).length > 0}
-                  className="w-full py-4 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-red-500/30 flex items-center justify-center space-x-2"
+                  className="w-full py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-red-500/30 flex items-center justify-center space-x-2 text-sm"
                 >
                   {isLoading ? (
                     <>
@@ -670,7 +670,7 @@ const Register = () => {
                     </>
                   ) : (
                     <>
-                      <UserPlus className="w-5 h-5" />
+                      <UserPlus className="w-4 h-4" />
                       <span>Crear Cuenta</span>
                     </>
                   )}
@@ -678,22 +678,22 @@ const Register = () => {
               </form>
 
               {/* Divider */}
-              <div className="relative my-8">
+              <div className="relative my-6">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-slate-800/50" />
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-4 bg-slate-900/50 text-slate-500">o</span>
+                  <span className="px-4 bg-slate-900/50 text-slate-500 text-xs">o</span>
                 </div>
               </div>
 
               {/* Login link */}
               <div className="text-center">
-                <p className="text-slate-400">
+                <p className="text-sm text-slate-400">
                   ¿Ya tienes una cuenta?{' '}
                   <Link
                     to="/login"
-                    className="text-red-500 hover:text-red-400 font-bold transition-colors"
+                    className="text-red-500 hover:text-red-400 font-bold transition-colors text-sm"
                   >
                     Inicia sesión aquí
                   </Link>
@@ -702,10 +702,10 @@ const Register = () => {
             </div>
 
             {/* Back to home */}
-            <div className="text-center mt-6">
+            <div className="text-center mt-4">
               <Link
                 to="/"
-                className="inline-flex items-center space-x-2 text-slate-400 hover:text-red-500 transition-colors group"
+                className="inline-flex items-center space-x-2 text-sm text-slate-400 hover:text-red-500 transition-colors group"
               >
                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                 <span>Volver al inicio</span>
