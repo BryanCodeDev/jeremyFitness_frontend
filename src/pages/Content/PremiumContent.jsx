@@ -17,7 +17,11 @@ const PremiumContent = () => {
       try {
         const token = localStorage.getItem('token');
         const headers = token ? { Authorization: `Bearer ${token}` } : {};
-        const response = await axios.get('http://localhost:5000/api/content/premium', {
+        const API_BASE_URL = process.env.NODE_ENV === 'development'
+          ? 'http://localhost:5000/api'
+          : 'https://jeremyfitnessbackend-production.up.railway.app/api';
+        
+        const response = await axios.get(`${API_BASE_URL}/content/premium`, {
           params: { category: selectedCategory === 'all' ? undefined : selectedCategory },
           headers
         });

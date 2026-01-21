@@ -19,7 +19,11 @@ const Content = () => {
       try {
         const token = localStorage.getItem('token');
         const headers = token ? { Authorization: `Bearer ${token}` } : {};
-        const response = await axios.get('https://jeremyfitnessbackend-production.up.railway.app/api/content/public', {
+        const API_BASE_URL = process.env.NODE_ENV === 'development'
+          ? 'http://localhost:5000/api'
+          : 'https://jeremyfitnessbackend-production.up.railway.app/api';
+        
+        const response = await axios.get(`${API_BASE_URL}/content/public`, {
           params: { type: filter === 'all' ? undefined : filter },
           headers
         });

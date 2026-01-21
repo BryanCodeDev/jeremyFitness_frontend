@@ -37,7 +37,11 @@ const Subscriptions = () => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const plansResponse = await axios.get('http://localhost:5000/api/subscriptions/plans');
+        const API_BASE_URL = process.env.NODE_ENV === 'development'
+          ? 'http://localhost:5000/api'
+          : 'https://jeremyfitnessbackend-production.up.railway.app/api';
+        
+        const plansResponse = await axios.get(`${API_BASE_URL}/subscriptions/plans`);
         const plansWithCOP = plansResponse.data.plans.map(plan => ({
           ...plan,
           priceCOP: COP_PRICES[plan.id] || 0
@@ -45,7 +49,7 @@ const Subscriptions = () => {
         setPlans(plansWithCOP);
 
         if (user) {
-          const statusResponse = await axios.get('http://localhost:5000/api/subscriptions/status', {
+          const statusResponse = await axios.get(`${API_BASE_URL}/subscriptions/status`, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
           });
           setCurrentSubscription(statusResponse.data);
@@ -76,8 +80,12 @@ const Subscriptions = () => {
 
   const handleSubscribe = async (plan) => {
     try {
+      const API_BASE_URL = process.env.NODE_ENV === 'development'
+        ? 'http://localhost:5000/api'
+        : 'https://jeremyfitnessbackend-production.up.railway.app/api';
+      
       const response = await axios.post(
-        'http://localhost:5000/api/subscriptions/generate-whatsapp-link',
+        `${API_BASE_URL}/subscriptions/generate-whatsapp-link`,
         { planId: plan.id },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }

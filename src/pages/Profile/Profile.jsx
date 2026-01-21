@@ -101,7 +101,11 @@ const Profile = () => {
       const formData = new FormData();
       formData.append('profileImage', file);
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000/api'}/users/profile/upload-image`, {
+      const API_BASE_URL = process.env.NODE_ENV === 'development'
+        ? 'http://localhost:5000/api'
+        : 'https://jeremyfitnessbackend-production.up.railway.app/api';
+      
+      const response = await fetch(`${process.env.REACT_APP_API_URL || API_BASE_URL}/users/profile/upload-image`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -136,7 +140,11 @@ const Profile = () => {
 
     setPasswordLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000/api'}/users/request-password-reset`, {
+      const API_BASE_URL = process.env.NODE_ENV === 'development'
+        ? 'http://localhost:5000/api'
+        : 'https://jeremyfitnessbackend-production.up.railway.app/api';
+      
+      const response = await fetch(`${process.env.REACT_APP_API_URL || API_BASE_URL}/users/request-password-reset`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -219,7 +227,9 @@ const Profile = () => {
                     <div className={`w-24 h-24 sm:w-28 sm:h-28 bg-gradient-to-br ${getSubscriptionAvatarGradient(user?.subscription_tier)} rounded-2xl flex items-center justify-center text-white text-3xl sm:text-4xl font-black shadow-2xl shadow-red-500/20`}>
                       {user?.profileImageUrl ? (
                         <img
-                          src={`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}${user.profileImageUrl}`}
+                          src={`${process.env.REACT_APP_API_URL || (process.env.NODE_ENV === 'development'
+                            ? 'http://localhost:5000'
+                            : 'https://jeremyfitnessbackend-production.up.railway.app')}${user.profileImageUrl}`}
                           alt="Profile"
                           className="w-full h-full object-cover rounded-2xl"
                         />
