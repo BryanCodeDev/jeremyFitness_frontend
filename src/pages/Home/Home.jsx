@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Play, Clock, Crown, Users, Video, Target, Zap, Award, ArrowRight, CheckCircle, Star } from 'lucide-react';
+import { Play, Clock, Crown, Users, Video, Target, Award, ArrowRight, CheckCircle, Star } from 'lucide-react';
 import { useAuth } from '../../utils/AuthContext';
 import { api } from '../../utils/AuthContext';
 import ContentModal from '../../components/Content/ContentModal';

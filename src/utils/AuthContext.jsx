@@ -18,7 +18,7 @@ export const useAuth = () => {
 export const api = axios.create({
   baseURL: config.API_BASE_URL,
   timeout: config.API_TIMEOUT,
-  withCredentials: false, // Importante para evitar problemas con CORS
+  withCredentials: true, // Habilitar credenciales para CORS
   headers: {
     'Content-Type': 'application/json',
   },
