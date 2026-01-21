@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useAuth, api } from '../../utils/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
+import ContentUpload from '../../components/Content/ContentUpload';
 import {
   ShoppingBag,
   Plus,
@@ -515,147 +516,151 @@ const [formData, setFormData] = useState({
   tags: product?.tags ? (Array.isArray(product.tags) ? product.tags : JSON.parse(product.tags || '[]')) : []
 });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit({
-      ...formData,
-      price: parseFloat(formData.price),
-      tags: JSON.stringify(formData.tags)
-    });
-  };
+const handleSubmit = (e) => {
+  e.preventDefault();
+  onSubmit({
+    ...formData,
+    price: parseFloat(formData.price),
+    tags: JSON.stringify(formData.tags)
+  });
+};
 
-  const addTag = (tag) => {
-    if (tag && !formData.tags.includes(tag)) {
-      setFormData(prev => ({
-        ...prev,
-        tags: [...prev.tags, tag]
-      }));
-    }
-  };
-
-  const removeTag = (tagToRemove) => {
+const addTag = (tag) => {
+  if (tag && !formData.tags.includes(tag)) {
     setFormData(prev => ({
       ...prev,
-      tags: prev.tags.filter(tag => tag !== tagToRemove)
+      tags: [...prev.tags, tag]
     }));
-  };
+  }
+};
 
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+const removeTag = (tagToRemove) => {
+  setFormData(prev => ({
+    ...prev,
+    tags: prev.tags.filter(tag => tag !== tagToRemove)
+  }));
+};
+
+return (
+  <form onSubmit={handleSubmit} className="space-y-4">
+    <div>
+      <label className="block text-sm font-semibold text-slate-300 mb-2">Nombre del Producto</label>
+      <input
+        type="text"
+        value={formData.name}
+        onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+        className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+        required
+      />
+    </div>
+
+    <div>
+      <label className="block text-sm font-semibold text-slate-300 mb-2">Descripción</label>
+      <textarea
+        value={formData.description}
+        onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+        rows={3}
+        className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+      />
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div>
-        <label className="block text-sm font-semibold text-slate-300 mb-2">Nombre del Producto</label>
+        <label className="block text-sm font-semibold text-slate-300 mb-2">Precio (COP)</label>
         <input
-          type="text"
-          value={formData.name}
-          onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+          type="number"
+          step="0.01"
+          min="0"
+          value={formData.price}
+          onChange={(e) => setFormData(prev => ({ ...prev, price: e.target.value }))}
           className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
           required
         />
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-slate-300 mb-2">Descripción</label>
-        <textarea
-          value={formData.description}
-          onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-          rows={3}
+        <label className="block text-sm font-semibold text-slate-300 mb-2">Tipo de Producto</label>
+        <select
+          value={formData.product_type}
+          onChange={(e) => setFormData(prev => ({ ...prev, product_type: e.target.value }))}
           className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-        />
+        >
+          <option value="workout_plan">Plan de Entrenamiento</option>
+          <option value="nutrition_guide">Guía Nutricional</option>
+          <option value="course">Curso</option>
+          <option value="ebook">Ebook</option>
+          <option value="other">Otro</option>
+        </select>
       </div>
+    </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-semibold text-slate-300 mb-2">Precio (COP)</label>
-          <input
-            type="number"
-            step="0.01"
-            min="0"
-            value={formData.price}
-            onChange={(e) => setFormData(prev => ({ ...prev, price: e.target.value }))}
-            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-            required
-          />
-        </div>
+    <div>
+      <label className="block text-sm font-semibold text-slate-300 mb-2">Adjuntar Imágenes</label>
+      <ContentUpload />
+    </div>
 
-        <div>
-          <label className="block text-sm font-semibold text-slate-300 mb-2">Tipo de Producto</label>
-          <select
-            value={formData.product_type}
-            onChange={(e) => setFormData(prev => ({ ...prev, product_type: e.target.value }))}
-            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+    <div>
+      <label className="block text-sm font-semibold text-slate-300 mb-2">Tags</label>
+      <div className="flex flex-wrap gap-2 mb-2">
+        {formData.tags.map((tag, index) => (
+          <span
+            key={index}
+            className="inline-flex items-center gap-2 px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm"
           >
-            <option value="workout_plan">Plan de Entrenamiento</option>
-            <option value="nutrition_guide">Guía Nutricional</option>
-            <option value="course">Curso</option>
-            <option value="ebook">Ebook</option>
-            <option value="other">Otro</option>
-          </select>
-        </div>
-      </div>
-
-
-      <div>
-        <label className="block text-sm font-semibold text-slate-300 mb-2">Tags</label>
-        <div className="flex flex-wrap gap-2 mb-2">
-          {formData.tags.map((tag, index) => (
-            <span
-              key={index}
-              className="inline-flex items-center gap-2 px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm"
+            {tag}
+            <button
+              type="button"
+              onClick={() => removeTag(tag)}
+              className="hover:text-red-300"
             >
-              {tag}
-              <button
-                type="button"
-                onClick={() => removeTag(tag)}
-                className="hover:text-red-300"
-              >
-                ×
-              </button>
-            </span>
-          ))}
-        </div>
+              ×
+            </button>
+          </span>
+        ))}
+      </div>
+      <input
+        type="text"
+        placeholder="Agregar tag y presionar Enter"
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            addTag(e.target.value.trim());
+            e.target.value = '';
+          }
+        }}
+        className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+      />
+    </div>
+
+    <div className="flex items-center gap-3">
+      <label className="flex items-center gap-2 cursor-pointer">
         <input
-          type="text"
-          placeholder="Agregar tag y presionar Enter"
-          onKeyPress={(e) => {
-            if (e.key === 'Enter') {
-              e.preventDefault();
-              addTag(e.target.value.trim());
-              e.target.value = '';
-            }
-          }}
-          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+          type="checkbox"
+          checked={formData.is_active}
+          onChange={(e) => setFormData(prev => ({ ...prev, is_active: e.target.checked }))}
+          className="rounded border-slate-600 text-red-500 focus:ring-red-500"
         />
-      </div>
+        <span className="text-sm font-semibold text-slate-300">Producto Activo</span>
+      </label>
+    </div>
 
-      <div className="flex items-center gap-3">
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={formData.is_active}
-            onChange={(e) => setFormData(prev => ({ ...prev, is_active: e.target.checked }))}
-            className="rounded border-slate-600 text-red-500 focus:ring-red-500"
-          />
-          <span className="text-sm font-semibold text-slate-300">Producto Activo</span>
-        </label>
-      </div>
-
-      <div className="flex gap-3 mt-6">
-        <button
-          type="submit"
-          className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl transition-all duration-300"
-        >
-          {product ? 'Actualizar' : 'Crear'} Producto
-        </button>
-        <button
-          type="button"
-          onClick={onCancel}
-          className="px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-slate-400 hover:text-white transition-colors"
-        >
-          Cancelar
-        </button>
-      </div>
-    </form>
-  );
+    <div className="flex gap-3 mt-6">
+      <button
+        type="submit"
+        className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl transition-all duration-300"
+      >
+        {product ? 'Actualizar' : 'Crear'} Producto
+      </button>
+      <button
+        type="button"
+        onClick={onCancel}
+        className="px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-slate-400 hover:text-white transition-colors"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+);
 };
 
 export default AdminProducts;
