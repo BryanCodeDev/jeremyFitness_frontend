@@ -163,7 +163,7 @@ const Content = () => {
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
-                  <Grid3x3 className="w-5 h-5" />
+                  <Grid3x3 className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
@@ -173,7 +173,7 @@ const Content = () => {
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
-                  <List className="w-5 h-5" />
+                  <List className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -182,17 +182,17 @@ const Content = () => {
       </section>
 
       {/* Content Grid/List */}
-      <section className="py-12">
+      <section className="py-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
-            <div className={viewMode === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6' : 'space-y-4'}>
+            <div className={viewMode === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4' : 'space-y-3'}>
               {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
                 <div key={i} className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden animate-pulse">
                   <div className="aspect-video bg-slate-800/50"></div>
-                  <div className="p-6 space-y-3">
-                    <div className="h-5 bg-slate-800/50 rounded w-3/4"></div>
-                    <div className="h-4 bg-slate-800/50 rounded w-full"></div>
-                    <div className="h-4 bg-slate-800/50 rounded w-1/2"></div>
+                  <div className="p-4 space-y-3">
+                    <div className="h-4 bg-slate-800/50 rounded w-3/4"></div>
+                    <div className="h-3 bg-slate-800/50 rounded w-full"></div>
+                    <div className="h-3 bg-slate-800/50 rounded w-1/2"></div>
                   </div>
                 </div>
               ))}
@@ -201,13 +201,13 @@ const Content = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="text-center py-20"
+              className="text-center py-16"
             >
-              <div className="w-24 h-24 bg-slate-900/50 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Search className="w-12 h-12 text-slate-600" />
+              <div className="w-20 h-20 bg-slate-900/50 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Search className="w-10 h-10 text-slate-600" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">No se encontró contenido</h3>
-              <p className="text-slate-400">Intenta con otros términos de búsqueda o filtros</p>
+              <h3 className="text-xl font-bold text-white mb-2">No se encontró contenido</h3>
+              <p className="text-sm text-slate-400">Intenta con otros términos de búsqueda o filtros</p>
             </motion.div>
           ) : (
             <AnimatePresence mode="wait">
@@ -219,8 +219,8 @@ const Content = () => {
                 transition={{ duration: 0.3 }}
                 className={
                   viewMode === 'grid'
-                    ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
-                    : 'space-y-4'
+                    ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'
+                    : 'space-y-3'
                 }
               >
                 {filteredContent.map((item, index) => (
@@ -236,40 +236,40 @@ const Content = () => {
                       <div className="relative aspect-video bg-slate-800/50 overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-red-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-16 h-16 bg-red-500/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-125 transition-transform duration-500">
+                          <div className="w-14 h-14 bg-red-500/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-125 transition-transform duration-500">
                             {getContentIcon(item.content_type)}
                           </div>
                         </div>
 
                         {item.isPremium && (
-                          <div className="absolute top-3 left-3 flex items-center space-x-1 bg-gradient-to-r from-red-500 to-red-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg">
+                          <div className="absolute top-2 left-2 flex items-center space-x-1 bg-gradient-to-r from-red-500 to-red-600 text-white px-2 py-1 rounded-lg text-xs font-bold shadow-lg">
                             <Crown className="w-3 h-3" />
                             <span>Premium</span>
                           </div>
                         )}
 
                         {item.duration && (
-                          <div className="absolute bottom-3 right-3 flex items-center space-x-1 bg-slate-950/80 backdrop-blur-sm text-white px-2 py-1 rounded-lg text-xs font-semibold">
+                          <div className="absolute bottom-2 right-2 flex items-center space-x-1 bg-slate-950/80 backdrop-blur-sm text-white px-2 py-1 rounded-lg text-xs font-semibold">
                             <Clock className="w-3 h-3" />
                             <span>{item.duration}</span>
                           </div>
                         )}
 
-                        <div className="absolute bottom-3 left-3 flex items-center space-x-1 bg-slate-950/80 backdrop-blur-sm text-white px-2 py-1 rounded-lg text-xs font-semibold">
+                        <div className="absolute bottom-2 left-2 flex items-center space-x-1 bg-slate-950/80 backdrop-blur-sm text-white px-2 py-1 rounded-lg text-xs font-semibold">
                           {getContentIcon(item.content_type)}
                           <span className="capitalize">{item.content_type}</span>
                         </div>
                       </div>
 
-                      <div className="p-5">
-                        <h3 className="font-bold text-lg mb-2 text-white group-hover:text-red-400 transition-colors line-clamp-2">
+                      <div className="p-4">
+                        <h3 className="font-bold text-base mb-2 text-white group-hover:text-red-400 transition-colors line-clamp-2">
                           {item.title}
                         </h3>
-                        <p className="text-slate-400 text-sm line-clamp-2 mb-4">
+                        <p className="text-slate-400 text-sm line-clamp-2 mb-3">
                           {item.description}
                         </p>
 
-                        <div className="flex items-center justify-between pt-4 border-t border-slate-800/50">
+                        <div className="flex items-center justify-between pt-3 border-t border-slate-800/50">
                           <div className="flex items-center space-x-2 text-slate-500 text-xs">
                             <Calendar className="w-3 h-3" />
                             <span>Reciente</span>
@@ -293,27 +293,27 @@ const Content = () => {
                         <div className="relative w-full sm:w-64 aspect-video sm:aspect-auto bg-slate-800/50 overflow-hidden flex-shrink-0">
                           <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-red-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-16 h-16 bg-red-500/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-125 transition-transform duration-500">
+                            <div className="w-14 h-14 bg-red-500/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-125 transition-transform duration-500">
                               {getContentIcon(item.content_type)}
                             </div>
                           </div>
 
                           {item.isPremium && (
-                            <div className="absolute top-3 left-3 flex items-center space-x-1 bg-gradient-to-r from-red-500 to-red-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg">
+                            <div className="absolute top-2 left-2 flex items-center space-x-1 bg-gradient-to-r from-red-500 to-red-600 text-white px-2 py-1 rounded-lg text-xs font-bold shadow-lg">
                               <Crown className="w-3 h-3" />
                               <span>Premium</span>
                             </div>
                           )}
 
                           {item.duration && (
-                            <div className="absolute bottom-3 right-3 flex items-center space-x-1 bg-slate-950/80 backdrop-blur-sm text-white px-2 py-1 rounded-lg text-xs font-semibold">
+                            <div className="absolute bottom-2 right-2 flex items-center space-x-1 bg-slate-950/80 backdrop-blur-sm text-white px-2 py-1 rounded-lg text-xs font-semibold">
                               <Clock className="w-3 h-3" />
                               <span>{item.duration}</span>
                             </div>
                           )}
                         </div>
 
-                        <div className="flex-1 p-6">
+                        <div className="flex-1 p-4">
                           <div className="flex items-start justify-between mb-3">
                             <div className="flex-1">
                               <div className="flex items-center space-x-2 mb-2">
@@ -326,7 +326,7 @@ const Content = () => {
                                   <span>Reciente</span>
                                 </div>
                               </div>
-                              <h3 className="font-bold text-xl text-white group-hover:text-red-400 transition-colors mb-2">
+                              <h3 className="font-bold text-lg text-white group-hover:text-red-400 transition-colors mb-2">
                                 {item.title}
                               </h3>
                               <p className="text-slate-400 text-sm line-clamp-2">
@@ -335,7 +335,7 @@ const Content = () => {
                             </div>
                           </div>
 
-                          <div className="flex items-center justify-between pt-4 border-t border-slate-800/50">
+                          <div className="flex items-center justify-between pt-3 border-t border-slate-800/50">
                             <div className="flex items-center space-x-4 text-slate-500 text-sm">
                               <div className="flex items-center space-x-1">
                                 <Eye className="w-4 h-4" />
@@ -343,7 +343,7 @@ const Content = () => {
                               </div>
                             </div>
                             <button
-                              className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition-colors"
+                              className="px-3 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition-colors text-sm"
                               onClick={() => handleContentClick(item)}
                             >
                               Ver ahora
@@ -364,9 +364,9 @@ const Content = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-center mt-12"
+              className="text-center mt-8"
             >
-              <p className="text-slate-400">
+              <p className="text-sm text-slate-400">
                 Mostrando <span className="text-red-500 font-semibold">{filteredContent.length}</span> resultados
               </p>
             </motion.div>

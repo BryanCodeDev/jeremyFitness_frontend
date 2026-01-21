@@ -87,13 +87,13 @@ const PremiumContent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 pt-20">
+    <div className="min-h-screen bg-slate-950 pt-16">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
+      <section className="relative py-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-red-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-red-500/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-red-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -103,18 +103,18 @@ const PremiumContent = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-red-500/20 to-red-600/20 border border-red-500/30 rounded-full px-5 py-2.5 mb-8">
-              <Crown className="w-5 h-5 text-red-400" />
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-red-500/20 to-red-600/20 border border-red-500/30 rounded-full px-4 py-2 mb-6">
+              <Crown className="w-4 h-4 text-red-400" />
               <span className="text-sm font-bold text-red-300">Contenido Exclusivo Premium</span>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 leading-tight">
               <span className="text-white">Contenido </span>
               <span className="bg-gradient-to-r from-red-500 via-red-600 to-red-500 bg-clip-text text-transparent">
                 Premium
               </span>
             </h1>
-            <p className="text-xl sm:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg text-slate-300 mb-10 max-w-3xl mx-auto">
               Accede a contenido exclusivo, programas avanzados y entrenamientos diseñados por profesionales
             </p>
           </motion.div>
@@ -124,7 +124,7 @@ const PremiumContent = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mb-12"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-6xl mx-auto mb-10"
           >
             {benefits.map((benefit, index) => (
               <motion.div
@@ -132,12 +132,12 @@ const PremiumContent = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4 + index * 0.1 }}
-                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl p-6 hover:border-red-500/50 transition-all duration-300"
+                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl p-4 hover:border-red-500/50 transition-all duration-300"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mb-4 text-white">
+                <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mb-3 text-white">
                   {benefit.icon}
                 </div>
-                <h3 className="font-bold text-white mb-2">{benefit.title}</h3>
+                <h3 className="font-bold text-white mb-2 text-sm">{benefit.title}</h3>
                 <p className="text-sm text-slate-400">{benefit.description}</p>
               </motion.div>
             ))}
@@ -154,27 +154,27 @@ const PremiumContent = () => {
             className="max-w-6xl mx-auto"
           >
             {/* Search Bar */}
-            <div className="relative mb-6">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+            <div className="relative mb-4">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <input
                 type="text"
                 placeholder="Buscar contenido premium..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-red-500/50 transition-all"
+                className="w-full pl-11 pr-4 py-3 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-red-500/50 transition-all text-sm"
               />
             </div>
 
             {/* Categories & View Mode */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl p-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl p-3">
               <div className="flex items-center space-x-2 overflow-x-auto w-full sm:w-auto">
-                <Filter className="w-5 h-5 text-slate-400 flex-shrink-0" />
+                <Filter className="w-4 h-4 text-slate-400 flex-shrink-0" />
                 <div className="flex space-x-2">
                   {categories.map((category) => (
                     <button
                       key={category.id}
                       onClick={() => setSelectedCategory(category.id)}
-                      className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-semibold transition-all whitespace-nowrap ${
+                      className={`flex items-center space-x-2 px-3 py-2 rounded-lg font-semibold transition-all whitespace-nowrap text-sm ${
                         selectedCategory === category.id
                           ? 'bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg shadow-red-500/30'
                           : 'bg-slate-800/50 text-slate-300 hover:bg-slate-800 hover:text-white'
@@ -196,7 +196,7 @@ const PremiumContent = () => {
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
-                  <Grid3X3 className="w-5 h-5" />
+                  <Grid3X3 className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
@@ -206,7 +206,7 @@ const PremiumContent = () => {
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
-                  <List className="w-5 h-5" />
+                  <List className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -215,18 +215,18 @@ const PremiumContent = () => {
       </section>
 
       {/* Content Section */}
-      <section className="py-12">
+      <section className="py-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             {loading ? (
-              <div className={viewMode === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-4'}>
+              <div className={viewMode === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4' : 'space-y-3'}>
                 {[1, 2, 3, 4, 5, 6].map((i) => (
                   <div key={i} className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden animate-pulse">
                     <div className="aspect-video bg-slate-800/50"></div>
-                    <div className="p-6 space-y-3">
-                      <div className="h-5 bg-slate-800/50 rounded w-3/4"></div>
-                      <div className="h-4 bg-slate-800/50 rounded w-full"></div>
-                      <div className="h-4 bg-slate-800/50 rounded w-1/2"></div>
+                    <div className="p-4 space-y-3">
+                      <div className="h-4 bg-slate-800/50 rounded w-3/4"></div>
+                      <div className="h-3 bg-slate-800/50 rounded w-full"></div>
+                      <div className="h-3 bg-slate-800/50 rounded w-1/2"></div>
                     </div>
                   </div>
                 ))}
@@ -235,20 +235,20 @@ const PremiumContent = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-20"
+                className="text-center py-16"
               >
-                <div className="w-24 h-24 bg-gradient-to-br from-red-500/20 to-red-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Lock className="w-12 h-12 text-red-500" />
+                <div className="w-20 h-20 bg-gradient-to-br from-red-500/20 to-red-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Lock className="w-10 h-10 text-red-500" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">No hay contenido premium disponible</h3>
-                <p className="text-slate-400 mb-8">Mejora tu suscripción para acceder a contenido exclusivo</p>
+                <h3 className="text-xl font-bold text-white mb-2">No hay contenido premium disponible</h3>
+                <p className="text-sm text-slate-400 mb-6">Mejora tu suscripción para acceder a contenido exclusivo</p>
                 <Link
                   to="/subscriptions"
-                  className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105"
+                  className="inline-flex items-center justify-center px-6 py-3 text-base font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105"
                 >
-                  <Crown className="w-5 h-5 mr-2" />
+                  <Crown className="w-4 h-4 mr-2" />
                   <span>Ver Planes Premium</span>
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </motion.div>
             ) : (
@@ -257,8 +257,8 @@ const PremiumContent = () => {
                 animate={{ opacity: 1 }}
                 className={
                   viewMode === 'grid'
-                    ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'
-                    : 'space-y-4'
+                    ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'
+                    : 'space-y-3'
                 }
               >
                 {filteredContent.map((item, index) => (
@@ -273,25 +273,25 @@ const PremiumContent = () => {
                       <div className="relative aspect-video bg-slate-800/50 overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-br from-red-500/30 to-red-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center group-hover:scale-125 transition-transform duration-500 shadow-2xl shadow-red-500/50">
-                            <Play className="w-10 h-10 text-white" fill="white" />
+                          <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center group-hover:scale-125 transition-transform duration-500 shadow-2xl shadow-red-500/50">
+                            <Play className="w-8 h-8 text-white" fill="white" />
                           </div>
                         </div>
 
-                        <div className="absolute top-3 left-3 flex items-center space-x-1 bg-gradient-to-r from-red-500 to-red-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg">
+                        <div className="absolute top-2 left-2 flex items-center space-x-1 bg-gradient-to-r from-red-500 to-red-600 text-white px-2 py-1 rounded-lg text-xs font-bold shadow-lg">
                           <Crown className="w-3 h-3" />
                           <span>Premium</span>
                         </div>
 
                         {item.duration && (
-                          <div className="absolute bottom-3 right-3 flex items-center space-x-1 bg-slate-950/80 backdrop-blur-sm text-white px-2 py-1 rounded-lg text-xs font-semibold">
+                          <div className="absolute bottom-2 right-2 flex items-center space-x-1 bg-slate-950/80 backdrop-blur-sm text-white px-2 py-1 rounded-lg text-xs font-semibold">
                             <Clock className="w-3 h-3" />
                             <span>{item.duration}</span>
                           </div>
                         )}
                       </div>
 
-                      <div className="p-6">
+                      <div className="p-4">
                         <div className="flex items-center space-x-2 mb-3">
                           <div className="flex items-center space-x-1 bg-slate-800/50 px-2 py-1 rounded-lg text-xs font-semibold text-red-400">
                             {getTypeIcon(item.content_type)}
@@ -306,14 +306,14 @@ const PremiumContent = () => {
                           </div>
                         </div>
 
-                        <h3 className="font-bold text-lg mb-2 text-white group-hover:text-red-400 transition-colors line-clamp-2">
+                        <h3 className="font-bold text-base mb-2 text-white group-hover:text-red-400 transition-colors line-clamp-2">
                           {item.title}
                         </h3>
-                        <p className="text-slate-400 text-sm line-clamp-2 mb-4">
+                        <p className="text-slate-400 text-sm line-clamp-2 mb-3">
                           {item.description}
                         </p>
 
-                        <div className="flex items-center justify-between pt-4 border-t border-slate-800/50">
+                        <div className="flex items-center justify-between pt-3 border-t border-slate-800/50">
                           <div className="flex items-center space-x-2 text-slate-500 text-xs">
                             <Calendar className="w-3 h-3" />
                             <span>Actualizado</span>
@@ -334,21 +334,21 @@ const PremiumContent = () => {
                       className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500 cursor-pointer"
                     >
                       <div className="flex flex-col sm:flex-row">
-                        <div className="relative w-full sm:w-72 aspect-video sm:aspect-auto bg-slate-800/50 overflow-hidden flex-shrink-0">
+                        <div className="relative w-full sm:w-64 aspect-video sm:aspect-auto bg-slate-800/50 overflow-hidden flex-shrink-0">
                           <div className="absolute inset-0 bg-gradient-to-br from-red-500/30 to-red-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center group-hover:scale-125 transition-transform duration-500 shadow-2xl shadow-red-500/50">
-                              <Play className="w-10 h-10 text-white" fill="white" />
+                            <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center group-hover:scale-125 transition-transform duration-500 shadow-2xl shadow-red-500/50">
+                              <Play className="w-8 h-8 text-white" fill="white" />
                             </div>
                           </div>
 
-                          <div className="absolute top-3 left-3 flex items-center space-x-1 bg-gradient-to-r from-red-500 to-red-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg">
+                          <div className="absolute top-2 left-2 flex items-center space-x-1 bg-gradient-to-r from-red-500 to-red-600 text-white px-2 py-1 rounded-lg text-xs font-bold shadow-lg">
                             <Crown className="w-3 h-3" />
                             <span>Premium</span>
                           </div>
                         </div>
 
-                        <div className="flex-1 p-6">
+                        <div className="flex-1 p-4">
                           <div className="flex items-center space-x-2 mb-3">
                             <div className="flex items-center space-x-1 bg-slate-800/50 px-2 py-1 rounded-lg text-xs font-semibold text-red-400">
                               {getTypeIcon(item.content_type)}
@@ -363,14 +363,14 @@ const PremiumContent = () => {
                             </div>
                           </div>
 
-                          <h3 className="font-bold text-xl text-white group-hover:text-red-400 transition-colors mb-2">
+                          <h3 className="font-bold text-lg text-white group-hover:text-red-400 transition-colors mb-2">
                             {item.title}
                           </h3>
-                          <p className="text-slate-400 text-sm line-clamp-2 mb-4">
+                          <p className="text-slate-400 text-sm line-clamp-2 mb-3">
                             {item.description}
                           </p>
 
-                          <div className="flex items-center justify-between pt-4 border-t border-slate-800/50">
+                          <div className="flex items-center justify-between pt-3 border-t border-slate-800/50">
                             <div className="flex items-center space-x-4 text-slate-500 text-sm">
                               <div className="flex items-center space-x-1">
                                 <Clock className="w-4 h-4" />
@@ -381,7 +381,7 @@ const PremiumContent = () => {
                                 <span>0 vistas</span>
                               </div>
                             </div>
-                            <button className="px-6 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-red-500/50 transition-all">
+                            <button className="px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-red-500/50 transition-all text-sm">
                               Acceder
                             </button>
                           </div>
