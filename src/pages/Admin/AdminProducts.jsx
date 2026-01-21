@@ -258,10 +258,10 @@ const AdminProducts = () => {
           </div>
 
           {/* Filters */}
-          <div className="mb-6 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6">
-            <div className="flex flex-col lg:flex-row gap-4">
+          <div className="mb-6 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6">
+            <div className="flex flex-col gap-4 sm:flex-row">
               {/* Search */}
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <div className="relative">
                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                   <input
@@ -275,7 +275,7 @@ const AdminProducts = () => {
               </div>
 
               {/* Type Filter */}
-              <div className="w-full lg:w-64">
+              <div className="w-full sm:w-64">
                 <select
                   value={filterType}
                   onChange={(e) => setFilterType(e.target.value)}
@@ -291,7 +291,7 @@ const AdminProducts = () => {
               </div>
 
               {/* Status Filter */}
-              <div className="w-full lg:w-48">
+              <div className="w-full sm:w-48">
                 <select
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
@@ -334,7 +334,7 @@ const AdminProducts = () => {
               <p className="text-slate-500">No se encontraron productos que coincidan con los filtros aplicados.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {products.map((product, index) => (
                 <motion.div
                   key={product.id}
@@ -361,7 +361,7 @@ const AdminProducts = () => {
                     <div className="absolute top-3 left-3">
                       <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold ${getProductTypeColor(product.product_type)}`}>
                         {getProductTypeIcon(product.product_type)}
-                        <span>{formatProductType(product.product_type)}</span>
+                        <span className="hidden sm:inline">{formatProductType(product.product_type)}</span>
                       </div>
                     </div>
 
@@ -378,8 +378,8 @@ const AdminProducts = () => {
                   </div>
 
                   {/* Product Info */}
-                  <div className="p-6">
-                    <h3 className="text-white font-bold text-lg mb-2 line-clamp-2 group-hover:text-red-400 transition-colors">
+                  <div className="p-4 sm:p-6">
+                    <h3 className="text-white font-bold text-base sm:text-lg mb-2 line-clamp-2 group-hover:text-red-400 transition-colors">
                       {product.name}
                     </h3>
 
@@ -390,7 +390,7 @@ const AdminProducts = () => {
                     {/* Price */}
                     <div className="flex items-center gap-2 mb-4">
                       <DollarSign className="w-5 h-5 text-green-400" />
-                      <span className="text-green-400 font-bold text-xl">
+                      <span className="text-green-400 font-bold text-lg sm:text-xl">
                         {formatPrice(product.price)}
                       </span>
                     </div>
@@ -406,7 +406,7 @@ const AdminProducts = () => {
                     {/* Date */}
                     <div className="flex items-center gap-2 text-sm text-slate-500 mb-4">
                       <Calendar className="w-4 h-4" />
-                      <span>{formatDate(product.created_at)}</span>
+                      <span className="text-xs sm:text-sm">{formatDate(product.created_at)}</span>
                     </div>
 
                     {/* Actions */}
@@ -473,7 +473,7 @@ const AdminProducts = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+            className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto"
           >
             <h3 className="text-xl font-bold text-white mb-4">Crear Nuevo Producto</h3>
             <ProductForm onSubmit={handleCreateProduct} onCancel={() => setShowCreateModal(false)} />
@@ -487,7 +487,7 @@ const AdminProducts = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+            className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto"
           >
             <h3 className="text-xl font-bold text-white mb-4">Editar Producto</h3>
             <ProductForm
@@ -564,7 +564,7 @@ return (
       />
     </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
         <label className="block text-sm font-semibold text-slate-300 mb-2">Precio (COP)</label>
         <input

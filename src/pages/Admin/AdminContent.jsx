@@ -237,10 +237,10 @@ const AdminContent = () => {
           </div>
 
           {/* Filters */}
-          <div className="mb-6 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6">
-            <div className="flex flex-col lg:flex-row gap-4">
+          <div className="mb-6 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6">
+            <div className="flex flex-col gap-4 sm:flex-row">
               {/* Search */}
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <div className="relative">
                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                   <input
@@ -254,7 +254,7 @@ const AdminContent = () => {
               </div>
 
               {/* Type Filter */}
-              <div className="w-full lg:w-48">
+              <div className="w-full sm:w-48">
                 <select
                   value={filterType}
                   onChange={(e) => setFilterType(e.target.value)}
@@ -269,7 +269,7 @@ const AdminContent = () => {
               </div>
 
               {/* Status Filter */}
-              <div className="w-full lg:w-48">
+              <div className="w-full sm:w-48">
                 <select
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
@@ -313,7 +313,7 @@ const AdminContent = () => {
               <p className="text-slate-500">No se encontró contenido que coincida con los filtros aplicados.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {content.map((item, index) => (
                 <motion.div
                   key={item.id}
@@ -364,8 +364,8 @@ const AdminContent = () => {
                   </div>
 
                   {/* Content Info */}
-                  <div className="p-6">
-                    <h3 className="text-white font-bold text-lg mb-2 line-clamp-2 group-hover:text-red-400 transition-colors">
+                  <div className="p-4 sm:p-6">
+                    <h3 className="text-white font-bold text-base sm:text-lg mb-2 line-clamp-2 group-hover:text-red-400 transition-colors">
                       {item.title}
                     </h3>
 
@@ -387,7 +387,7 @@ const AdminContent = () => {
                       </div>
                       <div className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
-                        <span>{formatDate(item.created_at)}</span>
+                        <span className="text-xs sm:text-sm">{formatDate(item.created_at)}</span>
                       </div>
                     </div>
 
@@ -465,7 +465,7 @@ const AdminContent = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+            className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto"
           >
             <h3 className="text-xl font-bold text-white mb-4">Crear Nuevo Contenido</h3>
             <ContentForm onSubmit={handleCreateContent} onCancel={() => setShowCreateModal(false)} />
@@ -479,7 +479,7 @@ const AdminContent = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+            className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto"
           >
             <h3 className="text-xl font-bold text-white mb-4">Editar Contenido</h3>
             <ContentForm
@@ -534,121 +534,121 @@ const removeTag = (tagToRemove) => {
 
 return (
   <form onSubmit={handleSubmit} className="space-y-4">
-    <div>
-      <label className="block text-sm font-semibold text-slate-300 mb-2">Título</label>
-      <input
-        type="text"
-        value={formData.title}
-        onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-        className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-        required
-      />
-    </div>
+   <div>
+     <label className="block text-sm font-semibold text-slate-300 mb-2">Título</label>
+     <input
+       type="text"
+       value={formData.title}
+       onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+       className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+       required
+     />
+   </div>
 
-    <div>
-      <label className="block text-sm font-semibold text-slate-300 mb-2">Descripción</label>
-      <textarea
-        value={formData.description}
-        onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-        rows={3}
-        className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-      />
-    </div>
+   <div>
+     <label className="block text-sm font-semibold text-slate-300 mb-2">Descripción</label>
+     <textarea
+       value={formData.description}
+       onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+       rows={3}
+       className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+     />
+   </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div>
-        <label className="block text-sm font-semibold text-slate-300 mb-2">Tipo de Contenido</label>
-        <select
-          value={formData.content_type}
-          onChange={(e) => setFormData(prev => ({ ...prev, content_type: e.target.value }))}
-          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-        >
-          <option value="video">Video</option>
-          <option value="image">Imagen</option>
-          <option value="short">Short</option>
-          <option value="post">Post</option>
-        </select>
-      </div>
+   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+     <div>
+       <label className="block text-sm font-semibold text-slate-300 mb-2">Tipo de Contenido</label>
+       <select
+         value={formData.content_type}
+         onChange={(e) => setFormData(prev => ({ ...prev, content_type: e.target.value }))}
+         className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+       >
+         <option value="video">Video</option>
+         <option value="image">Imagen</option>
+         <option value="short">Short</option>
+         <option value="post">Post</option>
+       </select>
+     </div>
 
-      <div>
-        <label className="block text-sm font-semibold text-slate-300 mb-2">Estado</label>
-        <select
-          value={formData.is_published ? 'published' : 'draft'}
-          onChange={(e) => setFormData(prev => ({ ...prev, is_published: e.target.value === 'published' }))}
-          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-        >
-          <option value="published">Publicado</option>
-          <option value="draft">Borrador</option>
-        </select>
-      </div>
-    </div>
+     <div>
+       <label className="block text-sm font-semibold text-slate-300 mb-2">Estado</label>
+       <select
+         value={formData.is_published ? 'published' : 'draft'}
+         onChange={(e) => setFormData(prev => ({ ...prev, is_published: e.target.value === 'published' }))}
+         className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+       >
+         <option value="published">Publicado</option>
+         <option value="draft">Borrador</option>
+       </select>
+     </div>
+   </div>
 
-    <div>
-      <label className="block text-sm font-semibold text-slate-300 mb-2">Adjuntar Archivo</label>
-      <ContentUpload />
-    </div>
+   <div>
+     <label className="block text-sm font-semibold text-slate-300 mb-2">Adjuntar Archivo</label>
+     <ContentUpload />
+   </div>
 
-    <div>
-      <label className="block text-sm font-semibold text-slate-300 mb-2">Tags</label>
-      <div className="flex flex-wrap gap-2 mb-2">
-        {formData.tags.map((tag, index) => (
-          <span
-            key={index}
-            className="inline-flex items-center gap-2 px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm"
-          >
-            {tag}
-            <button
-              type="button"
-              onClick={() => removeTag(tag)}
-              className="hover:text-red-300"
-            >
-              ×
-            </button>
-          </span>
-        ))}
-      </div>
-      <input
-        type="text"
-        placeholder="Agregar tag y presionar Enter"
-        onKeyPress={(e) => {
-          if (e.key === 'Enter') {
-            e.preventDefault();
-            addTag(e.target.value.trim());
-            e.target.value = '';
-          }
-        }}
-        className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-      />
-    </div>
+   <div>
+     <label className="block text-sm font-semibold text-slate-300 mb-2">Tags</label>
+     <div className="flex flex-wrap gap-2 mb-2">
+       {formData.tags.map((tag, index) => (
+         <span
+           key={index}
+           className="inline-flex items-center gap-2 px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm"
+         >
+           {tag}
+           <button
+             type="button"
+             onClick={() => removeTag(tag)}
+             className="hover:text-red-300"
+           >
+             ×
+           </button>
+         </span>
+       ))}
+     </div>
+     <input
+       type="text"
+       placeholder="Agregar tag y presionar Enter"
+       onKeyPress={(e) => {
+         if (e.key === 'Enter') {
+           e.preventDefault();
+           addTag(e.target.value.trim());
+           e.target.value = '';
+         }
+       }}
+       className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+     />
+   </div>
 
-    <div className="flex items-center gap-3">
-      <label className="flex items-center gap-2 cursor-pointer">
-        <input
-          type="checkbox"
-          checked={formData.is_premium}
-          onChange={(e) => setFormData(prev => ({ ...prev, is_premium: e.target.checked }))}
-          className="rounded border-slate-600 text-red-500 focus:ring-red-500"
-        />
-        <span className="text-sm font-semibold text-slate-300">Contenido Premium</span>
-      </label>
-    </div>
+   <div className="flex items-center gap-3">
+     <label className="flex items-center gap-2 cursor-pointer">
+       <input
+         type="checkbox"
+         checked={formData.is_premium}
+         onChange={(e) => setFormData(prev => ({ ...prev, is_premium: e.target.checked }))}
+         className="rounded border-slate-600 text-red-500 focus:ring-red-500"
+       />
+       <span className="text-sm font-semibold text-slate-300">Contenido Premium</span>
+     </label>
+   </div>
 
-    <div className="flex gap-3 mt-6">
-      <button
-        type="submit"
-        className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl transition-all duration-300"
-      >
-        {content ? 'Actualizar' : 'Crear'} Contenido
-      </button>
-      <button
-        type="button"
-        onClick={onCancel}
-        className="px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-slate-400 hover:text-white transition-colors"
-      >
-        Cancelar
-      </button>
-    </div>
-  </form>
+   <div className="flex gap-3 mt-6">
+     <button
+       type="submit"
+       className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl transition-all duration-300"
+     >
+       {content ? 'Actualizar' : 'Crear'} Contenido
+     </button>
+     <button
+       type="button"
+       onClick={onCancel}
+       className="px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-slate-400 hover:text-white transition-colors"
+     >
+       Cancelar
+     </button>
+   </div>
+ </form>
 );
 };
 

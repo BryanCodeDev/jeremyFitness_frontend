@@ -353,14 +353,14 @@ const AdminSettings = () => {
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
+                      className={`flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                         activeTab === tab.id
                           ? 'border-red-500 text-red-400'
                           : 'border-transparent text-slate-400 hover:text-white hover:border-slate-700'
                       }`}
                     >
                       {tab.icon}
-                      {tab.label}
+                      <span className="hidden sm:inline">{tab.label}</span>
                     </button>
                   ))}
                 </nav>
@@ -375,7 +375,7 @@ const AdminSettings = () => {
                       <h3 className="text-lg font-bold text-white">Configuración General</h3>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div>
                         <label className="block text-sm font-semibold text-slate-300 mb-2">Nombre del Sitio</label>
                         <input
@@ -396,7 +396,7 @@ const AdminSettings = () => {
                         />
                       </div>
 
-                      <div className="md:col-span-2">
+                      <div className="sm:col-span-2">
                         <label className="block text-sm font-semibold text-slate-300 mb-2">Descripción del Sitio</label>
                         <textarea
                           value={settings.general.siteDescription}
@@ -416,7 +416,7 @@ const AdminSettings = () => {
                       <h3 className="text-lg font-bold text-white">Configuración de Seguridad</h3>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div>
                         <label className="block text-sm font-semibold text-slate-300 mb-2">Timeout de Sesión (minutos)</label>
                         <input
@@ -475,7 +475,7 @@ const AdminSettings = () => {
                       <h3 className="text-lg font-bold text-white">Configuración de Contenido</h3>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div>
                         <label className="block text-sm font-semibold text-slate-300 mb-2">Tamaño Máximo de Archivo (MB)</label>
                         <input
@@ -532,7 +532,7 @@ const AdminSettings = () => {
                       <h3 className="text-lg font-bold text-white">Configuración de Pagos</h3>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div>
                         <label className="block text-sm font-semibold text-slate-300 mb-2">Moneda</label>
                         <select
@@ -593,7 +593,7 @@ const AdminSettings = () => {
                       <h3 className="text-lg font-bold text-white">Configuración de Notificaciones</h3>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div>
                         <label className="block text-sm font-semibold text-slate-300 mb-2">Servidor SMTP</label>
                         <input
@@ -634,7 +634,7 @@ const AdminSettings = () => {
                         />
                       </div>
 
-                      <div className="md:col-span-2">
+                      <div className="sm:col-span-2">
                         <label className="block text-sm font-semibold text-slate-300 mb-2">Email Remitente</label>
                         <input
                           type="email"
@@ -644,7 +644,7 @@ const AdminSettings = () => {
                         />
                       </div>
 
-                      <div className="md:col-span-2">
+                      <div className="sm:col-span-2">
                         <button
                           onClick={testEmailConfiguration}
                           disabled={testingEmail || !settings.notifications.emailEnabled}
@@ -693,7 +693,7 @@ const AdminSettings = () => {
                         </div>
                       )}
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                         <div>
                           <label className="block text-sm font-semibold text-slate-300 mb-2">Frecuencia de Backup</label>
                           <select

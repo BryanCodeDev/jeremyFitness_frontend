@@ -263,10 +263,10 @@ const AdminDashboard = () => {
           )}
 
           {/* Metrics Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 lg:gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-6 mb-8">
             {loading ? (
               Array.from({ length: 6 }).map((_, index) => (
-                <div key={index} className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6 animate-pulse">
+                <div key={index} className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6 animate-pulse">
                   <div className="h-6 bg-slate-800 rounded mb-4"></div>
                   <div className="h-10 bg-slate-800 rounded"></div>
                 </div>
@@ -278,7 +278,7 @@ const AdminDashboard = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6 hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-300"
+                  className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6 hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-300"
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className={`w-12 h-12 bg-gradient-to-br ${metric.color} rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
@@ -294,7 +294,7 @@ const AdminDashboard = () => {
                   <p className="text-sm font-semibold text-slate-400 mb-1">
                     {metric.label}
                   </p>
-                  <p className="text-3xl font-black text-white">
+                  <p className="text-2xl sm:text-3xl font-black text-white">
                     {metric.value}
                   </p>
                   {metric.changeLabel && (
@@ -312,7 +312,7 @@ const AdminDashboard = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6 sm:p-8"
+            className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6 lg:p-8"
           >
             <h3 className="text-xl sm:text-2xl font-bold text-white mb-6 flex items-center gap-2">
               <Activity className="w-6 h-6 text-red-500" />
@@ -326,12 +326,12 @@ const AdminDashboard = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.5 + index * 0.1 }}
                   onClick={action.action}
-                  className="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 hover:border-red-500/50 hover:bg-slate-800/70 transition-all duration-300 text-left"
+                  className="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-4 sm:p-6 hover:border-red-500/50 hover:bg-slate-800/70 transition-all duration-300 text-left"
                 >
-                  <div className={`w-14 h-14 bg-gradient-to-br ${action.color} rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                  <div className={`w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br ${action.color} rounded-xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
                     {action.icon}
                   </div>
-                  <h4 className="text-lg font-bold text-white mb-2 group-hover:text-red-400 transition-colors">
+                  <h4 className="text-base sm:text-lg font-bold text-white mb-2 group-hover:text-red-400 transition-colors">
                     {action.title}
                   </h4>
                   <p className="text-sm text-slate-400">

@@ -207,53 +207,53 @@ const Register = () => {
       >
         <div className="grid lg:grid-cols-2 gap-8 items-center">
           {/* Left side - Branding */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="hidden lg:flex flex-col justify-center space-y-8 px-8"
+            className="hidden md:flex flex-col justify-center space-y-8 px-8"
           >
             <div>
-              <h1 className="text-5xl xl:text-6xl font-black text-white mb-4 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
                 Comienza tu
                 <span className="block bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                   Transformación
                 </span>
               </h1>
-              <p className="text-xl text-slate-400 leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg text-slate-400 leading-relaxed">
                 Únete a la comunidad fitness más exclusiva y comienza a alcanzar tus objetivos con entrenamiento profesional.
               </p>
             </div>
 
             <div className="space-y-4">
               {[
-                { icon: <Shield className="w-6 h-6" />, text: "100% gratuito para empezar" },
-                { icon: <User className="w-6 h-6" />, text: "Comunidad activa de atletas" },
-                { icon: <UserPlus className="w-6 h-6" />, text: "Acceso inmediato al contenido" }
+                { icon: <Shield className="w-4 h-4 sm:w-5 sm:h-5" />, text: "100% gratuito para empezar" },
+                { icon: <User className="w-4 h-4 sm:w-5 sm:h-5" />, text: "Comunidad activa de atletas" },
+                { icon: <UserPlus className="w-4 h-4 sm:w-5 sm:h-5" />, text: "Acceso inmediato al contenido" }
               ].map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.4 + index * 0.1 }}
-                  className="flex items-center space-x-4 text-slate-300"
+                  className="flex items-center space-x-3 text-slate-300"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500/20 to-red-600/20 flex items-center justify-center text-red-500">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-red-500/20 to-red-600/20 flex items-center justify-center text-red-500">
                     {item.icon}
                   </div>
-                  <span className="text-lg">{item.text}</span>
+                  <span className="text-sm sm:text-base">{item.text}</span>
                 </motion.div>
               ))}
             </div>
 
-            <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6">
-              <p className="text-slate-300 text-sm leading-relaxed">
+            <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4">
+              <p className="text-slate-300 text-xs leading-relaxed">
                 "NackRat cambió completamente mi vida. En 6 meses logré lo que no pude en años."
               </p>
-              <div className="flex items-center space-x-3 mt-4">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-red-600"></div>
+              <div className="flex items-center space-x-3 mt-3">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-red-500 to-red-600"></div>
                 <div>
-                  <p className="text-white font-semibold text-sm">Carlos Mendoza</p>
+                  <p className="text-white font-semibold text-xs">Carlos Mendoza</p>
                   <p className="text-slate-500 text-xs">Miembro Premium</p>
                 </div>
               </div>
@@ -279,38 +279,38 @@ const Register = () => {
               </Link>
             </div>
 
-            <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-3xl p-6 md:p-8 lg:p-10 shadow-2xl">
+            <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl">
               {/* Desktop Header */}
-              <div className="hidden lg:block mb-8">
-                <Link to="/" className="inline-flex items-center justify-center space-x-3 mb-6">
-                  <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-500/30">
-                    <span className="text-white font-black text-2xl">J</span>
+              <div className="hidden md:block mb-6">
+                <Link to="/" className="inline-flex items-center justify-center space-x-3 mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-500/30">
+                    <span className="text-white font-black text-xl">J</span>
                   </div>
-                  <span className="text-2xl font-black bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
+                  <span className="text-xl font-black bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                     NackRat
                   </span>
                 </Link>
               </div>
 
-              <div className="mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              <div className="mb-6">
+                <h2 className="text-xl md:text-2xl font-bold text-white mb-2">
                   Crea tu cuenta
                 </h2>
-                <p className="text-slate-400">
+                <p className="text-sm text-slate-400">
                   Completa el formulario para comenzar tu transformación
                 </p>
               </div>
 
               {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Nombre y Apellido */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label htmlFor="firstName" className="block text-sm font-semibold text-slate-300 mb-2">
                       Nombre
                     </label>
                     <div className="relative">
-                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                       <input
                         type="text"
                         id="firstName"
@@ -319,7 +319,7 @@ const Register = () => {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         required
-                        className={`w-full pl-12 pr-4 py-3.5 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none ${
+                        className={`w-full pl-11 pr-4 py-3 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none text-sm ${
                           errors.firstName
                             ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
                             : touched.firstName && !errors.firstName
@@ -331,9 +331,9 @@ const Register = () => {
                       {touched.firstName && (
                         <div className="absolute right-4 top-1/2 -translate-y-1/2">
                           {errors.firstName ? (
-                            <XCircle className="w-5 h-5 text-red-500" />
+                            <XCircle className="w-4 h-4 text-red-500" />
                           ) : (
-                            <CheckCircle className="w-5 h-5 text-green-500" />
+                            <CheckCircle className="w-4 h-4 text-green-500" />
                           )}
                         </div>
                       )}
@@ -350,7 +350,7 @@ const Register = () => {
                       Apellido
                     </label>
                     <div className="relative">
-                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                       <input
                         type="text"
                         id="lastName"
@@ -359,7 +359,7 @@ const Register = () => {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         required
-                        className={`w-full pl-12 pr-4 py-3.5 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none ${
+                        className={`w-full pl-11 pr-4 py-3 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none text-sm ${
                           errors.lastName
                             ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
                             : touched.lastName && !errors.lastName
@@ -371,9 +371,9 @@ const Register = () => {
                       {touched.lastName && (
                         <div className="absolute right-4 top-1/2 -translate-y-1/2">
                           {errors.lastName ? (
-                            <XCircle className="w-5 h-5 text-red-500" />
+                            <XCircle className="w-4 h-4 text-red-500" />
                           ) : (
-                            <CheckCircle className="w-5 h-5 text-green-500" />
+                            <CheckCircle className="w-4 h-4 text-green-500" />
                           )}
                         </div>
                       )}
@@ -393,7 +393,7 @@ const Register = () => {
                     Nombre de Usuario
                   </label>
                   <div className="relative">
-                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                     <input
                       type="text"
                       id="username"
@@ -402,7 +402,7 @@ const Register = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       required
-                      className={`w-full pl-12 pr-4 py-3.5 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none ${
+                      className={`w-full pl-11 pr-4 py-3 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none text-sm ${
                         errors.username
                           ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
                           : touched.username && !errors.username
@@ -414,9 +414,9 @@ const Register = () => {
                     {touched.username && (
                       <div className="absolute right-4 top-1/2 -translate-y-1/2">
                         {errors.username ? (
-                          <XCircle className="w-5 h-5 text-red-500" />
+                          <XCircle className="w-4 h-4 text-red-500" />
                         ) : (
-                          <CheckCircle className="w-5 h-5 text-green-500" />
+                          <CheckCircle className="w-4 h-4 text-green-500" />
                         )}
                       </div>
                     )}

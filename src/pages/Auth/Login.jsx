@@ -191,41 +191,41 @@ const Login = () => {
       >
         <div className="grid lg:grid-cols-2 gap-8 items-center">
           {/* Left side - Branding */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="hidden lg:flex flex-col justify-center space-y-8 px-8"
+            className="hidden md:flex flex-col justify-center space-y-8 px-8"
           >
             <div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
                 Transforma tu
                 <span className="block bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                   Estilo de Vida
                 </span>
               </h1>
-              <p className="text-base sm:text-lg md:text-xl text-slate-400 leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg text-slate-400 leading-relaxed">
                 Únete a miles de personas que ya están alcanzando sus objetivos fitness con entrenamiento profesional y contenido exclusivo.
               </p>
             </div>
 
             <div className="space-y-4">
               {[
-                { icon: <Shield className="w-5 h-5 sm:w-6 sm:h-6" />, text: "Contenido premium exclusivo" },
-                { icon: <User className="w-5 h-5 sm:w-6 sm:h-6" />, text: "Planes personalizados" },
-                { icon: <LogIn className="w-5 h-5 sm:w-6 sm:h-6" />, text: "Acceso desde cualquier dispositivo" }
+                { icon: <Shield className="w-4 h-4 sm:w-5 sm:h-5" />, text: "Contenido premium exclusivo" },
+                { icon: <User className="w-4 h-4 sm:w-5 sm:h-5" />, text: "Planes personalizados" },
+                { icon: <LogIn className="w-4 h-4 sm:w-5 sm:h-5" />, text: "Acceso desde cualquier dispositivo" }
               ].map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.4 + index * 0.1 }}
-                  className="flex items-center space-x-4 text-slate-300"
+                  className="flex items-center space-x-3 text-slate-300"
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-red-500/20 to-red-600/20 flex items-center justify-center text-red-500">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-red-500/20 to-red-600/20 flex items-center justify-center text-red-500">
                     {item.icon}
                   </div>
-                  <span className="text-base sm:text-lg">{item.text}</span>
+                  <span className="text-sm sm:text-base">{item.text}</span>
                 </motion.div>
               ))}
             </div>
@@ -250,53 +250,53 @@ const Login = () => {
               </Link>
             </div>
 
-            <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-3xl p-6 md:p-8 lg:p-10 shadow-2xl">
+            <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl">
               {/* Desktop Header */}
-              <div className="hidden lg:block mb-8">
-                <Link to="/" className="inline-flex items-center justify-center space-x-3 mb-6">
-                  <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-500/30">
-                    <span className="text-white font-black text-2xl">J</span>
+              <div className="hidden md:block mb-6">
+                <Link to="/" className="inline-flex items-center justify-center space-x-3 mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-500/30">
+                    <span className="text-white font-black text-xl">J</span>
                   </div>
-                  <span className="text-2xl font-black bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
+                  <span className="text-xl font-black bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                     NackRat
                   </span>
                 </Link>
               </div>
 
-              <div className="mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              <div className="mb-6">
+                <h2 className="text-xl md:text-2xl font-bold text-white mb-2">
                   Bienvenido de vuelta
                 </h2>
-                <p className="text-slate-400">
+                <p className="text-sm text-slate-400">
                   Ingresa tus credenciales para continuar
                 </p>
               </div>
 
               {/* User Type Selector */}
               <div className="mb-6">
-                <div className="grid grid-cols-2 gap-3 p-2 bg-slate-950/50 rounded-2xl border border-slate-800/50">
+                <div className="grid grid-cols-2 gap-2 p-2 bg-slate-950/50 rounded-2xl border border-slate-800/50">
                   <button
                     type="button"
                     onClick={() => setUserType('user')}
-                    className={`flex items-center justify-center space-x-2 py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
+                    className={`flex items-center justify-center space-x-2 py-2 px-3 rounded-xl font-semibold transition-all duration-300 text-sm ${
                       userType === 'user'
                         ? 'bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg shadow-red-500/30'
                         : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
                     }`}
                   >
-                    <UserCircle className="w-5 h-5" />
+                    <UserCircle className="w-4 h-4" />
                     <span>Usuario</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => setUserType('admin')}
-                    className={`flex items-center justify-center space-x-2 py-3 px-4 rounded-xl font-semibold transition-all duration-300 ${
+                    className={`flex items-center justify-center space-x-2 py-2 px-3 rounded-xl font-semibold transition-all duration-300 text-sm ${
                       userType === 'admin'
                         ? 'bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg shadow-red-500/30'
                         : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
                     }`}
                   >
-                    <Shield className="w-5 h-5" />
+                    <Shield className="w-4 h-4" />
                     <span>Admin</span>
                   </button>
                 </div>
@@ -309,13 +309,13 @@ const Login = () => {
               </div>
 
               {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="username" className="block text-sm font-semibold text-slate-300 mb-2">
                     Usuario o Email
                   </label>
                   <div className="relative">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                     <input
                       type="text"
                       id="username"
@@ -324,7 +324,7 @@ const Login = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       required
-                      className={`w-full pl-12 pr-4 py-3.5 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none ${
+                      className={`w-full pl-11 pr-4 py-3 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none text-sm ${
                         errors.username
                           ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
                           : touched.username && !errors.username
@@ -336,9 +336,9 @@ const Login = () => {
                     {touched.username && (
                       <div className="absolute right-4 top-1/2 -translate-y-1/2">
                         {errors.username ? (
-                          <XCircle className="w-5 h-5 text-red-500" />
+                          <XCircle className="w-4 h-4 text-red-500" />
                         ) : (
-                          <CheckCircle className="w-5 h-5 text-green-500" />
+                          <CheckCircle className="w-4 h-4 text-green-500" />
                         )}
                       </div>
                     )}
@@ -356,7 +356,7 @@ const Login = () => {
                     Contraseña
                   </label>
                   <div className="relative">
-                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
                     <input
                       type={showPassword ? "text" : "password"}
                       id="password"
@@ -365,7 +365,7 @@ const Login = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       required
-                      className={`w-full pl-12 pr-12 py-3.5 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none ${
+                      className={`w-full pl-11 pr-11 py-3 bg-slate-950/50 border rounded-xl text-white placeholder-slate-500 focus:ring-2 transition-all duration-300 outline-none text-sm ${
                         errors.password
                           ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
                           : touched.password && !errors.password
@@ -377,16 +377,16 @@ const Login = () => {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-10 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
+                      className="absolute right-9 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
                     >
-                      {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
                     {touched.password && (
                       <div className="absolute right-4 top-1/2 -translate-y-1/2">
                         {errors.password ? (
-                          <XCircle className="w-5 h-5 text-red-500" />
+                          <XCircle className="w-4 h-4 text-red-500" />
                         ) : (
-                          <CheckCircle className="w-5 h-5 text-green-500" />
+                          <CheckCircle className="w-4 h-4 text-green-500" />
                         )}
                       </div>
                     )}
@@ -409,14 +409,14 @@ const Login = () => {
                       disabled={isBlocked}
                       className="w-4 h-4 rounded border-slate-700 bg-slate-950/50 text-red-500 focus:ring-red-500 focus:ring-offset-0 focus:ring-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     />
-                    <span className={`ml-2 transition-colors ${isBlocked ? 'text-slate-600' : 'text-slate-400 group-hover:text-slate-300'}`}>
+                    <span className={`ml-2 transition-colors text-xs ${isBlocked ? 'text-slate-600' : 'text-slate-400 group-hover:text-slate-300'}`}>
                       Recordarme por 30 días
                     </span>
                   </label>
 
                   <Link
                     to="/forgot-password"
-                    className={`font-semibold transition-colors ${isBlocked ? 'text-slate-600 cursor-not-allowed' : 'text-red-500 hover:text-red-400'}`}
+                    className={`font-semibold transition-colors text-xs ${isBlocked ? 'text-slate-600 cursor-not-allowed' : 'text-red-500 hover:text-red-400'}`}
                     onClick={(e) => isBlocked && e.preventDefault()}
                   >
                     ¿Olvidaste tu contraseña?
@@ -426,7 +426,7 @@ const Login = () => {
                 <button
                   type="submit"
                   disabled={isLoading || Object.keys(errors).length > 0 || isBlocked}
-                  className="w-full py-4 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-red-500/30 flex items-center justify-center space-x-2"
+                  className="w-full py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-red-500/30 flex items-center justify-center space-x-2 text-sm"
                 >
                   {isLoading ? (
                     <>
@@ -435,12 +435,12 @@ const Login = () => {
                     </>
                   ) : isBlocked ? (
                     <>
-                      <Shield className="w-5 h-5" />
+                      <Shield className="w-4 h-4" />
                       <span>Bloqueado ({Math.floor(blockTimeLeft / 60)}:{(blockTimeLeft % 60).toString().padStart(2, '0')})</span>
                     </>
                   ) : (
                     <>
-                      <LogIn className="w-5 h-5" />
+                      <LogIn className="w-4 h-4" />
                       <span>Iniciar Sesión</span>
                     </>
                   )}
@@ -448,22 +448,22 @@ const Login = () => {
               </form>
 
               {/* Divider */}
-              <div className="relative my-8">
+              <div className="relative my-6">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-slate-800/50" />
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-4 bg-slate-900/50 text-slate-500">o continúa con</span>
+                  <span className="px-4 bg-slate-900/50 text-slate-500 text-xs">o continúa con</span>
                 </div>
               </div>
 
               {/* Register link */}
               <div className="text-center">
-                <p className="text-slate-400">
+                <p className="text-sm text-slate-400">
                   ¿No tienes una cuenta?{' '}
                   <Link
                     to="/register"
-                    className="text-red-500 hover:text-red-400 font-bold transition-colors"
+                    className="text-red-500 hover:text-red-400 font-bold transition-colors text-sm"
                   >
                     Regístrate gratis
                   </Link>
@@ -472,10 +472,10 @@ const Login = () => {
             </div>
 
             {/* Back to home */}
-            <div className="text-center mt-6">
+            <div className="text-center mt-4">
               <Link
                 to="/"
-                className="inline-flex items-center space-x-2 text-slate-400 hover:text-red-500 transition-colors group"
+                className="inline-flex items-center space-x-2 text-sm text-slate-400 hover:text-red-500 transition-colors group"
               >
                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                 <span>Volver al inicio</span>

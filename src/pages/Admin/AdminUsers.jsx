@@ -245,10 +245,10 @@ const AdminUsers = () => {
           </div>
 
           {/* Filters */}
-          <div className="mb-6 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6">
-            <div className="flex flex-col lg:flex-row gap-4">
+          <div className="mb-6 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6">
+            <div className="flex flex-col gap-4 sm:flex-row">
               {/* Search */}
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <div className="relative">
                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                   <input
@@ -262,7 +262,7 @@ const AdminUsers = () => {
               </div>
 
               {/* Role Filter */}
-              <div className="w-full lg:w-48">
+              <div className="w-full sm:w-48">
                 <select
                   value={filterRole}
                   onChange={(e) => setFilterRole(e.target.value)}
@@ -276,7 +276,7 @@ const AdminUsers = () => {
               </div>
 
               {/* Subscription Filter */}
-              <div className="w-full lg:w-48">
+              <div className="w-full sm:w-48">
                 <select
                   value={filterSubscription}
                   onChange={(e) => setFilterSubscription(e.target.value)}
@@ -331,25 +331,25 @@ const AdminUsers = () => {
                 <table className="w-full">
                   <thead className="bg-slate-800/50">
                     <tr>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                      <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
                         Usuario
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                      <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
                         Rol
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                      <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
                         Suscripción
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                      <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
                         Estado
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                      <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
                         Registro
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                      <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
                         Último Login
                       </th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                      <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">
                         Acciones
                       </th>
                     </tr>
@@ -363,7 +363,7 @@ const AdminUsers = () => {
                         transition={{ delay: index * 0.05 }}
                         className="hover:bg-slate-800/30 transition-colors"
                       >
-                        <td className="px-6 py-4">
+                        <td className="px-4 sm:px-6 py-3 sm:py-4">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center">
                               <span className="text-white font-bold text-sm">
@@ -376,18 +376,18 @@ const AdminUsers = () => {
                               </div>
                               <div className="text-slate-400 text-sm flex items-center gap-1">
                                 <Mail className="w-3 h-3" />
-                                {userItem.email}
+                                <span className="hidden sm:inline">{userItem.email}</span>
                               </div>
                             </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-4 sm:px-6 py-3 sm:py-4">
                           <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold ${getRoleColor(userItem.role)}`}>
                             {getRoleIcon(userItem.role)}
                             <span className="capitalize">{userItem.role}</span>
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-4 sm:px-6 py-3 sm:py-4">
                           <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold ${getSubscriptionColor(userItem.subscription_tier)}`}>
                             {getSubscriptionIcon(userItem.subscription_tier) === 'Crown' && <Crown className="w-4 h-4" />}
                             {getSubscriptionIcon(userItem.subscription_tier) === 'Star' && <UserCheck className="w-4 h-4" />}
@@ -395,7 +395,7 @@ const AdminUsers = () => {
                             <span className="capitalize">{userItem.subscription_tier}</span>
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-4 sm:px-6 py-3 sm:py-4">
                           <div className="flex items-center gap-2">
                             {userItem.is_active ? (
                               <CheckCircle className="w-4 h-4 text-green-500" />
@@ -407,13 +407,13 @@ const AdminUsers = () => {
                             </span>
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-sm text-slate-400">
+                        <td className="px-4 sm:px-6 py-3 sm:py-4 text-sm text-slate-400">
                           {formatDate(userItem.created_at)}
                         </td>
-                        <td className="px-6 py-4 text-sm text-slate-400">
+                        <td className="px-4 sm:px-6 py-3 sm:py-4 text-sm text-slate-400">
                           {userItem.last_login_at ? formatDate(userItem.last_login_at) : 'Nunca'}
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-4 sm:px-6 py-3 sm:py-4">
                           <div className="flex items-center gap-2">
                             <button
                               onClick={() => openUserModal(userItem)}
@@ -467,266 +467,266 @@ const AdminUsers = () => {
           )}
         </motion.div>
       </div>
-
-      {/* User Edit Modal */}
-      {showUserModal && selectedUser && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6 w-full max-w-md"
+{/* User Edit Modal */}
+{showUserModal && selectedUser && (
+  <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6 w-full max-w-md"
+    >
+      <h3 className="text-xl font-bold text-white mb-4">Editar Usuario</h3>
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-semibold text-slate-300 mb-2">Rol</label>
+          <select
+            value={selectedUser.role}
+            onChange={(e) => setSelectedUser({...selectedUser, role: e.target.value})}
+            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
           >
-            <h3 className="text-xl font-bold text-white mb-4">Editar Usuario</h3>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-semibold text-slate-300 mb-2">Rol</label>
-                <select
-                  value={selectedUser.role}
-                  onChange={(e) => setSelectedUser({...selectedUser, role: e.target.value})}
-                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-                >
-                  <option value="user">Usuario</option>
-                  <option value="creator">Creador</option>
-                  <option value="admin">Administrador</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-slate-300 mb-2">Estado</label>
-                <select
-                  value={selectedUser.is_active ? 'active' : 'inactive'}
-                  onChange={(e) => setSelectedUser({...selectedUser, is_active: e.target.value === 'active'})}
-                  className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-                >
-                  <option value="active">Activo</option>
-                  <option value="inactive">Inactivo</option>
-                </select>
-              </div>
-            </div>
-            <div className="flex gap-3 mt-6">
-              <button
-                onClick={() => handleUserUpdate(selectedUser.id, {
-                  role: selectedUser.role,
-                  is_active: selectedUser.is_active
-                })}
-                className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl transition-all duration-300"
-              >
-                Guardar
-              </button>
-              <button
-                onClick={() => setShowUserModal(false)}
-                className="px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-slate-400 hover:text-white transition-colors"
-              >
-                Cancelar
-              </button>
-            </div>
-          </motion.div>
+            <option value="user">Usuario</option>
+            <option value="creator">Creador</option>
+            <option value="admin">Administrador</option>
+          </select>
         </div>
-      )}
 
-      {/* Subscription Modal */}
-      {showSubscriptionModal && selectedUser && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto"
+        <div>
+          <label className="block text-sm font-semibold text-slate-300 mb-2">Estado</label>
+          <select
+            value={selectedUser.is_active ? 'active' : 'inactive'}
+            onChange={(e) => setSelectedUser({...selectedUser, is_active: e.target.value === 'active'})}
+            className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
           >
-            <h3 className="text-xl font-bold text-white mb-4">
-              Gestionar Suscripción - {selectedUser.display_name}
-            </h3>
-
-            <div className="mb-4 p-4 bg-slate-800/50 rounded-xl">
-              <p className="text-sm text-slate-400 mb-2">Suscripción Actual</p>
-              <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold ${getSubscriptionColor(selectedUser.subscription_tier)}`}>
-                {getSubscriptionIcon(selectedUser.subscription_tier) === 'Crown' && <Crown className="w-4 h-4" />}
-                {getSubscriptionIcon(selectedUser.subscription_tier) === 'Star' && <UserCheck className="w-4 h-4" />}
-                {getSubscriptionIcon(selectedUser.subscription_tier) === 'Shield' && <UserX className="w-4 h-4" />}
-                <span className="capitalize">{selectedUser.subscription_tier}</span>
-                {selectedUser.subscription_duration_months > 0 && (
-                  <span className="text-xs">({selectedUser.subscription_duration_months} meses)</span>
-                )}
-              </div>
-            </div>
-
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              const formData = new FormData(e.target);
-              const subscription_tier = formData.get('subscription_tier');
-              const duration_months = parseInt(formData.get('duration_months'));
-              const payment_method = formData.get('payment_method');
-              const payment_reference = formData.get('payment_reference');
-              const notes = formData.get('notes');
-
-              handleSubscriptionUpdate(selectedUser.id, {
-                subscription_tier,
-                duration_months: subscription_tier === 'free' ? 0 : duration_months,
-                payment_method,
-                payment_reference,
-                notes
-              });
-            }} onChange={(e) => {
-              // Calcular precio automáticamente cuando cambian los campos
-              const form = e.target.form || e.target.closest('form');
-              if (form) {
-                const tier = form.querySelector('select[name="subscription_tier"]').value;
-                const duration = parseInt(form.querySelector('select[name="duration_months"]').value);
-                let price = 0;
-                if (tier === 'premium') {
-                  price = 60000 * duration;
-                } else if (tier === 'vip') {
-                  price = 120000 * duration;
-                }
-                const priceElement = form.querySelector('#price-preview');
-                if (priceElement) {
-                  priceElement.textContent = '$' + price.toLocaleString() + ' COP';
-                }
-              }
-            }}>
-              <div className="space-y-4">
-                {/* Plan Selection */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-300 mb-2">Plan de Suscripción</label>
-                  <select
-                    name="subscription_tier"
-                    defaultValue={selectedUser.subscription_tier}
-                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-                    required
-                  >
-                    <option value="free">Gratuito</option>
-                    <option value="premium">Premium</option>
-                    <option value="vip">VIP</option>
-                  </select>
-                </div>
-
-                {/* Duration Selection (only for paid plans) */}
-                <div id="duration-section">
-                  <label className="block text-sm font-semibold text-slate-300 mb-2">Duración</label>
-                  <select
-                    name="duration_months"
-                    defaultValue={selectedUser.subscription_duration_months || 1}
-                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-                  >
-                    <option value="1">1 mes</option>
-                    <option value="3">3 meses</option>
-                    <option value="6">6 meses</option>
-                    <option value="12">12 meses</option>
-                  </select>
-                </div>
-
-                {/* Payment Method */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-300 mb-2">Método de Pago</label>
-                  <select
-                    name="payment_method"
-                    defaultValue="whatsapp"
-                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-                  >
-                    <option value="whatsapp">WhatsApp</option>
-                    <option value="transfer">Transferencia</option>
-                    <option value="cash">Efectivo</option>
-                    <option value="other">Otro</option>
-                  </select>
-                </div>
-
-                {/* Payment Reference */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-300 mb-2">Referencia de Pago</label>
-                  <input
-                    type="text"
-                    name="payment_reference"
-                    placeholder="Número de comprobante, referencia, etc."
-                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-                  />
-                </div>
-
-                {/* Notes */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-300 mb-2">Notas (opcional)</label>
-                  <textarea
-                    name="notes"
-                    rows="3"
-                    placeholder="Notas adicionales sobre la transacción..."
-                    className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-red-500/20 focus:border-red-500 resize-none"
-                  />
-                </div>
-
-                {/* Price Preview */}
-                <div className="p-4 bg-slate-800/50 rounded-xl">
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-300">Total a pagar:</span>
-                    <span id="price-preview" className="text-2xl font-bold text-red-500">$0 COP</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex gap-3 mt-6">
-                <button
-                  type="submit"
-                  className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl transition-all duration-300"
-                >
-                  Actualizar Suscripción
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowSubscriptionModal(false)}
-                  className="px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-slate-400 hover:text-white transition-colors"
-                >
-                  Cancelar
-                </button>
-              </div>
-            </form>
-
-            <script dangerouslySetInnerHTML={{
-              __html: `
-                // Update price preview when form changes
-                function updatePricePreview() {
-                  const tier = document.querySelector('select[name="subscription_tier"]').value;
-                  const duration = parseInt(document.querySelector('select[name="duration_months"]').value);
-                  let price = 0;
-                  if (tier === 'premium') {
-                    price = 60000 * duration;
-                  } else if (tier === 'vip') {
-                    price = 120000 * duration;
-                  }
-                  const priceElement = document.getElementById('price-preview');
-                  if (priceElement) {
-                    priceElement.textContent = '$' + price.toLocaleString() + ' COP';
-                  }
-                }
-
-                // Show/hide duration section
-                function updateDurationVisibility() {
-                  const tier = document.querySelector('select[name="subscription_tier"]').value;
-                  const durationSection = document.getElementById('duration-section');
-                  if (tier === 'free') {
-                    durationSection.style.display = 'none';
-                    updatePricePreview();
-                  } else {
-                    durationSection.style.display = 'block';
-                    updatePricePreview();
-                  }
-                }
-
-                // Event listeners
-                setTimeout(() => {
-                  const tierSelect = document.querySelector('select[name="subscription_tier"]');
-                  const durationSelect = document.querySelector('select[name="duration_months"]');
-
-                  if (tierSelect) {
-                    tierSelect.addEventListener('change', updateDurationVisibility);
-                  }
-                  if (durationSelect) {
-                    durationSelect.addEventListener('change', updatePricePreview);
-                  }
-
-                  // Initial update
-                  updateDurationVisibility();
-                }, 100);
-              `
-            }} />
-          </motion.div>
+            <option value="active">Activo</option>
+            <option value="inactive">Inactivo</option>
+          </select>
         </div>
-      )}
+      </div>
+      <div className="flex gap-3 mt-6">
+        <button
+          onClick={() => handleUserUpdate(selectedUser.id, {
+            role: selectedUser.role,
+            is_active: selectedUser.is_active
+          })}
+          className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl transition-all duration-300"
+        >
+          Guardar
+        </button>
+        <button
+          onClick={() => setShowUserModal(false)}
+          className="px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-slate-400 hover:text-white transition-colors"
+        >
+          Cancelar
+        </button>
+      </div>
+    </motion.div>
+  </div>
+)}
+
+{/* Subscription Modal */}
+{showSubscriptionModal && selectedUser && (
+  <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto"
+    >
+      <h3 className="text-xl font-bold text-white mb-4">
+        Gestionar Suscripción - {selectedUser.display_name}
+      </h3>
+
+      <div className="mb-4 p-4 bg-slate-800/50 rounded-xl">
+        <p className="text-sm text-slate-400 mb-2">Suscripción Actual</p>
+        <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold ${getSubscriptionColor(selectedUser.subscription_tier)}`}>
+          {getSubscriptionIcon(selectedUser.subscription_tier) === 'Crown' && <Crown className="w-4 h-4" />}
+          {getSubscriptionIcon(selectedUser.subscription_tier) === 'Star' && <UserCheck className="w-4 h-4" />}
+          {getSubscriptionIcon(selectedUser.subscription_tier) === 'Shield' && <UserX className="w-4 h-4" />}
+          <span className="capitalize">{selectedUser.subscription_tier}</span>
+          {selectedUser.subscription_duration_months > 0 && (
+            <span className="text-xs">({selectedUser.subscription_duration_months} meses)</span>
+          )}
+        </div>
+      </div>
+
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const subscription_tier = formData.get('subscription_tier');
+        const duration_months = parseInt(formData.get('duration_months'));
+        const payment_method = formData.get('payment_method');
+        const payment_reference = formData.get('payment_reference');
+        const notes = formData.get('notes');
+
+        handleSubscriptionUpdate(selectedUser.id, {
+          subscription_tier,
+          duration_months: subscription_tier === 'free' ? 0 : duration_months,
+          payment_method,
+          payment_reference,
+          notes
+        });
+      }} onChange={(e) => {
+        // Calcular precio automáticamente cuando cambian los campos
+        const form = e.target.form || e.target.closest('form');
+        if (form) {
+          const tier = form.querySelector('select[name="subscription_tier"]').value;
+          const duration = parseInt(form.querySelector('select[name="duration_months"]').value);
+          let price = 0;
+          if (tier === 'premium') {
+            price = 60000 * duration;
+          } else if (tier === 'vip') {
+            price = 120000 * duration;
+          }
+          const priceElement = form.querySelector('#price-preview');
+          if (priceElement) {
+            priceElement.textContent = '$' + price.toLocaleString() + ' COP';
+          }
+        }
+      }}>
+        <div className="space-y-4">
+          {/* Plan Selection */}
+          <div>
+            <label className="block text-sm font-semibold text-slate-300 mb-2">Plan de Suscripción</label>
+            <select
+              name="subscription_tier"
+              defaultValue={selectedUser.subscription_tier}
+              className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+              required
+            >
+              <option value="free">Gratuito</option>
+              <option value="premium">Premium</option>
+              <option value="vip">VIP</option>
+            </select>
+          </div>
+
+          {/* Duration Selection (only for paid plans) */}
+          <div id="duration-section">
+            <label className="block text-sm font-semibold text-slate-300 mb-2">Duración</label>
+            <select
+              name="duration_months"
+              defaultValue={selectedUser.subscription_duration_months || 1}
+              className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+            >
+              <option value="1">1 mes</option>
+              <option value="3">3 meses</option>
+              <option value="6">6 meses</option>
+              <option value="12">12 meses</option>
+            </select>
+          </div>
+
+          {/* Payment Method */}
+          <div>
+            <label className="block text-sm font-semibold text-slate-300 mb-2">Método de Pago</label>
+            <select
+              name="payment_method"
+              defaultValue="whatsapp"
+              className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+            >
+              <option value="whatsapp">WhatsApp</option>
+              <option value="transfer">Transferencia</option>
+              <option value="cash">Efectivo</option>
+              <option value="other">Otro</option>
+            </select>
+          </div>
+
+          {/* Payment Reference */}
+          <div>
+            <label className="block text-sm font-semibold text-slate-300 mb-2">Referencia de Pago</label>
+            <input
+              type="text"
+              name="payment_reference"
+              placeholder="Número de comprobante, referencia, etc."
+              className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+            />
+          </div>
+
+          {/* Notes */}
+          <div>
+            <label className="block text-sm font-semibold text-slate-300 mb-2">Notas (opcional)</label>
+            <textarea
+              name="notes"
+              rows="3"
+              placeholder="Notas adicionales sobre la transacción..."
+              className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white placeholder-slate-500 focus:ring-2 focus:ring-red-500/20 focus:border-red-500 resize-none"
+            />
+          </div>
+
+          {/* Price Preview */}
+          <div className="p-4 bg-slate-800/50 rounded-xl">
+            <div className="flex justify-between items-center">
+              <span className="text-slate-300">Total a pagar:</span>
+              <span id="price-preview" className="text-2xl font-bold text-red-500">$0 COP</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex gap-3 mt-6">
+          <button
+            type="submit"
+            className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold rounded-xl transition-all duration-300"
+          >
+            Actualizar Suscripción
+          </button>
+          <button
+            type="button"
+            onClick={() => setShowSubscriptionModal(false)}
+            className="px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-slate-400 hover:text-white transition-colors"
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+
+      <script dangerouslySetInnerHTML={{
+        __html: `
+          // Update price preview when form changes
+          function updatePricePreview() {
+            const tier = document.querySelector('select[name="subscription_tier"]').value;
+            const duration = parseInt(document.querySelector('select[name="duration_months"]').value);
+            let price = 0;
+            if (tier === 'premium') {
+              price = 60000 * duration;
+            } else if (tier === 'vip') {
+              price = 120000 * duration;
+            }
+            const priceElement = document.getElementById('price-preview');
+            if (priceElement) {
+              priceElement.textContent = '$' + price.toLocaleString() + ' COP';
+            }
+          }
+
+          // Show/hide duration section
+          function updateDurationVisibility() {
+            const tier = document.querySelector('select[name="subscription_tier"]').value;
+            const durationSection = document.getElementById('duration-section');
+            if (tier === 'free') {
+              durationSection.style.display = 'none';
+              updatePricePreview();
+            } else {
+              durationSection.style.display = 'block';
+              updatePricePreview();
+            }
+          }
+
+          // Event listeners
+          setTimeout(() => {
+            const tierSelect = document.querySelector('select[name="subscription_tier"]');
+            const durationSelect = document.querySelector('select[name="duration_months"]');
+
+            if (tierSelect) {
+              tierSelect.addEventListener('change', updateDurationVisibility);
+            }
+            if (durationSelect) {
+              durationSelect.addEventListener('change', updatePricePreview);
+            }
+
+            // Initial update
+            updateDurationVisibility();
+          }, 100);
+        `
+      }} />
+    </motion.div>
+  </div>
+)}
     </div>
   );
 };
