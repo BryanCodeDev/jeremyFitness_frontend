@@ -5,10 +5,10 @@ import { useAuth } from '../../utils/AuthContext';
 import { useNotification } from '../../utils/NotificationContext';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
-const ContentUpload = ({ onUploadComplete, maxSize = 500 * 1024 * 1024 }) => {
+const ContentUpload = ({ onUploadComplete, maxSize = 1024 * 1024 * 1024 }) => {
   const [uploadProgress, setUploadProgress] = useState({});
   const [isUploading, setIsUploading] = useState(false);
-  const { token } = useAuth();
+  const { token, isAdmin } = useAuth();
   const { showSuccess, showError } = useNotification();
 
   const onDrop = useCallback(async (acceptedFiles) => {
@@ -78,7 +78,7 @@ const ContentUpload = ({ onUploadComplete, maxSize = 500 * 1024 * 1024 }) => {
     },
     maxSize,
     multiple: false,
-    disabled: isUploading
+    disabled: isUploading || !isAdmin
   });
 
   const getContentType = (mimeType) => {
@@ -168,6 +168,9 @@ const ContentUpload = ({ onUploadComplete, maxSize = 500 * 1024 * 1024 }) => {
               <div className="text-sm text-gray-500">
                 <p>Soportamos: MP4, WebM, MOV (videos) • JPG, PNG, GIF, WebP (imágenes)</p>
                 <p>Tamaño máximo: {formatFileSize(maxSize)}</p>
+                {!isAdmin && (
+                  <p className="text-red-400">Solo los administradores pueden subir contenido</p>
+                )}
               </div>
             </motion.div>
           )}

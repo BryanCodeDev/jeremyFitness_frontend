@@ -498,16 +498,14 @@ const AdminContent = () => {
 
 // Content Form Component
 const ContentForm = ({ content, onSubmit, onCancel }) => {
-  const [formData, setFormData] = useState({
-    title: content?.title || '',
-    description: content?.description || '',
-    content_type: content?.content_type || 'video',
-    file_url: content?.file_url || '',
-    thumbnail_url: content?.thumbnail_url || '',
-    is_premium: content?.is_premium || false,
-    is_published: content?.is_published !== undefined ? content.is_published : true,
-    tags: content?.tags ? (Array.isArray(content.tags) ? content.tags : JSON.parse(content.tags || '[]')) : []
-  });
+const [formData, setFormData] = useState({
+  title: content?.title || '',
+  description: content?.description || '',
+  content_type: content?.content_type || 'video',
+  is_premium: content?.is_premium || false,
+  is_published: content?.is_published !== undefined ? content.is_published : true,
+  tags: content?.tags ? (Array.isArray(content.tags) ? content.tags : JSON.parse(content.tags || '[]')) : []
+});
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -584,26 +582,6 @@ const ContentForm = ({ content, onSubmit, onCancel }) => {
         </div>
       </div>
 
-      <div>
-        <label className="block text-sm font-semibold text-slate-300 mb-2">URL del Archivo</label>
-        <input
-          type="url"
-          value={formData.file_url}
-          onChange={(e) => setFormData(prev => ({ ...prev, file_url: e.target.value }))}
-          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-          required
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-semibold text-slate-300 mb-2">URL del Thumbnail</label>
-        <input
-          type="url"
-          value={formData.thumbnail_url}
-          onChange={(e) => setFormData(prev => ({ ...prev, thumbnail_url: e.target.value }))}
-          className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-        />
-      </div>
 
       <div>
         <label className="block text-sm font-semibold text-slate-300 mb-2">Tags</label>
