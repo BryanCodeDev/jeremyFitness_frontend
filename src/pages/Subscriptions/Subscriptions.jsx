@@ -188,16 +188,16 @@ const Subscriptions = () => {
           ) : null}
 
           {/* Benefits Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-5xl mx-auto mb-12">
             {benefits.map((benefit, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-slate-900/30 backdrop-blur-xl border border-slate-800/50 rounded-xl p-4 flex items-center space-x-3"
+                className="bg-slate-900/30 backdrop-blur-xl border border-slate-800/50 rounded-xl p-3 flex items-center space-x-3"
               >
-                <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center text-white flex-shrink-0">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center text-white flex-shrink-0">
                   {benefit.icon}
                 </div>
                 <p className="text-sm text-slate-300 font-medium">{benefit.text}</p>
@@ -226,7 +226,7 @@ const Subscriptions = () => {
               ))}
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 max-w-6xl mx-auto">
               {plans.map((plan, index) => {
                 const isPopular = plan.id === 'vip';
                 const isCurrent = currentSubscription?.tier === plan.id;
@@ -237,7 +237,7 @@ const Subscriptions = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className={`relative group bg-slate-900/50 backdrop-blur-xl border rounded-2xl p-8 transition-all duration-500 ${
+                    className={`relative group bg-slate-900/50 backdrop-blur-xl border rounded-2xl p-6 sm:p-8 transition-all duration-500 ${
                       isPopular
                         ? 'border-red-500/50 shadow-2xl shadow-red-500/20 lg:scale-105'
                         : 'border-slate-800/50 hover:border-red-500/30 hover:shadow-xl hover:shadow-red-500/10'
@@ -254,30 +254,30 @@ const Subscriptions = () => {
                     )}
 
                     {/* Plan Icon */}
-                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 ${
-                      isPopular 
-                        ? 'bg-gradient-to-br from-red-500 to-red-600 shadow-lg shadow-red-500/30' 
+                    <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 ${
+                      isPopular
+                        ? 'bg-gradient-to-br from-red-500 to-red-600 shadow-lg shadow-red-500/30'
                         : 'bg-slate-800/50 border border-slate-700/50'
                     } text-white transition-all duration-500 ${isPopular ? '' : 'group-hover:border-red-500/50'}`}>
                       {getPlanIcon(plan.id)}
                     </div>
 
                     {/* Plan Header */}
-                    <div className="mb-8">
-                      <h3 className="text-2xl font-black text-white mb-2">
+                    <div className="mb-6">
+                      <h3 className="text-xl sm:text-2xl font-black text-white mb-2">
                         {plan.name}
                       </h3>
-                      <div className="flex items-end mb-4">
+                      <div className="flex items-end mb-3">
                         {plan.id === 'free' ? (
-                          <span className="text-4xl font-black bg-gradient-to-r from-green-500 to-green-600 bg-clip-text text-transparent">
+                          <span className="text-3xl sm:text-4xl font-black bg-gradient-to-r from-green-500 to-green-600 bg-clip-text text-transparent">
                             Gratuito
                           </span>
                         ) : (
                           <>
-                            <span className="text-5xl font-black bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
+                            <span className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
                               ${plan.priceCOP.toLocaleString()}
                             </span>
-                            <span className="text-slate-400 text-lg ml-2 mb-2">COP/mes</span>
+                            <span className="text-slate-400 text-base sm:text-lg ml-2 mb-2">COP/mes</span>
                           </>
                         )}
                       </div>
@@ -289,13 +289,13 @@ const Subscriptions = () => {
                     </div>
 
                     {/* Features List */}
-                    <ul className="space-y-4 mb-8">
+                    <ul className="space-y-3 mb-6">
                       {plan.features.map((feature, i) => (
                         <li key={i} className="flex items-start space-x-3">
-                          <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                          <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
                             isPopular ? 'bg-red-500' : 'bg-slate-700'
                           }`}>
-                            <Check className="w-3 h-3 text-white" />
+                            <Check className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
                           </div>
                           <span className="text-slate-300 text-sm leading-relaxed">
                             {feature}
@@ -307,7 +307,7 @@ const Subscriptions = () => {
                     {/* CTA Button */}
                     <button
                       onClick={() => !isCurrent && handleSubscribe(plan)}
-                      className={`w-full py-4 px-6 rounded-xl font-bold transition-all duration-300 ${
+                      className={`w-full py-3 sm:py-4 px-4 sm:px-6 rounded-xl font-bold transition-all duration-300 ${
                         isCurrent
                           ? 'bg-slate-800 text-slate-400 cursor-not-allowed border border-slate-700'
                           : isPopular
@@ -318,12 +318,12 @@ const Subscriptions = () => {
                     >
                       {isCurrent ? (
                         <span className="flex items-center justify-center space-x-2">
-                          <Shield className="w-5 h-5" />
+                          <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
                           <span>Plan Actual</span>
                         </span>
                       ) : (
                         <span className="flex items-center justify-center space-x-2">
-                          <TrendingUp className="w-5 h-5" />
+                          <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
                           <span>Suscribirse a {plan.name}</span>
                         </span>
                       )}
@@ -354,7 +354,7 @@ const Subscriptions = () => {
             </h2>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
             {[
               { icon: <Video />, title: 'Contenido HD', desc: 'Videos en alta calidad' },
               { icon: <Infinity />, title: 'Acceso Ilimitado', desc: 'Sin restricciones de tiempo' },
@@ -369,12 +369,12 @@ const Subscriptions = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl p-6 hover:border-red-500/50 transition-all duration-300"
+                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl p-4 sm:p-6 hover:border-red-500/50 transition-all duration-300"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center text-white mb-4">
-                  {React.cloneElement(item.icon, { className: 'w-6 h-6' })}
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center text-white mb-4">
+                  {React.cloneElement(item.icon, { className: 'w-5 h-5 sm:w-6 sm:h-6' })}
                 </div>
-                <h3 className="font-bold text-white mb-2">{item.title}</h3>
+                <h3 className="font-bold text-white mb-2 text-base sm:text-lg">{item.title}</h3>
                 <p className="text-sm text-slate-400">{item.desc}</p>
               </motion.div>
             ))}
@@ -403,12 +403,12 @@ const Subscriptions = () => {
             <p className="text-xl text-slate-300 mb-8">
               Nuestro equipo está listo para ayudarte a elegir el plan perfecto para tus objetivos
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105">
-                <MessageCircle className="w-5 h-5 mr-2" />
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <button className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105">
+                <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Contactar Soporte
               </button>
-              <button className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-slate-300 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl hover:bg-slate-800 hover:text-white transition-all duration-300">
+              <button className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-bold text-slate-300 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl hover:bg-slate-800 hover:text-white transition-all duration-300">
                 Ver FAQ
               </button>
             </div>

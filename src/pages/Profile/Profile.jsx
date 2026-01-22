@@ -193,7 +193,7 @@ const Profile = () => {
         <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -211,20 +211,20 @@ const Profile = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
             {/* Main Profile Card */}
             <div className="lg:col-span-2">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
-                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6 sm:p-8"
+                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6"
               >
                 {/* Profile Header */}
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-8 pb-8 border-b border-slate-800/50">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6 pb-6 border-b border-slate-800/50">
                   {/* Avatar */}
                   <div className="relative group">
-                    <div className={`w-24 h-24 sm:w-28 sm:h-28 bg-gradient-to-br ${getSubscriptionAvatarGradient(user?.subscription_tier)} rounded-2xl flex items-center justify-center text-white text-3xl sm:text-4xl font-black shadow-2xl shadow-red-500/20`}>
+                    <div className={`w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br ${getSubscriptionAvatarGradient(user?.subscription_tier)} rounded-2xl flex items-center justify-center text-white text-2xl sm:text-3xl font-black shadow-xl shadow-red-500/20`}>
                       {user?.profileImageUrl ? (
                         <img
                           src={`${process.env.REACT_APP_API_URL || (process.env.NODE_ENV === 'development'
@@ -267,10 +267,10 @@ const Profile = () => {
 
                   {/* User Info */}
                   <div className="flex-1">
-                    <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">
+                    <h2 className="text-xl sm:text-2xl font-black text-white mb-2">
                       {user?.displayName}
                     </h2>
-                    <p className="text-slate-400 mb-3 flex items-center gap-2">
+                    <p className="text-slate-400 mb-2 flex items-center gap-2 text-sm">
                       <Mail className="w-4 h-4" />
                       {user?.email}
                     </p>
@@ -283,7 +283,7 @@ const Profile = () => {
                   {/* Edit Button */}
                   <button
                     onClick={() => setIsEditing(!isEditing)}
-                    className="self-start sm:self-auto inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 hover:scale-105"
+                    className="self-start sm:self-auto inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 hover:scale-105"
                   >
                     <Edit3 className="w-4 h-4" />
                     <span className="hidden sm:inline">Editar Perfil</span>
@@ -292,10 +292,10 @@ const Profile = () => {
                 </div>
 
                 {/* Profile Details */}
-                <div className="space-y-6">
+                <div className="space-y-4">
                   {isEditing ? (
                     <div className="space-y-6">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label className="flex items-center gap-2 text-sm font-semibold text-slate-400 mb-2">
                             <User className="w-4 h-4" />
@@ -306,7 +306,7 @@ const Profile = () => {
                             name="firstName"
                             value={formData.firstName}
                             onChange={handleInputChange}
-                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                            className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                             placeholder="Tu nombre"
                           />
                         </div>
@@ -321,7 +321,7 @@ const Profile = () => {
                             name="lastName"
                             value={formData.lastName}
                             onChange={handleInputChange}
-                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                            className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                             placeholder="Tu apellido"
                           />
                         </div>
@@ -337,7 +337,7 @@ const Profile = () => {
                           name="displayName"
                           value={formData.displayName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                          className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                           placeholder="Nombre para mostrar"
                         />
                       </div>
@@ -351,24 +351,24 @@ const Profile = () => {
                           name="bio"
                           value={formData.bio}
                           onChange={handleInputChange}
-                          rows={4}
-                          className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent resize-none"
+                          rows={3}
+                          className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent resize-none"
                           placeholder="Cuéntanos algo sobre ti..."
                         />
                       </div>
 
-                      <div className="flex gap-4">
+                      <div className="flex gap-3">
                         <button
                           onClick={handleSave}
                           disabled={loading}
-                          className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl shadow-lg shadow-red-500/30 hover:shadow-red-500/50 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           <Save className="w-4 h-4" />
                           {loading ? 'Guardando...' : 'Guardar'}
                         </button>
                         <button
                           onClick={handleCancel}
-                          className="inline-flex items-center gap-2 px-6 py-3 bg-slate-700 text-white font-bold rounded-xl hover:bg-slate-600 transition-all duration-300"
+                          className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 bg-slate-700 text-white font-bold rounded-xl hover:bg-slate-600 transition-all duration-300"
                         >
                           <X className="w-4 h-4" />
                           Cancelar
@@ -376,8 +376,8 @@ const Profile = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="space-y-6">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label className="flex items-center gap-2 text-sm font-semibold text-slate-400 mb-2">
                             <User className="w-4 h-4" />
@@ -425,31 +425,31 @@ const Profile = () => {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               {/* Stats Card */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
-                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6"
+                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6"
               >
-                <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2">
                   <TrendingUp className="w-5 h-5 text-red-500" />
                   Estadísticas
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {stats.map((stat, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl hover:bg-slate-800/70 transition-colors"
+                      className="flex items-center justify-between p-3 bg-slate-800/50 rounded-xl hover:bg-slate-800/70 transition-colors"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center text-white">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center text-white">
                           {stat.icon}
                         </div>
-                        <span className="text-slate-300 font-medium">{stat.label}</span>
+                        <span className="text-slate-300 font-medium text-sm sm:text-base">{stat.label}</span>
                       </div>
-                      <span className="text-white font-bold text-lg">{stat.value}</span>
+                      <span className="text-white font-bold text-base sm:text-lg">{stat.value}</span>
                     </div>
                   ))}
                 </div>
@@ -460,29 +460,29 @@ const Profile = () => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
-                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6"
+                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6"
               >
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2">
                   <Crown className="w-5 h-5 text-red-500" />
                   Suscripción
                 </h3>
-                <div className={`bg-gradient-to-br ${getSubscriptionBadgeGradient(user?.subscription_tier)} rounded-xl p-6 mb-4`}>
+                <div className={`bg-gradient-to-br ${getSubscriptionBadgeGradient(user?.subscription_tier)} rounded-xl p-4 sm:p-6 mb-4`}>
                   <div className="flex items-center gap-2 text-white mb-2">
-                    {getSubscriptionIcon(user?.subscription_tier) === 'Crown' && <Crown className="w-5 h-5" />}
-                    {getSubscriptionIcon(user?.subscription_tier) === 'Star' && <Star className="w-5 h-5" />}
-                    {getSubscriptionIcon(user?.subscription_tier) === 'Shield' && <Shield className="w-5 h-5" />}
-                    <span className="text-2xl font-black">
+                    {getSubscriptionIcon(user?.subscription_tier) === 'Crown' && <Crown className="w-4 h-4 sm:w-5 sm:h-5" />}
+                    {getSubscriptionIcon(user?.subscription_tier) === 'Star' && <Star className="w-4 h-4 sm:w-5 sm:h-5" />}
+                    {getSubscriptionIcon(user?.subscription_tier) === 'Shield' && <Shield className="w-4 h-4 sm:w-5 sm:h-5" />}
+                    <span className="text-xl sm:text-2xl font-black">
                       Plan {getSubscriptionLabel(user?.subscription_tier)}
                     </span>
                   </div>
                   <p className="text-white/80 text-sm">
-                    {user?.subscription_tier === 'free' 
+                    {user?.subscription_tier === 'free'
                       ? 'Actualiza para desbloquear contenido exclusivo'
                       : 'Disfrutando de todos los beneficios'}
                   </p>
                 </div>
                 {user?.subscription_tier === 'free' && (
-                  <button className="w-full py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl transition-all duration-300 backdrop-blur-sm border border-white/20">
+                  <button className="w-full py-2 sm:py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl transition-all duration-300 backdrop-blur-sm border border-white/20 text-sm sm:text-base">
                     Mejorar Plan
                   </button>
                 )}
@@ -493,27 +493,27 @@ const Profile = () => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 }}
-                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6"
+                className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6"
               >
-                <h3 className="text-xl font-bold text-white mb-4">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-4">
                   Acciones Rápidas
                 </h3>
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <button
                     onClick={() => setShowPasswordModal(true)}
-                    className="w-full py-3 text-left px-4 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-300 font-medium"
+                    className="w-full py-2 sm:py-3 text-left px-3 sm:px-4 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-300 font-medium text-sm sm:text-base"
                   >
                     Cambiar contraseña
                   </button>
                   <button
                     onClick={() => setShowPrivacyModal(true)}
-                    className="w-full py-3 text-left px-4 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-300 font-medium"
+                    className="w-full py-2 sm:py-3 text-left px-3 sm:px-4 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-300 font-medium text-sm sm:text-base"
                   >
                     Configuración de privacidad
                   </button>
                   <button
                     onClick={() => setShowNotificationsModal(true)}
-                    className="w-full py-3 text-left px-4 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-300 font-medium"
+                    className="w-full py-2 sm:py-3 text-left px-3 sm:px-4 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all duration-300 font-medium text-sm sm:text-base"
                   >
                     Notificaciones
                   </button>

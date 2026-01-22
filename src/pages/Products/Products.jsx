@@ -144,7 +144,7 @@ const Products = () => {
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
               {[1, 2, 3, 4, 5, 6].map(i => (
                 <div key={i} className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden animate-pulse">
                   <div className="h-48 bg-slate-800"></div>
@@ -164,13 +164,13 @@ const Products = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-500"
+                className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden hover:border-red-500/50 hover:shadow-xl hover:shadow-red-500/20 transition-all duration-500"
               >
                 {/* Product Header */}
-                <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 p-8 flex items-center justify-center h-48">
+                <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 p-6 sm:p-8 flex items-center justify-center h-40 sm:h-48">
                   <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
-                  <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg shadow-red-500/30 relative z-10">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg shadow-red-500/30 relative z-10">
                     {product.icon}
                   </div>
 
@@ -187,8 +187,8 @@ const Products = () => {
                 </div>
 
                 {/* Product Content */}
-                <div className="p-6">
-                  <h3 className="font-bold text-xl mb-2 text-white group-hover:text-red-400 transition-colors line-clamp-1">
+                <div className="p-4 sm:p-6">
+                  <h3 className="font-bold text-lg sm:text-xl mb-2 text-white group-hover:text-red-400 transition-colors line-clamp-1">
                     {product.title}
                   </h3>
                   
@@ -220,16 +220,16 @@ const Products = () => {
                   </ul>
 
                   {/* Price & CTA */}
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-3xl font-black text-white">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                    <div className="w-full">
+                      <span className="text-2xl sm:text-3xl font-black text-white">
                         ${product.priceCOP.toLocaleString()}
                       </span>
                       <span className="text-slate-500 text-sm ml-1">COP</span>
                     </div>
                     <button
                       onClick={() => handlePurchase(product)}
-                      className="px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 hover:scale-105 flex items-center space-x-2"
+                      className="w-full sm:w-auto px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 hover:scale-105 flex items-center justify-center sm:justify-start space-x-2"
                     >
                       <Download className="w-4 h-4" />
                       <span>Comprar</span>
@@ -246,7 +246,7 @@ const Products = () => {
       {/* Stats Section */}
       <section className="py-16 bg-slate-900/30 border-y border-slate-800/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-5xl mx-auto">
             {[
               { value: '10K+', label: 'Productos Vendidos', icon: <Download className="w-5 h-5" /> },
               { value: '4.8', label: 'Rating Promedio', icon: <Star className="w-5 h-5" /> },
@@ -259,11 +259,11 @@ const Products = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="text-center bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl p-6"
+                className="text-center bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-xl p-4 sm:p-6"
               >
                 <div className="flex items-center justify-center space-x-2 text-red-500 mb-2">
                   {stat.icon}
-                  <span className="text-3xl font-black">{stat.value}</span>
+                  <span className="text-2xl sm:text-3xl font-black">{stat.value}</span>
                 </div>
                 <p className="text-sm text-slate-400 font-medium">{stat.label}</p>
               </motion.div>

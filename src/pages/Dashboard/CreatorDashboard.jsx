@@ -10,17 +10,12 @@ import {
   Users,
   DollarSign,
   TrendingUp,
-  
   Upload,
   ShoppingBag,
   BarChart3,
   Clock,
-  
   AlertCircle,
   ArrowRight,
-  
-  
-  
   Activity,
   Shield
 } from 'lucide-react';
