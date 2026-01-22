@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Contextos
@@ -83,6 +83,7 @@ const PublicRoute = ({ children }) => {
 // Layout principal
 const MainLayout = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     // Simular carga inicial
@@ -135,7 +136,7 @@ const MainLayout = ({ children }) => {
   }
 
   // Verificar si estamos en una ruta de admin
-  const isAdminRoute = window.location.pathname.startsWith('/admin');
+  const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
@@ -145,6 +146,7 @@ const MainLayout = ({ children }) => {
           {children}
         </AnimatePresence>
       </main>
+      {/* Solo mostrar footer en rutas NO admin */}
       {!isAdminRoute && <Footer />}
       <NotificationContainer />
     </div>
@@ -155,114 +157,114 @@ const MainLayout = ({ children }) => {
 function App() {
   return (
     <AuthProvider>
-        <NotificationProvider>
-          <Router future={routerFuture}>
-            <MainLayout>
-              <Routes>
-                {/* Rutas públicas */}
-                <Route path="/" element={<Home />} />
-                <Route path="/content" element={<Content />} />
-                <Route path="/products" element={<Products />} />
+      <NotificationProvider>
+        <Router future={routerFuture}>
+          <MainLayout>
+            <Routes>
+              {/* Rutas públicas */}
+              <Route path="/" element={<Home />} />
+              <Route path="/content" element={<Content />} />
+              <Route path="/products" element={<Products />} />
 
-                {/* Rutas de autenticación */}
-                <Route
-                  path="/login"
-                  element={
-                    <PublicRoute>
-                      <Login />
-                    </PublicRoute>
-                  }
-                />
-                <Route
-                  path="/register"
-                  element={
-                    <PublicRoute>
-                      <Register />
-                    </PublicRoute>
-                  }
-                />
+              {/* Rutas de autenticación */}
+              <Route
+                path="/login"
+                element={
+                  <PublicRoute>
+                    <Login />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/register"
+                element={
+                  <PublicRoute>
+                    <Register />
+                  </PublicRoute>
+                }
+              />
 
-                {/* Rutas protegidas */}
-                <Route
-                  path="/profile"
-                  element={
-                    <ProtectedRoute>
-                      <Profile />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/premium"
-                  element={
-                    <ProtectedRoute requiredSubscription={true}>
-                      <PremiumContent />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/subscriptions"
-                  element={
-                    <ProtectedRoute>
-                      <Subscriptions />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/dashboard"
-                  element={
-                    <ProtectedRoute requiredRole="creator">
-                      <CreatorDashboard />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/dashboard"
-                  element={
-                    <ProtectedRoute requiredRole="admin">
-                      <AdminDashboard />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/content"
-                  element={
-                    <ProtectedRoute requiredRole="admin">
-                      <AdminContent />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/products"
-                  element={
-                    <ProtectedRoute requiredRole="admin">
-                      <AdminProducts />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/users"
-                  element={
-                    <ProtectedRoute requiredRole="admin">
-                      <AdminUsers />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/settings"
-                  element={
-                    <ProtectedRoute requiredRole="admin">
-                      <AdminSettings />
-                    </ProtectedRoute>
-                  }
-                />
+              {/* Rutas protegidas */}
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/premium"
+                element={
+                  <ProtectedRoute requiredSubscription={true}>
+                    <PremiumContent />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/subscriptions"
+                element={
+                  <ProtectedRoute>
+                    <Subscriptions />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute requiredRole="creator">
+                    <CreatorDashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/dashboard"
+                element={
+                  <ProtectedRoute requiredRole="admin">
+                    <AdminDashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/content"
+                element={
+                  <ProtectedRoute requiredRole="admin">
+                    <AdminContent />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/products"
+                element={
+                  <ProtectedRoute requiredRole="admin">
+                    <AdminProducts />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/users"
+                element={
+                  <ProtectedRoute requiredRole="admin">
+                    <AdminUsers />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/settings"
+                element={
+                  <ProtectedRoute requiredRole="admin">
+                    <AdminSettings />
+                  </ProtectedRoute>
+                }
+              />
 
-                {/* Página 404 */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </MainLayout>
-          </Router>
-        </NotificationProvider>
-      </AuthProvider>
+              {/* Página 404 */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </MainLayout>
+        </Router>
+      </NotificationProvider>
+    </AuthProvider>
   );
 }
 
