@@ -22,15 +22,12 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
   const { logout, user } = useAuth();
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [isTablet, setIsTablet] = useState(window.innerWidth >= 768 && window.innerWidth < 1024);
 
   // Detectar cambios en el tamaño de la pantalla
   useEffect(() => {
     const handleResize = () => {
       const newIsDesktop = window.innerWidth >= 1024;
-      const newIsTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
       setIsDesktop(newIsDesktop);
-      setIsTablet(newIsTablet);
       if (newIsDesktop) {
         setIsCollapsed(false); // Reset collapsed state on desktop
       }
@@ -42,7 +39,6 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
 
   // En PC siempre mostrar el sidebar abierto y fijo
   const effectiveIsOpen = isDesktop ? true : isOpen;
-  const effectiveWidth = isDesktop ? 280 : isTablet ? 240 : isCollapsed ? 80 : 280;
 
   const menuItems = [
     {

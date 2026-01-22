@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   Dumbbell, Mail, MapPin, Phone, Heart,
-  Twitter, Facebook, Instagram, Youtube,
+  Instagram, Youtube,
   Video, ShoppingBag, CreditCard,
   HelpCircle, Shield, FileText, MessageCircle,
   Zap, Target, Users, Award, ArrowRight
