@@ -227,7 +227,7 @@ const AdminProducts = () => {
         <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="lg:ml-72 container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 relative z-10">
+      <div className="lg:ml-72 container mx-auto px-4 sm:px-6 lg:px-8 lg:pr-4 py-8 lg:py-12 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
