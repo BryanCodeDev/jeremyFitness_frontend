@@ -18,18 +18,18 @@ const NotFound = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-3xl mx-auto"
+          className="text-center max-w-2xl mx-auto"
         >
           {/* Error Icon */}
           <motion.div
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 150, damping: 15 }}
-            className="mb-8 flex justify-center"
+            className="mb-6 flex justify-center"
           >
             <div className="relative">
-              <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-2xl shadow-red-500/50">
-                <AlertCircle className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
+              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-xl shadow-red-500/50">
+                <AlertCircle className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
               </div>
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
@@ -44,9 +44,9 @@ const NotFound = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-            className="mb-6"
+            className="mb-4"
           >
-            <h1 className="text-7xl sm:text-8xl md:text-9xl font-black mb-2">
+            <h1 className="text-6xl sm:text-7xl md:text-8xl font-black mb-2">
               <span className="bg-gradient-to-r from-red-500 via-red-600 to-red-500 bg-clip-text text-transparent">
                 404
               </span>
@@ -58,13 +58,13 @@ const NotFound = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="mb-8"
+            className="mb-6"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3">
               Página no encontrada
             </h2>
-            <p className="text-base sm:text-lg text-slate-400 max-w-xl mx-auto leading-relaxed">
-              Lo sentimos, la página que estás buscando no existe o ha sido movida. 
+            <p className="text-sm sm:text-base text-slate-400 max-w-xl mx-auto leading-relaxed">
+              Lo sentimos, la página que estás buscando no existe o ha sido movida.
               Pero no te preocupes, ¡hay mucho más contenido esperándote!
             </p>
           </motion.div>
@@ -74,21 +74,21 @@ const NotFound = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-3 justify-center items-center"
           >
             <Link
               to="/"
-              className="group w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base sm:text-lg font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105"
+              className="group w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-bold text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105"
             >
-              <Home className="w-5 h-5 mr-2" />
+              <Home className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               <span>Volver al Inicio</span>
             </Link>
 
             <button
               onClick={() => window.history.back()}
-              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base sm:text-lg font-bold text-slate-300 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl hover:bg-slate-800 hover:text-white transition-all duration-300"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base font-bold text-slate-300 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl hover:bg-slate-800 hover:text-white transition-all duration-300"
             >
-              <ArrowLeft className="w-5 h-5 mr-2" />
+              <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               <span>Página Anterior</span>
             </button>
           </motion.div>
@@ -98,15 +98,15 @@ const NotFound = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.8 }}
-            className="mt-12 pt-8 border-t border-slate-800/50"
+            className="mt-10 pt-6 border-t border-slate-800/50"
           >
-            <p className="text-sm text-slate-500 mb-4">
+            <p className="text-sm text-slate-500 mb-3">
               ¿Necesitas ayuda? Intenta estas opciones:
             </p>
-            <div className="flex flex-wrap gap-3 justify-center">
+            <div className="flex flex-wrap gap-2 justify-center">
               <Link
                 to="/content"
-                className="inline-flex items-center px-4 py-2 text-sm font-semibold text-slate-300 bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-lg hover:border-red-500/50 hover:text-red-400 transition-all duration-300"
+                className="inline-flex items-center px-3 py-2 text-sm font-semibold text-slate-300 bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 rounded-lg hover:border-red-500/50 hover:text-red-400 transition-all duration-300"
               >
                 <Search className="w-4 h-4 mr-2" />
                 Explorar Contenido
