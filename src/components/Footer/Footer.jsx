@@ -24,28 +24,16 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { 
-      name: 'Twitter', 
-      icon: Twitter, 
-      href: '#',
-      color: 'hover:text-blue-400 hover:bg-blue-400/10'
-    },
-    { 
-      name: 'Facebook', 
-      icon: Facebook, 
-      href: '#',
-      color: 'hover:text-blue-500 hover:bg-blue-500/10'
-    },
-    { 
-      name: 'Instagram', 
-      icon: Instagram, 
-      href: '#',
+    {
+      name: 'Instagram',
+      icon: Instagram,
+      href: 'https://www.instagram.com/oficial_.jeremy?igsh=d2hoM2dqZnpjdDhk',
       color: 'hover:text-pink-500 hover:bg-pink-500/10'
     },
-    { 
-      name: 'YouTube', 
-      icon: Youtube, 
-      href: '#',
+    {
+      name: 'TikTok',
+      icon: Youtube,
+      href: 'https://www.tiktok.com/@oficial_.jeremy?_r=1&_t=ZS-93HheIVMVfg',
       color: 'hover:text-red-500 hover:bg-red-500/10'
     },
   ];
@@ -123,13 +111,13 @@ const Footer = () => {
                   <span className="text-sm">info@nackrat.com</span>
                 </a>
                 <a 
-                  href="tel:+1234567890" 
+                  href="tel:+573016674680"
                   className="flex items-center space-x-3 text-slate-400 hover:text-red-500 transition-colors group"
                 >
                   <div className="p-2 bg-slate-800/50 rounded-lg group-hover:bg-red-500/10 transition-colors">
                     <Phone className="w-4 h-4" />
                   </div>
-                  <span className="text-sm">+1 (234) 567-890</span>
+                  <span className="text-sm">+57 301 6674680</span>
                 </a>
                 <div className="flex items-center space-x-3 text-slate-400">
                   <div className="p-2 bg-slate-800/50 rounded-lg">

@@ -22,12 +22,15 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
   const { logout, user } = useAuth();
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isTablet, setIsTablet] = useState(window.innerWidth >= 768 && window.innerWidth < 1024);
 
   // Detectar cambios en el tamaño de la pantalla
   useEffect(() => {
     const handleResize = () => {
       const newIsDesktop = window.innerWidth >= 1024;
+      const newIsTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
       setIsDesktop(newIsDesktop);
+      setIsTablet(newIsTablet);
       if (newIsDesktop) {
         setIsCollapsed(false); // Reset collapsed state on desktop
       }
@@ -39,6 +42,7 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
 
   // En PC siempre mostrar el sidebar abierto y fijo
   const effectiveIsOpen = isDesktop ? true : isOpen;
+  const effectiveWidth = isDesktop ? 280 : isTablet ? 240 : isCollapsed ? 80 : 280;
 
   const menuItems = [
     {
@@ -104,7 +108,7 @@ const AdminSidebar = ({ isOpen, setIsOpen }) => {
           width: (isCollapsed && !isDesktop) ? 80 : 280
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed left-0 top-16 h-[calc(100vh-4rem)] bg-slate-900/95 backdrop-blur-xl border-r border-slate-800/50 z-50 flex flex-col lg:block lg:static lg:translate-x-0"
+        className="fixed left-0 top-16 h-[calc(100vh-4rem)] bg-slate-900/95 backdrop-blur-xl border-r border-slate-800/50 z-50 flex flex-col lg:block lg:static lg:translate-x-0 w-full lg:w-auto"
       >
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-slate-800/50">
