@@ -209,7 +209,7 @@ const Header = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute right-0 mt-3 w-80 bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl shadow-2xl shadow-red-500/20 overflow-hidden z-50"
+                      className="absolute right-0 mt-16 w-80 bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-2xl shadow-2xl shadow-red-500/20 overflow-hidden z-50"
                     >
                       {/* Header */}
                       <div className="p-4 bg-gradient-to-br from-red-500/15 to-red-600/15 border-b border-slate-800/50">
