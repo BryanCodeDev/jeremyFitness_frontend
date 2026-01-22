@@ -102,13 +102,13 @@ const Footer = () => {
               {/* Contact Info */}
               <div className="space-y-3 mb-6">
                 <a 
-                  href="mailto:info@nackrat.com"
+                  href="mailto:sotelojeremy16@gmail.com"
                   className="flex items-center space-x-3 text-slate-400 hover:text-red-500 transition-colors group"
                 >
                   <div className="p-2 bg-slate-800/50 rounded-lg group-hover:bg-red-500/10 transition-colors">
                     <Mail className="w-4 h-4" />
                   </div>
-                  <span className="text-sm">info@nackrat.com</span>
+                  <span className="text-sm">sotelojeremy16@gmail.com</span>
                 </a>
                 <a 
                   href="tel:+573016674680"
