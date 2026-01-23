@@ -24,7 +24,10 @@ const Content = () => {
           : 'https://jeremyfitnessbackend-production.up.railway.app/api';
         
         const response = await axios.get(`${API_BASE_URL}/content/public`, {
-          params: { type: filter === 'all' ? undefined : filter },
+          params: { 
+            type: filter === 'all' ? undefined : filter,
+            search: searchTerm || undefined 
+          },
           headers
         });
         const mappedContent = response.data.content.map(item => ({
@@ -41,13 +44,17 @@ const Content = () => {
       }
     };
 
-    loadContent();
-  }, [filter]);
+    const debounceTimer = setTimeout(() => {
+      loadContent();
+    }, 500);
 
-  const filteredContent = content.filter(item =>
+    return () => clearTimeout(debounceTimer);
+  }, [filter, searchTerm]);
+
+  const filteredContent = searchTerm ? content.filter(item =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     item.description?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  ) : content;
 
   const getContentIcon = (type) => {
     switch (type) {

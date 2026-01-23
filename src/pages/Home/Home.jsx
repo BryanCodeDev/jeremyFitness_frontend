@@ -51,12 +51,38 @@ const Home = () => {
     }
   ];
 
-  const stats = [
-    { value: '10K+', label: 'Miembros Activos', icon: <Users className="w-5 h-5" /> },
-    { value: '500+', label: 'Videos Premium', icon: <Video className="w-5 h-5" /> },
+  const [stats, setStats] = useState([
+    { value: 'Cargando...', label: 'Miembros Activos', icon: <Users className="w-5 h-5" /> },
+    { value: 'Cargando...', label: 'Videos Premium', icon: <Video className="w-5 h-5" /> },
     { value: '95%', label: 'Satisfacción', icon: <Star className="w-5 h-5" /> },
     { value: '24/7', label: 'Soporte', icon: <Award className="w-5 h-5" /> }
-  ];
+  ]);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await api.get('/admin/dashboard/metrics');
+        const data = response.data.metrics;
+        
+        setStats([
+          { value: `${data.totalUsers}+`, label: 'Miembros Activos', icon: <Users className="w-5 h-5" /> },
+          { value: `${data.totalContent}+`, label: 'Videos Premium', icon: <Video className="w-5 h-5" /> },
+          { value: '95%', label: 'Satisfacción', icon: <Star className="w-5 h-5" /> },
+          { value: '24/7', label: 'Soporte', icon: <Award className="w-5 h-5" /> }
+        ]);
+      } catch (error) {
+        console.error('Error fetching stats:', error);
+        setStats([
+          { value: '10K+', label: 'Miembros Activos', icon: <Users className="w-5 h-5" /> },
+          { value: '500+', label: 'Videos Premium', icon: <Video className="w-5 h-5" /> },
+          { value: '95%', label: 'Satisfacción', icon: <Star className="w-5 h-5" /> },
+          { value: '24/7', label: 'Soporte', icon: <Award className="w-5 h-5" /> }
+        ]);
+      }
+    };
+
+    fetchStats();
+  }, []);
 
   const handleContentClick = (item) => {
     setSelectedContent(item);
