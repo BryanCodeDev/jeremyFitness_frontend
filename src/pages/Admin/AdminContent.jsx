@@ -157,7 +157,12 @@ const AdminContent = () => {
       setShowCreateModal(false);
     } catch (error) {
       console.error('Error creating content:', error);
-      setError('Error al crear el contenido');
+      if (error.response && error.response.status === 400) {
+        const errorMessage = error.response.data.message || 'Datos inválidos para crear contenido';
+        setError(`Error 400: ${errorMessage}`);
+      } else {
+        setError('Error al crear el contenido');
+      }
     }
   };
 
