@@ -42,6 +42,10 @@ const ContentUpload = ({ onUploadComplete, maxSize = 1024 * 1024 * 1024, multipl
             if (xhr.status === 201) {
               const response = JSON.parse(xhr.responseText);
               resolve(response);
+            } else if (xhr.status === 400) {
+              const errorResponse = JSON.parse(xhr.responseText);
+              const errorMessage = errorResponse.message || 'Datos inválidos para subir contenido';
+              reject(new Error(`Error 400: ${errorMessage}`));
             } else {
               reject(new Error('Error al subir el contenido'));
             }
