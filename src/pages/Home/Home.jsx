@@ -72,6 +72,9 @@ const Home = () => {
         ]);
       } catch (error) {
         console.error('Error fetching stats:', error);
+        if (error.response && error.response.status === 401) {
+          console.log('Usuario no autorizado para ver estadísticas de admin');
+        }
         setStats([
           { value: '10K+', label: 'Miembros Activos', icon: <Users className="w-5 h-5" /> },
           { value: '500+', label: 'Videos Premium', icon: <Video className="w-5 h-5" /> },
