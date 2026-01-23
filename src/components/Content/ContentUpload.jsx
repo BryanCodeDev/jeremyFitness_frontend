@@ -5,70 +5,77 @@ import { useAuth } from '../../utils/AuthContext';
 import { useNotification } from '../../utils/NotificationContext';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
-const ContentUpload = ({ onUploadComplete, maxSize = 1024 * 1024 * 1024 }) => {
+const ContentUpload = ({ onUploadComplete, maxSize = 1024 * 1024 * 1024, multiple = false }) => {
   const [uploadProgress, setUploadProgress] = useState({});
   const [isUploading, setIsUploading] = useState(false);
+  const [previewImages, setPreviewImages] = useState([]);
   const { token, isAdmin } = useAuth();
   const { showSuccess, showError } = useNotification();
 
   const onDrop = useCallback(async (acceptedFiles) => {
-    const file = acceptedFiles[0];
-    if (!file) return;
+    if (acceptedFiles.length === 0) return;
 
     setIsUploading(true);
 
     try {
-      // Crear FormData para enviar el archivo
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('title', file.name);
-      formData.append('contentType', getContentType(file.type));
-      formData.append('description', '');
+      const uploadPromises = acceptedFiles.map(file => {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('title', file.name);
+        formData.append('contentType', getContentType(file.type));
+        formData.append('description', '');
 
-      // Simular progreso de subida
-      setUploadProgress({ [file.name]: 0 });
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
 
-      const xhr = new XMLHttpRequest();
+          // Track upload progress
+          xhr.upload.onprogress = (e) => {
+            if (e.lengthComputable) {
+              const percentComplete = (e.loaded / e.total) * 100;
+              setUploadProgress(prev => ({ ...prev, [file.name]: percentComplete }));
+            }
+          };
 
-      // Track upload progress
-      xhr.upload.onprogress = (e) => {
-        if (e.lengthComputable) {
-          const percentComplete = (e.loaded / e.total) * 100;
-          setUploadProgress({ [file.name]: percentComplete });
-        }
-      };
+          // Handle successful upload
+          xhr.onload = () => {
+            if (xhr.status === 201) {
+              const response = JSON.parse(xhr.responseText);
+              resolve(response);
+            } else {
+              reject(new Error('Error al subir el contenido'));
+            }
+          };
 
-      // Handle successful upload
-      xhr.onload = () => {
-        if (xhr.status === 201) {
-          const response = JSON.parse(xhr.responseText);
-          showSuccess('Contenido subido exitosamente');
-          onUploadComplete?.(response);
-          setUploadProgress({});
-        } else {
-          showError('Error al subir el contenido');
-        }
-        setIsUploading(false);
-      };
+          // Handle error
+          xhr.onerror = () => {
+            reject(new Error('Error de conexión al subir el contenido'));
+          };
 
-      // Handle error
-      xhr.onerror = () => {
-        showError('Error de conexión al subir el contenido');
-        setIsUploading(false);
-        setUploadProgress({});
-      };
+          // Send request
+          xhr.open('POST', `${process.env.REACT_APP_API_URL}/content`);
+          xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+          xhr.send(formData);
+        });
+      });
 
-      // Send request
-      xhr.open('POST', `${process.env.REACT_APP_API_URL}/content`);
-      xhr.setRequestHeader('Authorization', `Bearer ${token}`);
-      xhr.send(formData);
+      const responses = await Promise.all(uploadPromises);
+      showSuccess('Contenido subido exitosamente');
+      onUploadComplete?.(multiple ? responses : responses[0]);
+      setUploadProgress({});
+
+      // Generate previews for images
+      const imagePreviews = acceptedFiles
+        .filter(file => file.type.startsWith('image/'))
+        .map(file => URL.createObjectURL(file));
+      setPreviewImages(prev => [...prev, ...imagePreviews]);
 
     } catch (error) {
       console.error('Error uploading file:', error);
-      showError('Error inesperado al subir el contenido');
+      showError(error.message || 'Error inesperado al subir el contenido');
+    } finally {
       setIsUploading(false);
     }
-  }, [token, showSuccess, showError, onUploadComplete]);
+  }, [token, showSuccess, showError, onUploadComplete, multiple]);
 
   const { getRootProps, getInputProps, isDragActive, fileRejections } = useDropzone({
     onDrop,
@@ -77,7 +84,7 @@ const ContentUpload = ({ onUploadComplete, maxSize = 1024 * 1024 * 1024 }) => {
       'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.webp']
     },
     maxSize,
-    multiple: false,
+    multiple,
     disabled: isUploading || !isAdmin
   });
 

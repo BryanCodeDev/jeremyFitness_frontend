@@ -173,12 +173,14 @@ const AdminProducts = () => {
 
   const handleCreateProduct = async (productData) => {
     try {
-      await api.post('/admin/products', productData);
+      const response = await api.post('/admin/products', productData);
       loadProducts();
       setShowCreateModal(false);
+      return response.data;
     } catch (error) {
       console.error('Error creating product:', error);
       setError('Error al crear el producto');
+      throw error;
     }
   };
 
