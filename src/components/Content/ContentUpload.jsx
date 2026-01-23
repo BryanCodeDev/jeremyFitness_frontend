@@ -8,6 +8,7 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 const ContentUpload = ({ onUploadComplete, maxSize = 1024 * 1024 * 1024, multiple = false }) => {
   const [uploadProgress, setUploadProgress] = useState({});
   const [isUploading, setIsUploading] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [previewImages, setPreviewImages] = useState([]);
   const { token, isAdmin } = useAuth();
   const { showSuccess, showError } = useNotification();
