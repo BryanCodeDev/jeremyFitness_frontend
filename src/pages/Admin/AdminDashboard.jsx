@@ -16,7 +16,7 @@ import {
   RefreshCw,
   Settings,
   UserCheck,
-  Menu
+  FileText
 } from 'lucide-react';
 
 const AdminDashboard = () => {
@@ -179,9 +179,9 @@ const AdminDashboard = () => {
     },
     {
       icon: <Shield className="w-6 h-6" />,
-      title: 'Configuración',
-      description: 'Configuración del sistema',
-      color: 'from-slate-500 to-slate-600',
+      title: 'Panel de Configuración',
+      description: 'Configuración global del sistema',
+      color: 'from-orange-500 to-orange-600',
       action: () => navigate('/admin/settings')
     }
   ];
@@ -192,7 +192,7 @@ const AdminDashboard = () => {
       <AdminSidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
 
       {/* Main Content */}
-      <div className="flex-1 lg:ml-72 relative">
+      <div className="flex-1 lg:ml-70 relative">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pointer-events-none" />
         <div className="absolute inset-0 pointer-events-none">
@@ -201,20 +201,6 @@ const AdminDashboard = () => {
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 relative z-10">
-        {/* Mobile Menu Button - Solo mostrar en móviles/tablets */}
-        {!isDesktop && (
-          <button
-            onClick={() => setSidebarOpen(true)}
-            className="fixed top-20 left-4 z-30 w-12 h-12 bg-slate-900/95 backdrop-blur-xl border border-slate-800/50 rounded-xl flex items-center justify-center text-white shadow-lg"
-          >
-            <Menu className="w-6 h-6" />
-          </button>
-        )}
-
-        {/* Desktop Sidebar Spacer - Para mantener el contenido alineado */}
-        {isDesktop && (
-          <div className="hidden lg:block lg:w-72" />
-        )}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -263,7 +249,7 @@ const AdminDashboard = () => {
           )}
 
           {/* Metrics Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 mb-8">
             {loading ? (
               Array.from({ length: 6 }).map((_, index) => (
                 <div key={index} className="bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 sm:p-6 animate-pulse">

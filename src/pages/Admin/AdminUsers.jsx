@@ -27,6 +27,7 @@ const AdminUsers = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -185,6 +186,13 @@ const AdminUsers = () => {
     }
   };
 
+  // Calcular precio según plan y duración
+  const calculatePrice = (tier, duration) => {
+    if (tier === 'premium') return 60000 * duration;
+    if (tier === 'vip') return 120000 * duration;
+    return 0;
+  };
+
   const openUserModal = (user) => {
     setSelectedUser(user);
     setShowUserModal(true);
@@ -202,7 +210,7 @@ const AdminUsers = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 pt-16">
+    <div className="min-h-screen bg-slate-950 pt-16 flex">
       {/* Admin Sidebar */}
       <AdminSidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
 
@@ -213,7 +221,7 @@ const AdminUsers = () => {
         <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="lg:ml-72 container mx-auto px-4 sm:px-6 lg:px-8 lg:pr-8 py-8 lg:py-12 relative z-10">
+      <div className="flex-1 lg:ml-70 container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -583,12 +591,12 @@ const AdminUsers = () => {
         }
       }}>
         <div className="space-y-4">
-          {/* Plan Selection */}
           <div>
             <label className="block text-sm font-semibold text-slate-300 mb-2">Plan de Suscripción</label>
             <select
               name="subscription_tier"
-              defaultValue={selectedUser.subscription_tier}
+              value={selectedUser.subscription_tier || 'free'}
+              onChange={(e) => setSelectedUser({...selectedUser, subscription_tier: e.target.value})}
               className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
               required
             >
@@ -598,22 +606,25 @@ const AdminUsers = () => {
             </select>
           </div>
 
-          {/* Duration Selection (only for paid plans) */}
-          <div id="duration-section">
-            <label className="block text-sm font-semibold text-slate-300 mb-2">Duración</label>
-            <select
-              name="duration_months"
-              defaultValue={selectedUser.subscription_duration_months || 1}
-              className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
-            >
-              <option value="1">1 mes</option>
-              <option value="3">3 meses</option>
-              <option value="6">6 meses</option>
-              <option value="12">12 meses</option>
-            </select>
-          </div>
+          {/* Duración - solo para planes de pago */}
+          {selectedUser.subscription_tier !== 'free' && (
+            <div>
+              <label className="block text-sm font-semibold text-slate-300 mb-2">Duración</label>
+              <select
+                name="duration_months"
+                value={selectedUser.subscription_duration_months || 1}
+                onChange={(e) => setSelectedUser({...selectedUser, subscription_duration_months: parseInt(e.target.value)})}
+                className="w-full px-4 py-3 bg-slate-950/50 border border-slate-800/50 rounded-xl text-white focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+              >
+                <option value={1}>1 mes</option>
+                <option value={3}>3 meses</option>
+                <option value={6}>6 meses</option>
+                <option value={12}>12 meses</option>
+              </select>
+            </div>
+          )}
 
-          {/* Payment Method */}
+          {/* Método de Pago */}
           <div>
             <label className="block text-sm font-semibold text-slate-300 mb-2">Método de Pago</label>
             <select
@@ -628,7 +639,7 @@ const AdminUsers = () => {
             </select>
           </div>
 
-          {/* Payment Reference */}
+          {/* Referencia de Pago */}
           <div>
             <label className="block text-sm font-semibold text-slate-300 mb-2">Referencia de Pago</label>
             <input
@@ -639,7 +650,7 @@ const AdminUsers = () => {
             />
           </div>
 
-          {/* Notes */}
+          {/* Notas */}
           <div>
             <label className="block text-sm font-semibold text-slate-300 mb-2">Notas (opcional)</label>
             <textarea
@@ -650,11 +661,13 @@ const AdminUsers = () => {
             />
           </div>
 
-          {/* Price Preview */}
+          {/* Vista previa del precio */}
           <div className="p-4 bg-slate-800/50 rounded-xl">
             <div className="flex justify-between items-center">
               <span className="text-slate-300">Total a pagar:</span>
-              <span id="price-preview" className="text-2xl font-bold text-red-500">$0 COP</span>
+              <span className="text-2xl font-bold text-red-500">
+                ${calculatePrice(selectedUser.subscription_tier || 'free', selectedUser.subscription_duration_months || 1).toLocaleString()} COP
+              </span>
             </div>
           </div>
         </div>
@@ -675,55 +688,6 @@ const AdminUsers = () => {
           </button>
         </div>
       </form>
-
-      <script dangerouslySetInnerHTML={{
-        __html: `
-          // Update price preview when form changes
-          function updatePricePreview() {
-            const tier = document.querySelector('select[name="subscription_tier"]').value;
-            const duration = parseInt(document.querySelector('select[name="duration_months"]').value);
-            let price = 0;
-            if (tier === 'premium') {
-              price = 60000 * duration;
-            } else if (tier === 'vip') {
-              price = 120000 * duration;
-            }
-            const priceElement = document.getElementById('price-preview');
-            if (priceElement) {
-              priceElement.textContent = '$' + price.toLocaleString() + ' COP';
-            }
-          }
-
-          // Show/hide duration section
-          function updateDurationVisibility() {
-            const tier = document.querySelector('select[name="subscription_tier"]').value;
-            const durationSection = document.getElementById('duration-section');
-            if (tier === 'free') {
-              durationSection.style.display = 'none';
-              updatePricePreview();
-            } else {
-              durationSection.style.display = 'block';
-              updatePricePreview();
-            }
-          }
-
-          // Event listeners
-          setTimeout(() => {
-            const tierSelect = document.querySelector('select[name="subscription_tier"]');
-            const durationSelect = document.querySelector('select[name="duration_months"]');
-
-            if (tierSelect) {
-              tierSelect.addEventListener('change', updateDurationVisibility);
-            }
-            if (durationSelect) {
-              durationSelect.addEventListener('change', updatePricePreview);
-            }
-
-            // Initial update
-            updateDurationVisibility();
-          }, 100);
-        `
-      }} />
     </motion.div>
   </div>
 )}
