@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useAuth } from '../../utils/AuthContext';
 import { useNotification } from '../../utils/NotificationContext';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import config from '../../config';
 
 const SubscriptionStatus = () => {
   const [subscription, setSubscription] = useState(null);
@@ -22,7 +23,7 @@ const SubscriptionStatus = () => {
     }
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/subscriptions/status`, {
+      const response = await fetch(`${config.API_BASE_URL}/subscriptions/status`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -30,7 +31,7 @@ const SubscriptionStatus = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setSubscription(data.subscription);
+        setSubscription(data); // El backend devuelve tier, expiresAt, isActive directamente
       }
     } catch (error) {
       console.error('Error loading subscription status:', error);
@@ -47,7 +48,7 @@ const SubscriptionStatus = () => {
     setCanceling(true);
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/subscriptions/cancel`, {
+      const response = await fetch(`${config.API_BASE_URL}/subscriptions/cancel`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -120,7 +121,7 @@ const SubscriptionStatus = () => {
     );
   }
 
-  if (user.subscription_tier === 'free') {
+  if (user.subscriptionTier === 'free') {
     return (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -154,15 +155,15 @@ const SubscriptionStatus = () => {
       <div className="card p-6">
         <div className="text-center mb-6">
           <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold mb-4 ${
-            user.subscription_tier === 'vip'
+            user.subscriptionTier === 'vip'
               ? 'bg-secondary text-white'
               : 'bg-primary text-white'
           }`}>
-            {getTierName(user.subscription_tier)}
+            {getTierName(user.subscriptionTier)}
           </div>
 
           <h3 className="text-xl font-bold text-white mb-2">
-            Suscripción {getTierName(user.subscription_tier)}
+            Suscripción {getTierName(user.subscriptionTier)}
           </h3>
 
           {getStatusBadge(subscription?.status || 'active')}

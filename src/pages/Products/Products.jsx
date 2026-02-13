@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import { config } from '../../config';
 import {
   Dumbbell,
   BookOpen,
@@ -29,10 +30,6 @@ const Products = () => {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const API_BASE_URL = process.env.NODE_ENV === 'development'
-          ? 'http://localhost:5000/api'
-          : 'https://jeremyfitnessbackend-production.up.railway.app/api';
-        
         const categoryMap = {
           'Entrenamiento': 'workout_plan',
           'Nutrición': 'nutrition_guide',
@@ -40,7 +37,7 @@ const Products = () => {
           'Ebook': 'ebook'
         };
 
-        const response = await axios.get(`${API_BASE_URL}/products`, {
+        const response = await axios.get(`${config.API_BASE_URL}/products`, {
           params: {
             category: activeCategory !== 'Todos' ? categoryMap[activeCategory] : undefined,
             search: searchTerm || undefined

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import { config } from '../../config';
 import { Crown, Lock, Play, Dumbbell, Award, Target, Zap, TrendingUp, Video, FileText, Image, Clock, Star, ArrowRight, Filter, Search, Grid3X3, List, Calendar, Eye } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -17,12 +18,8 @@ const PremiumContent = () => {
       try {
         const token = localStorage.getItem('token');
         const headers = token ? { Authorization: `Bearer ${token}` } : {};
-        const API_BASE_URL = process.env.NODE_ENV === 'development'
-          ? 'http://localhost:5000/api'
-          : 'https://jeremyfitnessbackend-production.up.railway.app/api';
-        
-        const response = await axios.get(`${API_BASE_URL}/content/premium`, {
-          params: { category: selectedCategory === 'all' ? undefined : selectedCategory },
+        const response = await axios.get(`${config.API_BASE_URL}/content/premium`, {
+          params: { type: selectedCategory === 'all' ? undefined : selectedCategory },
           headers
         });
         setPremiumContent(response.data.content || []);

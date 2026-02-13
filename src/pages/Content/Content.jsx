@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
+import { config } from '../../config';
 import { Play, Image as ImageIcon, FileText, Clock, Crown, Filter, Search, Grid3x3, List, TrendingUp, Calendar, Eye } from 'lucide-react';
 import ContentModal from '../../components/Content/ContentModal';
 
@@ -19,11 +20,7 @@ const Content = () => {
       try {
         const token = localStorage.getItem('token');
         const headers = token ? { Authorization: `Bearer ${token}` } : {};
-        const API_BASE_URL = process.env.NODE_ENV === 'development'
-          ? 'http://localhost:5000/api'
-          : 'https://jeremyfitnessbackend-production.up.railway.app/api';
-        
-        const response = await axios.get(`${API_BASE_URL}/content/public`, {
+        const response = await axios.get(`${config.API_BASE_URL}/content/public`, {
           params: { 
             type: filter === 'all' ? undefined : filter,
             search: searchTerm || undefined 
@@ -33,6 +30,7 @@ const Content = () => {
         const mappedContent = response.data.content.map(item => ({
           ...item,
           type: item.content_type,
+          isPremium: item.is_premium, // Normalizar nombre para el frontend
           duration: item.duration ? `${Math.floor(item.duration / 60)}:${(item.duration % 60).toString().padStart(2, '0')}` : undefined
         }));
         setContent(mappedContent);

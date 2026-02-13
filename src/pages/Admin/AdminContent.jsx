@@ -512,13 +512,35 @@ const [formData, setFormData] = useState({
   is_published: content?.is_published !== undefined ? content.is_published : true,
   tags: content?.tags ? (Array.isArray(content.tags) ? content.tags : JSON.parse(content.tags || '[]')) : []
 });
+const [uploadedContent, setUploadedContent] = useState(null);
+const [isUploading, setIsUploading] = useState(false);
+
+const handleUploadComplete = (response) => {
+  if (response && response.content) {
+    setUploadedContent(response.content);
+    // Auto-fill form with uploaded content data
+    if (!formData.file_url) {
+      setFormData(prev => ({
+        ...prev,
+        file_url: response.content.fileUrl || response.content.file_url,
+        thumbnail_url: response.content.thumbnailUrl || response.content.thumbnail_url
+      }));
+    }
+  }
+};
 
 const handleSubmit = (e) => {
   e.preventDefault();
-  onSubmit({
+  // If there's uploaded content, use its URLs
+  const submitData = {
     ...formData,
-    tags: JSON.stringify(formData.tags)
-  });
+    file_url: uploadedContent?.fileUrl || formData.file_url || uploadedContent?.file_url,
+    thumbnail_url: uploadedContent?.thumbnailUrl || formData.thumbnail_url || uploadedContent?.thumbnail_url,
+    is_premium: formData.is_premium === true || formData.is_premium === 'true',
+    is_published: formData.is_published === true || formData.is_published === 'true' || formData.is_published === 'published',
+    tags: typeof formData.tags === 'string' ? formData.tags : JSON.stringify(formData.tags)
+  };
+  onSubmit(submitData);
 };
 
 const addTag = (tag) => {

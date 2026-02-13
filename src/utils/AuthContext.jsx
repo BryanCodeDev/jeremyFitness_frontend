@@ -269,7 +269,7 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated: !!user,
     isCreator: user?.role === 'creator' || user?.role === 'admin',
     isAdmin: user?.role === 'admin',
-    hasSubscription: user?.subscription_tier !== 'free',
+    hasSubscription: user?.subscriptionTier !== 'free',
     rememberMe: !!localStorage.getItem('rememberMe'),
     userType: localStorage.getItem('userType'), // Agregar userType al contexto
   };

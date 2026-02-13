@@ -19,6 +19,7 @@ import {
 import {
   getSubscriptionIcon
 } from '../../utils/subscriptionUtils';
+import config from '../../config';
 
 const Subscriptions = () => {
   const { user } = useAuth();
@@ -37,9 +38,7 @@ const Subscriptions = () => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const API_BASE_URL = process.env.NODE_ENV === 'development'
-          ? 'http://localhost:5000/api'
-          : 'https://jeremyfitnessbackend-production.up.railway.app/api';
+        const API_BASE_URL = config.API_BASE_URL;
         
         const plansResponse = await axios.get(`${API_BASE_URL}/subscriptions/plans`);
         const plansWithCOP = plansResponse.data.plans.map(plan => ({
@@ -80,9 +79,7 @@ const Subscriptions = () => {
 
   const handleSubscribe = async (plan) => {
     try {
-      const API_BASE_URL = process.env.NODE_ENV === 'development'
-        ? 'http://localhost:5000/api'
-        : 'https://jeremyfitnessbackend-production.up.railway.app/api';
+      const API_BASE_URL = config.API_BASE_URL;
       
       const response = await axios.post(
         `${API_BASE_URL}/subscriptions/generate-whatsapp-link`,
@@ -165,7 +162,7 @@ const Subscriptions = () => {
                       <div className="flex items-center space-x-2 mt-1">
                         <Shield className="w-4 h-4 text-green-500" />
                         <p className="text-green-400 font-semibold">
-                          {currentSubscription.subscription?.status === 'active' ? 'Activa' : 'Inactiva'}
+                          {currentSubscription.isActive ? 'Activa' : 'Inactiva'}
                         </p>
                       </div>
                     </div>

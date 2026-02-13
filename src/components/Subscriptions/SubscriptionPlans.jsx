@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useAuth } from '../../utils/AuthContext';
 import { useNotification } from '../../utils/NotificationContext';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import config from '../../config';
 
 const SubscriptionPlans = ({ onPlanSelect }) => {
   const [plans, setPlans] = useState([]);
@@ -19,7 +20,7 @@ const SubscriptionPlans = ({ onPlanSelect }) => {
   const loadPlans = async () => {
     try {
       // Aquí iría la llamada a la API
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/subscriptions/plans`);
+      const response = await fetch(`${config.API_BASE_URL}/subscriptions/plans`);
       const data = await response.json();
 
       setPlans(data.plans || []);
@@ -35,14 +36,14 @@ const SubscriptionPlans = ({ onPlanSelect }) => {
     if (!user) return;
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/subscriptions/status`, {
+      const response = await fetch(`${config.API_BASE_URL}/subscriptions/status`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
       const data = await response.json();
 
-      setCurrentSubscription(data.subscription);
+      setCurrentSubscription(data); // El backend devuelve tier, expiresAt, isActive directamente
     } catch (error) {
       console.error('Error loading subscription:', error);
     }
@@ -51,7 +52,7 @@ const SubscriptionPlans = ({ onPlanSelect }) => {
   const handleSubscribe = async (plan) => {
     try {
       // Crear preferencia de pago de Mercado Pago
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/subscriptions/create-payment-preference`, {
+      const response = await fetch(`${config.API_BASE_URL}/subscriptions/create-payment-preference`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -69,7 +70,7 @@ const SubscriptionPlans = ({ onPlanSelect }) => {
       if (data.initPoint) {
         // Redirigir a Mercado Pago
         window.location.href = data.initPoint;
-      } else if (data.sandboxInitPoint && process.env.REACT_APP_ENV === 'development') {
+      } else if (data.sandboxInitPoint && config.ENVIRONMENT === 'development') {
         // Usar sandbox en desarrollo
         window.location.href = data.sandboxInitPoint;
       } else {

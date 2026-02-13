@@ -166,7 +166,7 @@ const Home = () => {
                     <span>Explorar Contenido</span>
                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
-                  {user?.subscription_tier === 'free' && (
+                  {user?.subscriptionTier === 'free' && (
                     <Link
                       to="/subscriptions"
                       className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-bold text-slate-300 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl hover:bg-slate-800 hover:text-white transition-all duration-300"
@@ -386,7 +386,7 @@ const Home = () => {
                 <span>Comenzar Mi Transformación</span>
                 <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform" />
               </Link>
-            ) : user?.subscription_tier === 'free' ? (
+            ) : user?.subscriptionTier === 'free' ? (
               <Link
                 to="/subscriptions"
                 className="inline-flex items-center justify-center px-8 py-4 sm:px-12 sm:py-5 text-lg sm:text-xl font-black text-white bg-gradient-to-r from-red-500 to-red-600 rounded-xl shadow-2xl shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-105 group"

@@ -3,11 +3,13 @@
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
+console.log('🔧 Entorno:', process.env.NODE_ENV);
+
 export const config = {
-  // API URLs
+  // API URLs - CORREGIDO: En desarrollo usa localhost, en producción usa Railway
   API_BASE_URL: isDevelopment
-    ? 'https://jeremyfitnessbackend-production.up.railway.app/api'
-    : (process.env.REACT_APP_API_URL || 'https://jeremyfitnessbackend-production.up.railway.app/api'),
+    ? (process.env.REACT_APP_API_URL || 'http://localhost:5000/api')
+    : 'https://jeremyfitnessbackend-production.up.railway.app/api',
 
   // Socket URL
   SOCKET_URL: isDevelopment

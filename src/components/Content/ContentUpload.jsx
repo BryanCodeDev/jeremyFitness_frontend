@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../../utils/AuthContext';
 import { useNotification } from '../../utils/NotificationContext';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import config from '../../config';
 
 const ContentUpload = ({ onUploadComplete, maxSize = 1024 * 1024 * 1024, multiple = false }) => {
   const [uploadProgress, setUploadProgress] = useState({});
@@ -57,7 +58,7 @@ const ContentUpload = ({ onUploadComplete, maxSize = 1024 * 1024 * 1024, multipl
           };
 
           // Send request
-          xhr.open('POST', `${process.env.REACT_APP_API_URL}/content`);
+          xhr.open('POST', `${config.API_BASE_URL}/admin/content`);
           xhr.setRequestHeader('Authorization', `Bearer ${token}`);
           xhr.send(formData);
         });

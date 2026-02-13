@@ -23,6 +23,7 @@ import {
   getSubscriptionBadgeGradient,
   getSubscriptionIcon
 } from '../../utils/subscriptionUtils';
+import config from '../../config';
 
 const Profile = () => {
   const { user, updateProfile } = useAuth();
@@ -101,11 +102,9 @@ const Profile = () => {
       const formData = new FormData();
       formData.append('profileImage', file);
 
-      const API_BASE_URL = process.env.NODE_ENV === 'development'
-        ? 'http://localhost:5000/api'
-        : 'https://jeremyfitnessbackend-production.up.railway.app/api';
+      const API_BASE_URL = config.API_BASE_URL;
       
-      const response = await fetch(`${process.env.REACT_APP_API_URL || API_BASE_URL}/users/profile/upload-image`, {
+      const response = await fetch(`${API_BASE_URL}/users/profile/upload-image`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -140,11 +139,9 @@ const Profile = () => {
 
     setPasswordLoading(true);
     try {
-      const API_BASE_URL = process.env.NODE_ENV === 'development'
-        ? 'http://localhost:5000/api'
-        : 'https://jeremyfitnessbackend-production.up.railway.app/api';
+      const API_BASE_URL = config.API_BASE_URL;
       
-      const response = await fetch(`${process.env.REACT_APP_API_URL || API_BASE_URL}/users/request-password-reset`, {
+      const response = await fetch(`${API_BASE_URL}/users/request-password-reset`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -224,12 +221,10 @@ const Profile = () => {
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6 pb-6 border-b border-slate-800/50">
                   {/* Avatar */}
                   <div className="relative group">
-                    <div className={`w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br ${getSubscriptionAvatarGradient(user?.subscription_tier)} rounded-2xl flex items-center justify-center text-white text-2xl sm:text-3xl font-black shadow-xl shadow-red-500/20`}>
+                    <div className={`w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br ${getSubscriptionAvatarGradient(user?.subscriptionTier)} rounded-2xl flex items-center justify-center text-white text-2xl sm:text-3xl font-black shadow-xl shadow-red-500/20`}>
                       {user?.profileImageUrl ? (
                         <img
-                          src={`${process.env.REACT_APP_API_URL || (process.env.NODE_ENV === 'development'
-                            ? 'http://localhost:5000'
-                            : 'https://jeremyfitnessbackend-production.up.railway.app')}${user.profileImageUrl}`}
+                          src={`${config.API_BASE_URL.replace('/api', '')}${user.profileImageUrl}`}
                           alt="Profile"
                           className="w-full h-full object-cover rounded-2xl"
                         />
@@ -255,12 +250,12 @@ const Profile = () => {
                       )}
                     </label>
                     {/* Subscription Badge on Avatar */}
-                    <div className={`absolute -bottom-2 -right-2 flex items-center gap-1 bg-gradient-to-r ${getSubscriptionBadgeGradient(user?.subscription_tier)} px-2.5 py-1 rounded-lg shadow-lg`}>
-                      {getSubscriptionIcon(user?.subscription_tier) === 'Crown' && <Crown className="w-3 h-3" />}
-                      {getSubscriptionIcon(user?.subscription_tier) === 'Star' && <Star className="w-3 h-3" />}
-                      {getSubscriptionIcon(user?.subscription_tier) === 'Shield' && <Shield className="w-3 h-3" />}
+                    <div className={`absolute -bottom-2 -right-2 flex items-center gap-1 bg-gradient-to-r ${getSubscriptionBadgeGradient(user?.subscriptionTier)} px-2.5 py-1 rounded-lg shadow-lg`}>
+                      {getSubscriptionIcon(user?.subscriptionTier) === 'Crown' && <Crown className="w-3 h-3" />}
+                      {getSubscriptionIcon(user?.subscriptionTier) === 'Star' && <Star className="w-3 h-3" />}
+                      {getSubscriptionIcon(user?.subscriptionTier) === 'Shield' && <Shield className="w-3 h-3" />}
                       <span className="text-xs font-bold text-white">
-                        {getSubscriptionLabel(user?.subscription_tier)}
+                        {getSubscriptionLabel(user?.subscriptionTier)}
                       </span>
                     </div>
                   </div>
@@ -466,22 +461,22 @@ const Profile = () => {
                   <Crown className="w-5 h-5 text-red-500" />
                   Suscripción
                 </h3>
-                <div className={`bg-gradient-to-br ${getSubscriptionBadgeGradient(user?.subscription_tier)} rounded-xl p-4 sm:p-6 mb-4`}>
+                <div className={`bg-gradient-to-br ${getSubscriptionBadgeGradient(user?.subscriptionTier)} rounded-xl p-4 sm:p-6 mb-4`}>
                   <div className="flex items-center gap-2 text-white mb-2">
-                    {getSubscriptionIcon(user?.subscription_tier) === 'Crown' && <Crown className="w-4 h-4 sm:w-5 sm:h-5" />}
-                    {getSubscriptionIcon(user?.subscription_tier) === 'Star' && <Star className="w-4 h-4 sm:w-5 sm:h-5" />}
-                    {getSubscriptionIcon(user?.subscription_tier) === 'Shield' && <Shield className="w-4 h-4 sm:w-5 sm:h-5" />}
+                    {getSubscriptionIcon(user?.subscriptionTier) === 'Crown' && <Crown className="w-4 h-4 sm:w-5 sm:h-5" />}
+                    {getSubscriptionIcon(user?.subscriptionTier) === 'Star' && <Star className="w-4 h-4 sm:w-5 sm:h-5" />}
+                    {getSubscriptionIcon(user?.subscriptionTier) === 'Shield' && <Shield className="w-4 h-4 sm:w-5 sm:h-5" />}
                     <span className="text-xl sm:text-2xl font-black">
-                      Plan {getSubscriptionLabel(user?.subscription_tier)}
+                      Plan {getSubscriptionLabel(user?.subscriptionTier)}
                     </span>
                   </div>
                   <p className="text-white/80 text-sm">
-                    {user?.subscription_tier === 'free'
+                    {user?.subscriptionTier === 'free'
                       ? 'Actualiza para desbloquear contenido exclusivo'
                       : 'Disfrutando de todos los beneficios'}
                   </p>
                 </div>
-                {user?.subscription_tier === 'free' && (
+                {user?.subscriptionTier === 'free' && (
                   <button className="w-full py-2 sm:py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl transition-all duration-300 backdrop-blur-sm border border-white/20 text-sm sm:text-base">
                     Mejorar Plan
                   </button>
